@@ -244,7 +244,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/boxed.html" class="nav-link">
+                <a href="{{url('tabeldenahdualantaisatu ')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kantin 2 Lantai 1</p>
                 </a>

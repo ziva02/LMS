@@ -13,7 +13,7 @@ class Kantindualantaisatu extends Migration
      */
     public function up()
     {
-        Schema::create('dualantaidua', function (Blueprint $table) {
+        Schema::create('dualantaisatu', function (Blueprint $table) {
             $table->id();
             $table->String('nama', 100);
             $table->String('prodi', 100);
@@ -22,6 +22,7 @@ class Kantindualantaisatu extends Migration
 
         });
     }
+    
 
     /**
      * Reverse the migrations.

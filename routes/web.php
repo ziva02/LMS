@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\informationcontroller;
 use App\Http\Controllers\denahcontroller;
 use App\Http\Controllers\denahsatulantaiduacon;
+use App\Http\Controllers\dualantaisatucon;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,11 @@ Route::post('createkantinsatu/store', [denahsatulantaiduacon::class, 'store'])->
 Route::get('tabeldenahsatulantaidua/delete/{id}', [denahsatulantaiduacon::class, 'delete'])->name('kantinsatulantaidua.delete');
 Route::get('/editkantinsatulantaidua/edit/{id}', [denahsatulantaiduacon::class, 'edit']);
 Route::post('tabeldenahsatulantaidua/update/{id}', [denahsatulantaiduacon::class, 'update'])->name('kantinsatulantaidua.update');
+
+
+Route::get('/tabeldenahdualantaisatu', [dualantaisatucon::class, 'tabeldenahdualantaisatu']);
+Route::get('/createkantindualantaisatu', [dualantaisatucon::class, 'createkantindualantaisatu']);
+Route::post('createkantindualantaisatu/store', [dualantaisatucon::class, 'store'])->name('kantindualantaisatu.store');
+Route::get('tabeldenahdualantaisatu/delete/{id}', [dualantaisatucon::class, 'delete'])->name('kantindualantaisatu.delete');
+Route::get('/editkantindualantaisatu/edit/{id}', [dualantaisatucon::class, 'edit']);
+Route::post('tabeldenahdualantaisatu/update/{id}', [dualantaisatucon::class, 'update'])->name('kantindualantaisatu.update');

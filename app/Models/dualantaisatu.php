@@ -10,6 +10,6 @@ class dualantaisatu extends Model
 {
     use softDeletes;
 
-    protected $table = "satulantaidua";
+    protected $table = "dualantaisatu";
     protected $primarykey = "id";
 }
