@@ -50,7 +50,8 @@
                     <td>{{$datainformation -> Judul}}</td>
                     <td>{{$datainformation -> Deskripsi}}</td>
                     <td> {{$datainformation -> Tanggal}}</td>
-                    <td> {{$datainformation -> Gambar}}</td>
+                    <td> <img src="{{url('images/informationimages/'.$datainformation -> Gambar)}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$datainformation->id}}"></td>
+                    
                     <td>
                     <a href="/edittabel/edit/{{$datainformation->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
                     <a href="tabel/delete/{{$datainformation->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>

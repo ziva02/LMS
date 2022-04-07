@@ -44,8 +44,8 @@
     <input type="date" name="Tanggal" class="form-control" id="Tanggal"  value="{{$update->Tanggal}}">
   </div>
   <div class="form-group">
-    <label for="pwd">Gambar:</label>
-    <input class="form-control" id="formFileMultiple"  name="Gambar" type="file" id="formFileMultiple"  value="{{$update->Gambar}}">{{$update->Gambar}} >
+    <label for="Gambar">Gambar:</label>
+    <input class="form-control" id="formFileMultiple"  name="Gambar" type="file" id="formFileMultiple"  value="{{$update->Gambar}}">
   </div>
 
 
