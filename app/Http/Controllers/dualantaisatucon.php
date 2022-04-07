@@ -38,7 +38,7 @@ class dualantaisatucon extends Controller
     public function edit($id)
     {
         $update = dualantaisatu::find($id);
-        return view('admin.editkantinsatulantaidua',compact('update'));
+        return view('admin.editkantindualantaisatu',compact('update'));
     }
 
     public function update(request $request, $id){

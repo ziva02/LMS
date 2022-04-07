@@ -6,6 +6,8 @@ use App\Http\Controllers\denahcontroller;
 use App\Http\Controllers\denahsatulantaiduacon;
 use App\Http\Controllers\dualantaisatucon;
 
+use App\Http\Controllers\dualantaiduacon;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,3 +68,10 @@ Route::post('createkantindualantaisatu/store', [dualantaisatucon::class, 'store'
 Route::get('tabeldenahdualantaisatu/delete/{id}', [dualantaisatucon::class, 'delete'])->name('kantindualantaisatu.delete');
 Route::get('/editkantindualantaisatu/edit/{id}', [dualantaisatucon::class, 'edit']);
 Route::post('tabeldenahdualantaisatu/update/{id}', [dualantaisatucon::class, 'update'])->name('kantindualantaisatu.update');
+
+Route::get('/tabeldenahdualantaidua', [dualantaiduacon::class, 'tabeldenahdualantaidua']);
+Route::get('/createkantindualantaidua', [dualantaiduacon::class, 'createkantindualantaidua']);
+Route::post('createkantindualantaidua/store', [dualantaiduacon::class, 'store'])->name('kantindualantaidua.store');
+Route::get('tabeldenahdualantaidua/delete/{id}', [dualantaiduacon::class, 'delete'])->name('kantindualantaidua.delete');
+Route::get('/editkantindualantaidua/edit/{id}', [dualantaiduacon::class, 'edit']);
+Route::post('tabeldenahdualantaidua/update/{id}', [dualantaiduacon::class, 'update'])->name('kantindualantaidua.update');

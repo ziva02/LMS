@@ -12,7 +12,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">canteen plan two floor one</li>
+              <li class="breadcrumb-item active">canteen plan two floor two</li>
             </ol>
           </div>
         </div>
@@ -30,7 +30,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <a href="{{url('createkantindualantaisatu   ')}}" class="btn btn-primary">+Tambah Mahasiswa</a>
+                <a href="{{url('createkantindualantaidua   ')}}" class="btn btn-primary">+Tambah Mahasiswa</a>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
@@ -41,14 +41,14 @@
                   </thead>
                   <?php $number=1;?>
                   <tbody>
-                    @foreach  ($datadenahdualsatu as $datadenahdualsatu )
+                    @foreach  ($datadenahdualdua as $datadenahdualdua )
                   <tr>
                     <td><?php echo $number++; ?></td>
-                    <td>{{$datadenahdualsatu -> nama}}</td>
-                    <td>{{$datadenahdualsatu -> prodi}}</td>
+                    <td>{{$datadenahdualdua -> nama}}</td>
+                    <td>{{$datadenahdualdua -> prodi}}</td>
                     <td>
-                    <a href="/editkantindualantaisatu/edit/{{$datadenahdualsatu->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
-                    <a href="tabeldenahdualantaisatu/delete/{{$datadenahdualsatu->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="/editkantindualantaidua/edit/{{$datadenahdualdua->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
+                    <a href="tabeldenahdualantaidua/delete/{{$datadenahdualdua->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                     </td>
                   </tr>@endforeach
                                   </tbody>
