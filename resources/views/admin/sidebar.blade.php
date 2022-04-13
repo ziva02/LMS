@@ -250,7 +250,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/fixed-sidebar.html" class="nav-link">
+                <a href="{{url('tabeldenahdualantaidua ')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kantin 2 Lantai 2</p>
                 </a>
