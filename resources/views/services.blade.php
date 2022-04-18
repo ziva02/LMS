@@ -16,6 +16,34 @@
     </div> <!-- .page-banner -->
   </header>
 
+
+
+  <div class="container mt-5 mb-3">
+    <div class="row">
+        <div class="col-md-4">
+        @foreach($datadenah as $tampil )
+            <div class="card p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                    </div>
+                  <?php $number=1;?>
+                    <div class="badge"><?php echo $number++; ?> </div>
+                </div>
+                <div class="mt-5">
+                    <h6 class="heading">{{$tampil -> nama}} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$tampil -> prodi}}</h6>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
   <main>
     <div class="page-section">
       <div class="container">

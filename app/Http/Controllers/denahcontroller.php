@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\denah;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class denahcontroller extends Controller
 {
     public function tabeldenah()
     {
-        $datadenah=denah::all();
-        return view('admin.tabeldenah')->with([
-            'datadenah' => $datadenah
-        ]);
+        $datadenah=DB::table('denah')->get();
+        return view('admin.tabeldenah',['datadenah' => $datadenah]);
     }
 
     public function createkantinsatu()
@@ -21,16 +20,7 @@ class denahcontroller extends Controller
         return view ('admin.createkantinsatu');
     }
 
-
-
-    public function store(Request $request)
-    {
-        $info = new denah();
-        $info->nama = $request->nama;
-        $info->prodi = $request->prodi;
-        $info -> save();
-        return redirect('tabeldenah');
-    }
+    
 
     public function delete($id)
     {

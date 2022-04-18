@@ -49,7 +49,7 @@ Route::get('tabel/delete/{id}', [informationcontroller::class, 'delete'])->name(
 
 Route::get('/tabeldenah', [denahcontroller::class, 'tabeldenah']);
 Route::get('/createkantinsatu', [denahcontroller::class, 'createkantinsatu']);
-Route::post('createkantinsatu/store', [denahcontroller::class, 'store'])->name('kantinsatu.store');
+Route::post('createkantinsatu/storee', [denahsatulantaiduacon::class, 'storee'])->name('kantinsatu.storee');
 Route::get('tabeldenah/delete/{id}', [denahcontroller::class, 'delete'])->name('kantinsatu.delete');
 Route::get('/editkantinsatu/edit/{id}', [denahcontroller::class, 'edit']);
 Route::post('tabeldenah/update/{id}', [denahcontroller::class, 'update'])->name('kantinsatu.update');

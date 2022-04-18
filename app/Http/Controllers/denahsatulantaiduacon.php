@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\denahsatuldua;
 use Illuminate\Http\Request;
+use App\Models\denah;
 
 class denahsatulantaiduacon extends Controller
 {
@@ -19,6 +20,16 @@ class denahsatulantaiduacon extends Controller
     {
         return view ('admin.createkantinsatulantaidua');
     }
+
+    public function storee (Request $request)
+        {
+            $info = new denah();
+            $info->nama = $request->nama;
+            $info->prodi = $request->prodi;
+            $info -> save();
+            return redirect('tabeldenah');
+        }
+
     public function store(Request $request)
     {
         $info = new denahsatuldua();

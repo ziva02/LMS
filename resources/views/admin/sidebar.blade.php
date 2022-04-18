@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{asset('plugins')}}/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{asset('plugins')}}/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{asset('plugins')}}/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{asset('plugins')}}/datatables-buttons/css/style.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('dist')}}/css/adminlte.min.css">
   <script src="{{asset('plugins')}}/jquery/jquery.min.js"></script>
@@ -232,25 +233,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('tabeldenah ')}}" class="nav-link">
+                <a href="{{url('tabeldenah')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kantin 1 Lantai 1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('tabeldenahsatulantaidua ')}}" class="nav-link">
+                <a href="{{url('tabeldenahsatulantaidua')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kantin 1 Lantai 2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('tabeldenahdualantaisatu ')}}" class="nav-link">
+                <a href="{{url('tabeldenahdualantaisatu')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kantin 2 Lantai 1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('tabeldenahdualantaidua ')}}" class="nav-link">
+                <a href="{{url('tabeldenahdualantaidua')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kantin 2 Lantai 2</p>
                 </a>

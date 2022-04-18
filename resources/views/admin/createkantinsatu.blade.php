@@ -29,7 +29,7 @@
               </div>
               <div>
 
-<form role="form" action="{{route('kantinsatu.store')}}" method="POST" enctype="multipart/form-data">
+<form role="form" action="{{route('kantinsatu.storee')}}" method="POST" enctype="multipart/form-data">
 {{ csrf_field() }}
   <div class="form-group">
     <label for="nama">nama:</label>
@@ -44,5 +44,8 @@
   <a href="{{url('tabeldenah ')}}" class="btn btn-primary">Back</a>
 </form>
 </div>
+
+
+
 
 
