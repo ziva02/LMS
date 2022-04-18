@@ -37,6 +37,7 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Program Studi</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <?php $number=1;?>

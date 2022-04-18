@@ -5,8 +5,8 @@ use App\Http\Controllers\informationcontroller;
 use App\Http\Controllers\denahcontroller;
 use App\Http\Controllers\denahsatulantaiduacon;
 use App\Http\Controllers\dualantaisatucon;
-
 use App\Http\Controllers\dualantaiduacon;
+use App\Http\Controllers\komentarcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,3 +75,5 @@ Route::post('createkantindualantaidua/store', [dualantaiduacon::class, 'store'])
 Route::get('tabeldenahdualantaidua/delete/{id}', [dualantaiduacon::class, 'delete'])->name('kantindualantaidua.delete');
 Route::get('/editkantindualantaidua/edit/{id}', [dualantaiduacon::class, 'edit']);
 Route::post('tabeldenahdualantaidua/update/{id}', [dualantaiduacon::class, 'update'])->name('kantindualantaidua.update');
+
+Route::get('/tabelkomentar', [komentarcontroller::class, 'tabelkomentar']);

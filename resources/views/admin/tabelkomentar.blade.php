@@ -30,7 +30,6 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <a href="{{url('createkantinsatu')}}" class="btn btn-primary">+Tambah Mahasiswa</a>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
@@ -42,14 +41,13 @@
                   </thead>
                   <?php $number=1;?>
                   <tbody>
-                    @foreach  ($datadenah as $datadenah )
+                    @foreach  ($komentar as $komentar )
                   <tr>
                     <td><?php echo $number++; ?></td>
-                    <td>{{$datadenah -> nama}}</td>
-                    <td>{{$datadenah -> prodi}}</td>
+                    <td>{{$komentar -> nama}}</td>
+                    <td>{{$komentar -> komentar}}</td>
                     <td>
-                    <a href="/editkantinsatu/edit/{{$datadenah->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
-                    <a href="tabeldenah/delete/{{$datadenah->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                     </td>
                   </tr>@endforeach
                                   </tbody>
