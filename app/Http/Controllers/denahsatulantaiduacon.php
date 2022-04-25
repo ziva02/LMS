@@ -25,7 +25,10 @@ class denahsatulantaiduacon extends Controller
         {
             $info = new denah();
             $info->nama = $request->nama;
+            $info->namadua = $request->namadua;
             $info->prodi = $request->prodi;
+            $info->prodidua = $request->prodidua;
+            $info->meja = $request->meja;
             $info -> save();
             return redirect('tabeldenah');
         }
@@ -34,7 +37,10 @@ class denahsatulantaiduacon extends Controller
     {
         $info = new denahsatuldua();
         $info->nama = $request->nama;
+        $info->namadua = $request->namadua;
         $info->prodi = $request->prodi;
+        $info->prodidua = $request->prodidua;
+        $info->meja = $request->meja;
         $info -> save();
         return redirect('tabeldenahsatulantaidua');
     }
@@ -54,9 +60,12 @@ class denahsatulantaiduacon extends Controller
 
     public function update(request $request, $id){
         $update = denahsatuldua::find($id); 
-            $update->nama= $request->nama;
-            $update->prodi = $request->prodi;
-            $update -> save();
+        $update->nama= $request->nama;
+        $update->namadua= $request->namadua;
+        $update->prodi = $request->prodi;
+        $update->prodidua = $request->prodidua;
+        $update->meja = $request->meja;
+        $update -> save();
            
             return redirect('/tabeldenahsatulantaidua');         
     

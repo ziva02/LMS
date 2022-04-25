@@ -24,7 +24,10 @@ class dualantaisatucon extends Controller
     {
         $info = new dualantaisatu();
         $info->nama = $request->nama;
+        $info->namadua = $request->namadua;
         $info->prodi = $request->prodi;
+        $info->prodidua = $request->prodidua;
+        $info->meja = $request->meja;
         $info -> save();
         return redirect('tabeldenahdualantaisatu');
     }
@@ -42,9 +45,12 @@ class dualantaisatucon extends Controller
     }
 
     public function update(request $request, $id){
-        $update = dualantaisatu::find($id); 
+            $update = dualantaisatu::find($id); 
             $update->nama= $request->nama;
+            $update->namadua= $request->namadua;
             $update->prodi = $request->prodi;
+            $update->prodidua = $request->prodidua;
+            $update->meja = $request->meja;
             $update -> save();
            
             return redirect('/tabeldenahdualantaisatu');         

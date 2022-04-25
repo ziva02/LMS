@@ -34,9 +34,12 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Program Studi</th>
+                  <th>No</th>
+                    <th>Nama-1</th>
+                    <th>Nama-2</th>
+                    <th>Program Studi-1</th>
+                    <th>Program Studi-2</th>
+                    <th>Meja</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -46,7 +49,10 @@
                   <tr>
                     <td><?php echo $number++; ?></td>
                     <td>{{$datadenahdualdua -> nama}}</td>
+                    <td>{{$datadenahdualdua -> namadua}}</td>
                     <td>{{$datadenahdualdua -> prodi}}</td>
+                    <td>{{$datadenahdualdua -> prodidua}}</td>
+                    <td>{{$datadenahdualdua -> meja}}</td>
                     <td>
                     <a href="/editkantindualantaidua/edit/{{$datadenahdualdua->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
                     <a href="tabeldenahdualantaidua/delete/{{$datadenahdualdua->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>

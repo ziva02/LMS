@@ -37,9 +37,8 @@ Route::get('/about', function () {
 Route::get('/portfolio', function () {
     return view('portfolio');
 });
-Route::get('/services', function () {
-    return view('services');
-});
+Route::get('/kantin', [denahcontroller::class, 'kantin']);
+
 Route::get('/tabel', [informationcontroller::class, 'tabel']);
 Route::get('/createinformation', [informationcontroller::class, 'createinformation']);
 Route::get('/edittabel/edit/{id}', [informationcontroller::class, 'edit']);
@@ -48,6 +47,7 @@ Route::post('tabel/update/{id}', [informationcontroller::class, 'update'])->name
 Route::get('tabel/delete/{id}', [informationcontroller::class, 'delete'])->name('tabel.delete');
 
 Route::get('/tabeldenah', [denahcontroller::class, 'tabeldenah']);
+
 Route::get('/createkantinsatu', [denahcontroller::class, 'createkantinsatu']);
 Route::post('createkantinsatu/storee', [denahsatulantaiduacon::class, 'storee'])->name('kantinsatu.storee');
 Route::get('tabeldenah/delete/{id}', [denahcontroller::class, 'delete'])->name('kantinsatu.delete');

@@ -11,9 +11,19 @@ class denahcontroller extends Controller
 {
     public function tabeldenah()
     {
-        $datadenah=DB::table('denah')->get();
-        return view('admin.tabeldenah',['datadenah' => $datadenah]);
+        $datadenah=denah::all();
+        return view('admin.tabeldenah')->with([
+            'datadenah' => $datadenah
+        ]);
     }
+
+    public function kantin()
+    {
+        $datadenah=denah::all();
+        return view('kantin',compact('datadenah'));
+    }
+
+    
 
     public function createkantinsatu()
     {
@@ -38,7 +48,10 @@ class denahcontroller extends Controller
     public function update(request $request, $id){
         $update = denah::find($id); 
             $update->nama= $request->nama;
+            $update->namadua= $request->namadua;
             $update->prodi = $request->prodi;
+            $update->prodidua = $request->prodidua;
+            $update->meja = $request->meja;
             $update -> save();
            
             return redirect('/tabeldenah');         

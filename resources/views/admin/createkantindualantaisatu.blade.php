@@ -31,13 +31,29 @@
 
 <form role="form" action="{{route('kantindualantaisatu.store')}}" method="POST" enctype="multipart/form-data">
 {{ csrf_field() }}
-  <div class="form-group">
+<div class="form-group">
     <label for="nama">nama:</label>
     <input type="nama" name="nama" class="form-control" id="nama">
   </div>
   <div class="form-group">
     <label for="prodi">prodi:</label>
     <input type="prodi" name="prodi" class="form-control" id="prodi">
+  
+  </input>
+    
+    
+  </div>
+  <div class="form-group">
+    <label for="namadua">nama-2:</label>
+    <input type="namadua" name="namadua" class="form-control" id="namadua">
+  </div>
+  <div class="form-group">
+    <label for="prodidua">prodi-2:</label>
+    <input type="prodidua" name="prodidua" class="form-control" id="prodidua">
+  </div>
+  <div class="form-group">
+    <label for="meja">meja:</label>
+    <input type="meja" name="meja" class="form-control" id="meja">
   </div>
   
   <button type="submit"  class="btn btn-primary">Submit</button>

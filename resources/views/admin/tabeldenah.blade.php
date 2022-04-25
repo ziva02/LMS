@@ -35,8 +35,11 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Program Studi</th>
+                    <th>Nama-1</th>
+                    <th>Nama-2</th>
+                    <th>Program Studi-1</th>
+                    <th>Program Studi-2</th>
+                    <th>Meja</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -46,7 +49,10 @@
                   <tr>
                     <td><?php echo $number++; ?></td>
                     <td>{{$datadenah -> nama}}</td>
+                    <td>{{$datadenah -> namadua}}</td>
                     <td>{{$datadenah -> prodi}}</td>
+                    <td>{{$datadenah -> prodidua}}</td>
+                    <td>{{$datadenah -> meja}}</td>
                     <td>
                     <a href="/editkantinsatu/edit/{{$datadenah->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
                     <a href="tabeldenah/delete/{{$datadenah->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>

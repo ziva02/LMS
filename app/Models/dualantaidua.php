@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 
 class dualantaidua extends Model
 {
-    use softDeletes;
+    use HasFactory;
 
     protected $table = "dualantaidua";
     protected $primarykey = "id";

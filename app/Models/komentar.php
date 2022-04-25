@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 
 class komentar extends Model
 {
-    use softDeletes;
+    use HasFactory;
 
     protected $table = "komentar";
     protected $primarykey = "id";
