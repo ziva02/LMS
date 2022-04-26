@@ -31,13 +31,15 @@ Route::get('/blog', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/about', function () {
-    return view('about');
-});
 Route::get('/portfolio', function () {
     return view('portfolio');
 });
+Route::get('/about', [informationcontroller::class, 'about']);
+
 Route::get('/kantin', [denahcontroller::class, 'kantin']);
+Route::get('/kantinsatudua', [denahsatulantaiduacon::class, 'kantinsatudua']);
+Route::get('/kantinduasatu', [dualantaisatucon::class, 'kantinduasatu']);
+Route::get('/kantinduadua', [dualantaiduacon::class, 'kantinduadua']);
 
 Route::get('/tabel', [informationcontroller::class, 'tabel']);
 Route::get('/createinformation', [informationcontroller::class, 'createinformation']);

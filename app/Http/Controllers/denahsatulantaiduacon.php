@@ -21,6 +21,12 @@ class denahsatulantaiduacon extends Controller
         return view ('admin.createkantinsatulantaidua');
     }
 
+    public function kantinsatudua()
+    {
+        $datadenah=denahsatuldua::all();
+        return view('kantinsatudua',compact('datadenah'));
+    }
+
     public function storee (Request $request)
         {
             $info = new denah();

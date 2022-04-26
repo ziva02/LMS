@@ -19,6 +19,11 @@ class dualantaiduacon extends Controller
     {
         return view ('admin.createkantindualantaidua');
     }
+    public function kantinduadua()
+    {
+        $datadenah=dualantaidua::all();
+        return view('kantinduadua',compact('datadenah'));
+    }
 
     public function store(Request $request)
     {

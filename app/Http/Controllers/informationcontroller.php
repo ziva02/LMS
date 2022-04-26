@@ -79,6 +79,12 @@ class informationcontroller extends Controller
         return view('admin.edittabel',compact('update'));
     }
 
+    public function about()
+    {
+        $info=information::all();
+        return view('about',compact('info'));
+    }
+
     /**
      * Update the specified resource in storage.
      *

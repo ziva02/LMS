@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item active" aria-current="page">About</li>
               </ol>
             </nav>
-            <h1 class="fg-white text-center">About</h1>
+            <h1 class="text-center" style="color:white;">Information</h1>
           </div>
         </div>
       </div>
@@ -19,19 +19,21 @@
   <main>
     <div class="page-section">
       <div class="container">
+        @foreach  ($info as $info )
         <div class="row align-items-center">
           <div class="col-lg-6 py-3">
-            <div class="subhead">About Us</div>
-            <h2 class="title-section">We are <span class="fg-primary">Professional Teams</span> to Growth your Business</h2>
+            <div class="subhead">{{$info -> Tanggal}}</div>
+            <h2 class="title-section"><span class="fg-primary">{{$info -> Judul}}</span> </h2>
 
-            <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of</p>
+            <p>{{$info -> Deskripsi}}</p>
           </div>
           <div class="col-lg-6 py-3">
-            <div class="about-img">
-              <img src="{{asset('img')}}/about.jpg" alt="">
+            <div class="about-img" style="height:300px; width:800px">
+              <img src="{{url('images/informationimages/'.$info -> Gambar)}}" alt="">
             </div>
           </div>
         </div>
+        @endforeach
       </div> <!-- .container -->
     </div> <!-- .page-section -->
 

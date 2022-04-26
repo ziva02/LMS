@@ -20,6 +20,12 @@ class dualantaisatucon extends Controller
         return view ('admin.createkantindualantaisatu');
     }
 
+    public function kantinduasatu()
+    {
+        $datadenah=dualantaisatu::all();
+        return view('kantinduasatu',compact('datadenah'));
+    }
+
     public function store(Request $request)
     {
         $info = new dualantaisatu();
