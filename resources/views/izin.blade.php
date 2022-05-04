@@ -27,7 +27,7 @@
         <div class="row justify-content-center mt-5">
           <div class="col-lg-8">
 
-            <form class="form-contact" role="form" action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data" >
+            <form class="form-contact" role="form" action="" method="POST" enctype="multipart/form-data" >
             {{ csrf_field() }}
               <div class="row">
                 <div class="col-sm-6 py-2">
@@ -43,7 +43,7 @@
                   <input type="text" class="form-control" id="subjek" name="subjek" placeholder="Subjek..">
                 </div>
                 <div class="col-12 py-2">
-                  <label for="Komentar" class="fg-grey">Pesan/Kritik</label>
+                  <label for="Komentar" class="fg-grey">Keterangan</label>
                   <textarea id="Komentar" rows="8" class="form-control" name="Komentar" placeholder="Masukkan pesan.."></textarea>
                 </div>
                 <div class="col-12 mt-3">
@@ -60,62 +60,7 @@
 
 
 
-  <main>
-    <div class="page-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="row">
-            @foreach($datakomentar as $tampil )
-              <div class="col-md-6 col-lg-3 py-3">
-                <div class="card-blog">
-                  <div class="header">
-                    <div class="avatar">
-                      <img src="{{asset('img')}}/person/person_1.jpg" alt="">
-                    </div>
-                    <div class="entry-footer">
-                      <div class="post-author">{{$tampil -> nama}}</div>
-                      <a href="#" class="post-date">23 Apr 2020</a>
-                    </div>
-                  </div>
-                  <div class="body">
-                    <div class="post-title"><a href="blog-single.html">{{$tampil -> subjek}}</a></div>
-                    <div class="post-excerpt">{{$tampil -> Komentar}}</div>
-                  </div>
-
-                </div>
-              </div>
-              @endforeach
-
-            
-
-              <div class="col-12 my-5">
-                <nav aria-label="Page Navigation">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item active" aria-current="page">
-                      <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-              
-            </div>
-          </div>
-          
-        </div>
-      </div> <!-- .container -->
-    </div> <!-- .page-section -->
-  </main>
+ 
 
 
   @include ('footer')

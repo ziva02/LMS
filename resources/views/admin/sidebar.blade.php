@@ -258,6 +258,17 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="{{url('tabelproduk ')}}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Produk
+              </p>
+            </a>
+           
+          </li>
+
           <li class="nav-item">
             <a href="{{url('tabelkomentar')}}" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>

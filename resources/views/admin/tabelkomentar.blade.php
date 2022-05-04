@@ -35,7 +35,7 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Program Studi</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
                   </tr>
                   </thead>

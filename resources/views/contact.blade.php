@@ -17,13 +17,16 @@
     </div> <!-- .page-banner -->
   </header>
   <div class="container mt-5 mb-5"> 
+    
+  @foreach($produk as $tampil )
   <div class="col-md-6 col-lg-3 py-3"> 
     <div class="card" style="width:300px">
     <div class="card-body">
-      <h4 class="card-title">Jane Doe</h4>
-      <p class="card-text">Some example text some example text. Jane Doe is an architect and engineer</p>
-      <a href="#" class="btn btn-primary">See Profile</a>
+      <h4 class="card-title">{{$tampil -> nama}}</h4>
+      <p class="card-text">Rp.{{$tampil -> harga}}</p>
+      <a href="#" class="btn btn-primary">Pesan</a>
     </div>
+    @endforeach
 </div>
   </div></div>
 

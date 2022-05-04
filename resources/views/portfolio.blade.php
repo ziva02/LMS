@@ -32,6 +32,8 @@
             <div class="portfolio">
               <a href="{{asset('img')}}/portfolio/work-1.jpg" data-fancybox="portfolio">
                 <img src="{{asset('img')}}/portfolio/work-1.jpg" alt="">
+                <p>dsadsadas</p>
+                <p>sadsa</p>
               </a>
             </div>
           </div>
@@ -102,21 +104,21 @@
   @include ('footer')
 
   
-<script src="../assets/js/jquery-3.5.1.min.js"></script>
+<script src="{{asset('js')}}/jquery-3.5.1.min.js"></script>
 
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('js')}}/bootstrap.bundle.min.js"></script>
 
-<script src="../assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
+<script src="{{asset('vendor')}}/owl-carousel/js/owl.carousel.min.js"></script>
 
-<script src="../assets/vendor/wow/wow.min.js"></script>
+<script src="{{asset('vendor')}}/wow/wow.min.js"></script>
 
-<script src="../assets/vendor/fancybox/js/jquery.fancybox.min.js"></script>
+<script src="{{asset('vendor')}}/fancybox/js/jquery.fancybox.min.js"></script>
 
-<script src="../assets/vendor/isotope/isotope.pkgd.min.js"></script>
+<script src="{{asset('vendor')}}/isotope/isotope.pkgd.min.js"></script>
 
-<script src="../assets/js/google-maps.js"></script>
+<script src="{{asset('js')}}/google-maps.js"></script>
 
-<script src="../assets/js/theme.js"></script>
+<script src="{{asset('js')}}/theme.js"></script>
 
 </body>
 </html>

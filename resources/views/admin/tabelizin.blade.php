@@ -30,26 +30,30 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-              <a href="{{url('createproduk')}}" class="btn btn-primary mb-5">+Tambah Produk</a>
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th width="80px">No</th>
+                    <th>No</th>
                     <th>Nama</th>
-                    <th>Harga</th>
-                    <th width="250px">Action</th>
+                    <th>Nim</th>
+                    <th>Program Studi</th>
+                    <th>Subjek</th>
+                    <th>Keteragan</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <?php $number=1;?>
                   <tbody>
-                    @foreach  ($produk as $produk )
+                    @foreach  ($izin as $izin )
                   <tr>
                     <td><?php echo $number++; ?></td>
-                    <td>{{$produk -> nama}}</td>
-                    <td>Rp.{{$produk -> harga}}</td>
-                    <td >
-                    <a href="/editproduk/edit/{{$produk->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
-                    <a href="tabelproduk/delete/{{$produk->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <td>{{$izin -> nama}}</td>
+                    <td>{{$izin -> nim}}</td>
+                    <th>{{$izin -> prodi}}</th>
+                    <td>{{$izin -> subjek}}</td>
+                    <td>{{$izin -> keterangan}}</td>
+                    <td>
+                    <a href="tabelizin/delete/{{$izin->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                     </td>
                   </tr>@endforeach
                                   </tbody>

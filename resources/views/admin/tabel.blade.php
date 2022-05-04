@@ -36,7 +36,7 @@
                   <tr>
                     <th>No</th>
                     <th>Judul</th>
-                    <th>Deskripsi</th>
+                    <th width="550px">Deskripsi</th>
                     <th>Tanggal</th>
                     <th>Gambar</th>
                     <th>Action</th>
@@ -50,7 +50,8 @@
                     <td>{{$datainformation -> Judul}}</td>
                     <td>{{$datainformation -> Deskripsi}}</td>
                     <td> {{$datainformation -> Tanggal}}</td>
-                    <td> <img src="{{url('images/informationimages/'.$datainformation -> Gambar)}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$datainformation->id}}"></td>
+                    <td> 
+                      <img src="{{url('images/informationimages/'.$datainformation -> Gambar)}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$datainformation->id}}"></td>
                     
                     <td>
                     <a href="/edittabel/edit/{{$datainformation->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>

@@ -20,6 +20,12 @@ class produkcontroller extends Controller
         return view ('admin.createproduk');
     }
 
+    public function contact()
+    {
+        $produk=produk::all();
+        return view('contact',compact('produk'));
+    }
+
     public function store(Request $request)
     {
         $info = new produk();
