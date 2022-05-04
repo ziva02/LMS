@@ -30,8 +30,8 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <a href="{{url('createkantinsatulantaidua')}}" class="btn btn-primary">+Tambah Mahasiswa</a>
-                <table id="example2" class="table table-bordered table-hover">
+                <a href="{{url('createkantinsatulantaidua')}}" class="btn btn-primary mb-5">+Tambah Mahasiswa</a>
+                <table id="example1" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>No</th>

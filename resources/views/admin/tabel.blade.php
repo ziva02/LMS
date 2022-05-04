@@ -30,8 +30,8 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <a href="{{url('createinformation')}}" class="btn btn-primary">+Tambah information</a>
-                <table id="example2" class="table table-bordered table-hover">
+                <a href="{{url('createinformation')}}" class="btn btn-primary mb-5">+Tambah information</a><br>
+                <table id="format" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>No</th>
@@ -87,10 +87,10 @@
 <!-- Page specific script -->
 <script>
   $(function () {
-    $("#example1").DataTable({
+    $("#format").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#format_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -102,5 +102,6 @@
     });
   });
 </script>
+
 </body>
 </html>

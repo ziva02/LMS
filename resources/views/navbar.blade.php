@@ -11,7 +11,8 @@
   <title>Kantin IT DEL</title>
 
   <link rel="stylesheet" href="{{asset('css')}}/bootstrap.css">
-  
+	
+	<link rel="stylesheet" href="{{asset('css')}}/style.css">
   <link rel="stylesheet" href="{{asset('css')}}/maicons.css">
 
   <link rel="stylesheet" href="{{asset('vendor')}}/animate/animate.css">
@@ -36,6 +37,14 @@
 <script src="{{asset('js')}}/google-maps.js"></script>
 
 <script src="{{asset('js')}}/theme.js"></script>
+<script src="{{asset('js')}}/jquery.min.js"></script>
+  <script src="{{asset('js')}}/popper.js"></script>
+  <script src="{{asset('js')}}/bootstrap.min.js"></script>
+  <script src="{{asset('js')}}/bootstrap.js"></script>
+  <script src="{{asset('js')}}/jquery.validate.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{{asset('js')}}/google-map.js"></script>
+  <script src="{{asset('js')}}/main.js"></script>
 
 </head>
 <body>
@@ -71,7 +80,7 @@
       <div class="container">
         <a href="/index" class="navbar-brand">Kantin&nbsp;<span class="text-primary">IT DEL.</span></a>
 
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#n" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -81,18 +90,23 @@
               <a href="/" class="nav-link">Beranda</a>
             </li>
             <li class="nav-item active">
-              <a href="/about" class="nav-link">Information</a>
+              <a href="/about" class="nav-link">Informasi</a>
             </li>
+
+
             <li class="nav-item dropdown">
-              <a href="/services" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Denah</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a href="#" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Denah</a>
+              <div class="dropdown-menu" >
               <a class="dropdown-item" href="/kantinsatudua">Kantin 1 lantai 2</a>
               <a class="dropdown-item" href="/kantinduasatu">Kantin 2 lantai 1</a>
-              <a class="dropdown-item" href="/kantinduadua">Kantin 2 lantai 2</a>
-          </div>
+              <a class="dropdown-item" href="/kantinduadua">Kantin 2 lantai 2</a>            
+             </div>
             </li>
+
+
             <li class="nav-item">
               <a href="/portfolio" class="nav-link">Izin</a>
+              
             </li>
             <li class="nav-item">
               <a href="/blog" class="nav-link">Komentar</a>
@@ -101,7 +115,7 @@
               <a href="/contact" class="nav-link">Pemesanan</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">Login</a>
+              <a href="#" class="nav-link">Masuk</a>
             </li>
           </ul>
         </div>

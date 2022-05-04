@@ -7,6 +7,7 @@ use App\Http\Controllers\denahsatulantaiduacon;
 use App\Http\Controllers\dualantaisatucon;
 use App\Http\Controllers\dualantaiduacon;
 use App\Http\Controllers\komentarcontroller;
+use App\Http\Controllers\produkcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,18 @@ Route::get('/blogg', function () {
 Route::get('/blog', function () {
     return view('blog');
 });
+Route::get('/login', function () {
+    return view('login');
+});
 Route::get('/contact', function () {
     return view('contact');
 });
 Route::get('/portfolio', function () {
     return view('portfolio');
 });
+Route::get('/blog', [komentarcontroller::class, 'blog']);
+
+
 Route::get('/about', [informationcontroller::class, 'about']);
 
 Route::get('/kantin', [denahcontroller::class, 'kantin']);
@@ -79,3 +86,10 @@ Route::get('/editkantindualantaidua/edit/{id}', [dualantaiduacon::class, 'edit']
 Route::post('tabeldenahdualantaidua/update/{id}', [dualantaiduacon::class, 'update'])->name('kantindualantaidua.update');
 
 Route::get('/tabelkomentar', [komentarcontroller::class, 'tabelkomentar']);
+Route::post('blog/store', [komentarcontroller::class, 'store'])->name('blog.store');
+
+Route::get('/tabelproduk', [produkcontroller::class, 'tabelproduk']);
+Route::get('/createproduk', [produkcontroller::class, 'createproduk']);
+Route::post('createproduk/store', [produkcontroller::class, 'store'])->name('produk.store');
+Route::get('tabelproduk/delete/{id}', [produkcontroller::class, 'delete'])->name('produk.delete');
+Route::get('/editproduk/edit/{id}', [produkcontroller::class, 'edit']);
