@@ -83,7 +83,9 @@ class informationcontroller extends Controller
     {
         $info=information::all();
         return view('about',compact('info'));
+        $info['orderby']=="Tanggal" && $info['order']=="desc";
     }
+
 
     /**
      * Update the specified resource in storage.

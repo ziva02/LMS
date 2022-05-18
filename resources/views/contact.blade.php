@@ -16,19 +16,41 @@
       </div>
     </div> <!-- .page-banner -->
   </header>
-  <div class="container mt-5 mb-5"> 
-    
-  @foreach($produk as $tampil )
-  <div class="col-md-6 col-lg-3 py-3"> 
-    <div class="card" style="width:300px">
-    <div class="card-body">
-      <h4 class="card-title">{{$tampil -> nama}}</h4>
-      <p class="card-text">Rp.{{$tampil -> harga}}</p>
-      <a href="#" class="btn btn-primary">Pesan</a>
-    </div>
-    @endforeach
-</div>
-  </div></div>
+  <center> <H1 >Makanan Kantin</H1></center>
+ 
+       
+  <div class="container mt-5 mb-3">
+    <div class="row">
+    @foreach($produk as $tampil)
+        <div class="col-md-3">
+            <div class="card p-3 mb-2" style="width: 180px; height:180px; position:absolute: ">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                        <div class="ms-2 c-details">
+                            <h4 class="mb-0">{{$tampil ->nama}}</h4> 
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <h6 class="heading">Rp.{{$tampil ->harga}}</h6>
+                </div>
+
+                <div class="mt-4" >
+                <a href="#">Beli</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        </div>
+        </div>
+
+
+
+
+              
 
 
 

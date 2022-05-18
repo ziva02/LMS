@@ -1,91 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <meta name="copyright" content="MACode ID, https://macodeid.com/">
-
-  <title>Kantin IT DEL</title>
-
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  
-
+	<title>Masuk</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+ 
+	<link rel="stylesheet" type="text/css" href="{{asset('vendor')}}/bootstrap/css/bootstrap.min.css">
+ 
+	<link rel="stylesheet" type="text/css" href="{{asset('fonts')}}/font-awesome-4.7.0/css/font-awesome.min.css">
+ 
+	<link rel="stylesheet" type="text/css" href="{{asset('fonts')}}/iconic/css/material-design-iconic-font.min.css">
+ 
+	<link rel="stylesheet" type="text/css" href="{{asset('vendor')}}/animate/animate.css">
+ 	
+	<link rel="stylesheet" type="text/css" href="{{asset('vendor')}}/css-hamburgers/hamburgers.min.css">
+ 
+	<link rel="stylesheet" type="text/css" href="{{asset('vendor')}}/animsition/css/animsition.min.css">
+ 
+	<link rel="stylesheet" type="text/css" href="{{asset('vendor')}}/select2/select2.min.css">
+ 	
+	<link rel="stylesheet" type="text/css" href="{{asset('vendor')}}/daterangepicker/daterangepicker.css">
+ 
+	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/util.css">
+	<link rel="stylesheet" type="text/css" href="{{asset('css')}}/main.css">
+ 
 </head>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+					@csrf
+					<span class="login100-form-title p-b-26">{{ __('Kantin IT DEL') }}</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="nim" class="col-md-4 col-form-label text-md-end">{{ __('NIM') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('email') }}" required autocomplete="nim" autofocus>
-
-                                @error('nim')
+					<div class="wrap-input100 " >
+						<input class="input100"  id="nim" type="text" name="nim">
+						<span class="focus-input100" data-placeholder="{{ __('NIM') }}"></span>
+						@error('nim')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
+					</div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+					<div class="wrap-input100 " >
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" id="password" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Sandi"></span>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
+						@error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
+					</div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="submit" class="login100-form-btn">
+								Masuk
+							</button>
+						</div>
+					</div>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Belum punya akun?
+						</span>
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+						<a class="txt2" href="#">
+							masuk
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div id="dropDownSelect1"></div>
+	
+ 
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+ 
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+ 
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+ 
+	<script src="vendor/select2/select2.min.js"></script>
+ 
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+ 
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+ 
+	<script src="{{asset('js')}}/main.js"></script>
 
+</body>
 </html>

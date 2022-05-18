@@ -54,8 +54,17 @@
                       <img src="{{url('images/informationimages/'.$datainformation -> Gambar)}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$datainformation->id}}"></td>
                     
                     <td>
-                    <a href="/edittabel/edit/{{$datainformation->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
-                    <a href="tabel/delete/{{$datainformation->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+
+                    <a class="btn btn-info btn-sm" href="/edittabel/edit/{{$datainformation->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a>
+                          <a class="btn btn-danger btn-sm" href="tabel/delete/{{$datainformation->id}}">
+                              <i class="fas fa-trash">
+                              </i>
+                              Delete
+                          </a>
                     </td>
                   </tr>@endforeach
                                   </tbody>

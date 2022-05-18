@@ -45,6 +45,21 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('js')}}/google-map.js"></script>
   <script src="{{asset('js')}}/main.js"></script>
+  <script src="{{asset('js')}}/jquery-3.5.1.min.js"></script>
+
+<script src="{{asset('js')}}/bootstrap.bundle.min.js"></script>
+
+<script src="{{asset('vendor')}}/owl-carousel/js/owl.carousel.min.js"></script>
+
+<script src="{{asset('vendor')}}/wow/wow.min.js"></script>
+
+<script src="{{asset('vendor')}}/fancybox/js/jquery.fancybox.min.js"></script>
+
+<script src="{{asset('vendor')}}/isotope/isotope.pkgd.min.js"></script>
+
+<script src="{{asset('js')}}/google-maps.js"></script>
+
+<script src="{{asset('js')}}/theme.js"></script>
 
 </head>
 <body>

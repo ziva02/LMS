@@ -25,7 +25,9 @@
             <div class="subhead">{{$info -> Tanggal}}</div>
             <h2 class="title-section"><span class="fg-primary">{{$info -> Judul}}</span> </h2>
 
-            <p>{{$info -> Deskripsi}}</p>
+            <p>
+            {{Str::limit($info -> Deskripsi, 220, $end='.......')}}
+            </p>
           </div>
           <div class="col-lg-6 py-3">
             <div class="about-img" style="height:300px; width:800px">
