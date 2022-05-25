@@ -77,8 +77,8 @@
 							Belum punya akun?
 						</span>
 
-						<a class="txt2" href="#">
-							masuk
+						<a class="txt2" href="/register">
+							Daftar
 						</a>
 					</div>
 				</form>

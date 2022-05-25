@@ -104,7 +104,7 @@
             <li class="nav-item">
               <a href="/" class="nav-link">Beranda</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a href="/about" class="nav-link">Informasi</a>
             </li>
 
@@ -118,13 +118,18 @@
              </div>
             </li>
 
+            <li class="nav-item ">
+              <a href="/" class="nav-link">Jadwal Piket</a>
+            </li>
+
+
 
             <li class="nav-item">
               <a href="/portfolio" class="nav-link">Izin</a>
               
             </li>
             <li class="nav-item">
-              <a href="/blog" class="nav-link">Komentar</a>
+              <a href="/blog" class="nav-link">Alergi</a>
             </li>
             <li class="nav-item">
               <a href="/contact" class="nav-link">Pemesanan</a>

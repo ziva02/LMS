@@ -10,96 +10,57 @@
                 <li class="breadcrumb-item active" aria-current="page">Portfolio</li>
               </ol>
             </nav>
-            <h1 class="fg-white text-center">Projects</h1>
+            <h1 class="fg-white text-center">Izin</h1>
           </div>
         </div>
       </div>
     </div> <!-- .page-banner -->
   </header>
-
   <main>
     <div class="page-section">
       <div class="container">
-        <div class="filterable-btn">
-          <button class="btn active" data-filter="*">All</button>
-          <button class="btn" data-filter=".web">Website</button>
-          <button class="btn" data-filter=".mobile">Mobile</button>
-          <button class="btn" data-filter=".desktop">Desktop</button>
+        <div class="text-center">
+          <h2 class="title-section mb-3">Izin</h2>
+          <p>Jika anda tidak dapat makan dikantin , silahkan melaporkannya melalui media dibawah ini. </p>
         </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-8">
 
-        <div class="grid mt-3">
-          <div class="grid-item mobile">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-1.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-1.jpg" alt="">
-                <p>dsadsadas</p>
-                <p>sadsa</p>
-              </a>
-            </div>
+            <form class="form-contact" role="form" action="{{route('izin.store')}}" method="POST" enctype="multipart/form-data" >
+            {{ csrf_field() }}
+              <div class="row">
+                <div class="col-sm-6 py-2">
+                  <label for="nama" class="fg-grey">Nama</label>
+                  <input type="text" class="form-control" id="nama" name="nama" value="{{ Auth::user()->name }}">
+                </div>
+                <div class="col-sm-6 py-2">
+                  <label for="nim" class="fg-grey">Nim</label>
+                  <input type="text" class="form-control" id="nim"name="nim" value="{{ Auth::user()->nim }}">
+                </div>
+                <div class="col-12 py-2">
+                  <label for="prodi" class="fg-grey">Program Studi</label>
+                  <input type="text" class="form-control" id="prodi" name="prodi" value="{{ Auth::user()->prodi }}">
+                </div>
+                <div class="col-12 py-2">
+                  <label for="subjek" class="fg-grey">Subjek</label>
+                  <input type="text" class="form-control" id="subjek" name="subjek" placeholder="Subjek..">
+                </div>
+                <div class="col-12 py-2">
+                  <label for="keterangan" class="fg-grey">Keterangan</label>
+                  <textarea id="keterangan" rows="8" class="form-control" name="keterangan" placeholder="Masukkan keterangan.."></textarea>
+                </div>
+                <div class="col-12 mt-3">
+                  <button type="submit" class="btn btn-primary px-5">Kirim</button>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="grid-item mobile">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-2.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-2.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="grid-item web desktop">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-3.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-3.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="grid-item web">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-4.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-4.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="grid-item mobile">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-5.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-5.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="grid-item web desktop">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-6.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-6.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="grid-item web">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-7.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-7.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="grid-item mobile">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-8.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-8.jpg" alt="">
-              </a>
-            </div>
-          </div>
-          <div class="grid-item mobile">
-            <div class="portfolio">
-              <a href="{{asset('img')}}/portfolio/work-9.jpg" data-fancybox="portfolio">
-                <img src="{{asset('img')}}/portfolio/work-9.jpg" alt="">
-              </a>
-            </div>
-          </div>
-        </div> <!-- .grid -->
-        <div class="mt-5 text-center">
-          <button class="btn btn-primary">Load More</button>
         </div>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
+
   </main>
+
 
   @include ('footer')
 

@@ -23,13 +23,13 @@ class izincontroller extends Controller
     }
     public function store(Request $request)
     {
-        $info = new produk();
+        $info = new izin();
         $info->nama = $request->nama;
         $info->nim = $request->nim;
         $info->prodi = $request->prodi;
         $info->subjek = $request->subjek;
         $info->keterangan = $request->keterangan;
         $info -> save();
-        return redirect('tabelizink');
+        return redirect('portfolio');
     }
 }
