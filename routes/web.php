@@ -10,6 +10,7 @@ use App\Http\Controllers\komentarcontroller;
 use App\Http\Controllers\produkcontroller;
 use App\Http\Controllers\izincontroller;
 use App\Http\Controllers\tengahcon;
+use App\Http\Controllers\jadwalsatusatu;
 
 
 /*
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/kantinsatudua', [denahsatulantaiduacon::class, 'kantinsatudua']);
     Route::get('/kantinduasatu', [dualantaisatucon::class, 'kantinduasatu']);
     Route::get('/kantinduadua', [dualantaiduacon::class, 'kantinduadua']);
+    Route::get('/kantintengah', [tengahcon::class, 'kantintengah']);
 
     
     Route::post('portfolio/store', [izincontroller::class, 'store'])->name('izin.store');
@@ -131,3 +133,10 @@ Route::get('/createproduk', [produkcontroller::class, 'createproduk']);
 Route::post('createproduk/store', [produkcontroller::class, 'store'])->name('produk.store');
 Route::get('tabelproduk/delete/{id}', [produkcontroller::class, 'delete'])->name('produk.delete');
 Route::get('/editproduk/edit/{id}', [produkcontroller::class, 'edit']);
+Route::post('tabelproduk/update/{id}', [produkcontroller::class, 'update'])->name('produk.update');
+
+Route::get('/tabeljadwalkantinsatusatu', [jadwalsatusatu::class, 'tabeljadwalkantinsatusatu']);
+Route::get('/editjadwalsatusatu/edit/{id}', [jadwalsatusatu::class, 'edit']);
+Route::post('tabeljadwalkantinsatusatu/update/{id}', [jadwalsatusatu::class, 'update'])->name('jadwal.update');
+
+Route::get('/jadwalpiket', [jadwalsatusatu::class, 'jadwalpiket']);

@@ -17,7 +17,7 @@
   </header><br>
 
 
-  <H2 style="font-family:Garamond ;" class="text-center">Denah Kantin Dua Lantai Satu</H2>
+  <H2 style="font-family:Garamond ;" class="text-center">Denah Kantin Tengah</H2>
   <div class="container mt-5 mb-3">
     <div class="row">
       <?php $number=1;?>

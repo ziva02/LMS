@@ -112,7 +112,9 @@
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Denah</a>
               <div class="dropdown-menu" >
+              <a class="dropdown-item" href="/kantin">Kantin 1 lantai 1</a>
               <a class="dropdown-item" href="/kantinsatudua">Kantin 1 lantai 2</a>
+              <a class="dropdown-item" href="/kantintengah">Kantin Tengah</a>
               <a class="dropdown-item" href="/kantinduasatu">Kantin 2 lantai 1</a>
               <a class="dropdown-item" href="/kantinduadua">Kantin 2 lantai 2</a>            
              </div>

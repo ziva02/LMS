@@ -38,6 +38,11 @@ class tengahcon extends Controller
          if($deletedenah->delete()){}
            return redirect()->back();
     }
+    public function kantintengah()
+    {
+        $datadenah=tengah::all();
+        return view('kantintengah',compact('datadenah'));
+    }
 
     public function edit($id)
     {
