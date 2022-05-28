@@ -6,7 +6,7 @@
           <div class="col-lg-8">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Contact</li>
               </ol>
             </nav>
@@ -22,13 +22,13 @@
   <div class="container mt-5 mb-3">
     <div class="row">
     @foreach($produk as $tampil)
-        <div class="col-md-3">
-            <div class="card p-3 mb-2" style="width: 180px; height:180px; position:absolute: ">
+        <div class="col-md-3" width="100px" >
+            <div class="card p-3 mb-2" style="position:absolute: ">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
                         <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
                         <div class="ms-2 c-details">
-                            <h4 class="mb-0">{{$tampil ->nama}}</h4> 
+                            <h5 class="mb-0">{{$tampil ->nama}}</h5> 
                         </div>
 
                     </div>
@@ -39,7 +39,6 @@
                 </div>
 
                 <div class="mt-4" >
-                <a href="#">Beli</a>
                 </div>
             </div>
         </div>

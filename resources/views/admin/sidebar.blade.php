@@ -266,6 +266,49 @@
           </li>
 
           <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Jadwal Piket
+                <i class="fas fa-angle-left right"></i>
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('tabeljadwalkantinsatusatu')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kantin 1 Lantai 1</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('tabeljadwalkantinsatudua')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kantin 1 Lantai 2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('tabeljadwalkantintengah')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kantin Tengah</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('tabeljadwalkantinduasatu')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kantin 2 Lantai 1</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('tabeljadwalkantinduadua')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kantin 2 Lantai 2</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
             <a href="{{url('tabelproduk ')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>

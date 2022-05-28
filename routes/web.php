@@ -11,6 +11,7 @@ use App\Http\Controllers\produkcontroller;
 use App\Http\Controllers\izincontroller;
 use App\Http\Controllers\tengahcon;
 use App\Http\Controllers\jadwalsatusatu;
+use App\Http\Controllers\jadwalsatudua;
 
 
 /*
@@ -138,5 +139,22 @@ Route::post('tabelproduk/update/{id}', [produkcontroller::class, 'update'])->nam
 Route::get('/tabeljadwalkantinsatusatu', [jadwalsatusatu::class, 'tabeljadwalkantinsatusatu']);
 Route::get('/editjadwalsatusatu/edit/{id}', [jadwalsatusatu::class, 'edit']);
 Route::post('tabeljadwalkantinsatusatu/update/{id}', [jadwalsatusatu::class, 'update'])->name('jadwal.update');
+
+
+Route::get('/tabeljadwalkantinsatudua', [jadwalsatusatu::class, 'tabeljadwalkantinsatudua']);
+Route::get('/editjadwalsatudua/edit/{id}', [jadwalsatusatu::class, 'editsatudua']);
+Route::post('tabeljadwalkantinsatudua/update/{id}', [jadwalsatusatu::class, 'updatesatudua'])->name('jadwalsatudua.update');
+
+Route::get('/tabeljadwalkantintengah', [jadwalsatusatu::class, 'tabeljadwalkantintengah']);
+Route::get('/editjadwaltengah/edit/{id}', [jadwalsatusatu::class, 'edittengah']);
+Route::post('tabeljadwalkantitengah/update/{id}', [jadwalsatusatu::class, 'updatetengah'])->name('jadwaltengah.update');
+
+Route::get('/tabeljadwalkantinduasatu', [jadwalsatusatu::class, 'tabeljadwalkantinduasatu']);
+Route::get('/editjadwalduasatu/edit/{id}', [jadwalsatusatu::class, 'editduasatu']);
+Route::post('tabeljadwalkantiduasatu/update/{id}', [jadwalsatusatu::class, 'updateduasatu'])->name('jadwalduasatu.update');
+
+Route::get('/tabeljadwalkantinduadua', [jadwalsatusatu::class, 'tabeljadwalkantinduadua']);
+Route::get('/editjadwalduadua/edit/{id}', [jadwalsatusatu::class, 'editduadua']);
+Route::post('tabeljadwalkantiduadua/update/{id}', [jadwalsatusatu::class, 'updateduadua'])->name('jadwalduadua.update');
 
 Route::get('/jadwalpiket', [jadwalsatusatu::class, 'jadwalpiket']);
