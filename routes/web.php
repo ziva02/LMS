@@ -25,9 +25,9 @@ use App\Http\Controllers\jadwalsatudua;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 Route::get('/blogg', function () {
     return view('blogg');
 });
@@ -40,7 +40,7 @@ Route::get('/masuk', function () {
 
 
 
-Route::get('/about', [informationcontroller::class, 'about']);
+Route::get('/', [informationcontroller::class, 'about']);
 
 
 
