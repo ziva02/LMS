@@ -47,7 +47,7 @@
     <!-- Brand Logo -->
     <a href="{{url('tabeldenahsatulantaidua ')}}" class="brand-link">
       <img src="{{asset('dist')}}/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Canteen IT Del</span>
+      <span class="brand-text font-weight-light">Kantin IT Del</span>
     </a>
 
     <!-- Sidebar -->
@@ -56,7 +56,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         
         <div class="info">
-          <a href="#" class="d-block">Canteen IT DEL</a>
+          <a href="#" class="d-block">Kantin IT DEL</a>
         </div>
       </div>
 
