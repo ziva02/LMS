@@ -81,7 +81,7 @@
     <div class="float-right d-none d-sm-block">
        
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">PA kel 10.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2022 <a href="#">PA kel 10.io</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
