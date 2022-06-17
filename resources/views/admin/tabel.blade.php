@@ -51,7 +51,7 @@
                     <td>{{$datainformation -> Deskripsi}}</td>
                     <td> {{$datainformation -> Tanggal}}</td>
                     <td> 
-                      <img src="{{asset('images/informationimages/'.$datainformation -> Gambar)}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$datainformation->id}}"></td>
+                      <img src="{{url('images')}}/informationimages/{{$datainformation -> Gambar}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$datainformation->id}}"></td>
                     
                     <td>
 
