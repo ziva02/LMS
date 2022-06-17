@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     
     Route::post('portfolio/store', [izincontroller::class, 'store'])->name('izin.store');
+    Route::get('/jadwalpiket', [jadwalsatusatu::class, 'jadwalpiket']);
 
     Route::get('/portfolio', function () {
         return view('portfolio');
@@ -157,4 +158,3 @@ Route::get('/tabeljadwalkantinduadua', [jadwalsatusatu::class, 'tabeljadwalkanti
 Route::get('/editjadwalduadua/edit/{id}', [jadwalsatusatu::class, 'editduadua']);
 Route::post('tabeljadwalkantiduadua/update/{id}', [jadwalsatusatu::class, 'updateduadua'])->name('jadwalduadua.update');
 
-Route::get('/jadwalpiket', [jadwalsatusatu::class, 'jadwalpiket']);
