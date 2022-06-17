@@ -83,9 +83,6 @@
             <li class="nav-item">
               <a href="/" class="nav-link">Beranda</a>
             </li>
-            <li class="nav-item ">
-              <a href="/about" class="nav-link">Informasi</a>
-            </li>
 
 
             <li class="nav-item dropdown">

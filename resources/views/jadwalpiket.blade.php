@@ -138,9 +138,7 @@
 
         
         </div> <!-- .grid -->
-        <div class="mt-5 text-center">
-          <button class="btn btn-primary">Load More</button>
-        </div>
+        
       </div> <!-- .container -->
     </div> <!-- .page-section -->
   </main>
