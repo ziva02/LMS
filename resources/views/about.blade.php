@@ -19,10 +19,10 @@
   <main>
     <div class="page-section">
       <div class="container">
-        @foreach  ($info as $info )
+        @foreach  ($info as $infos )
         <div class="row align-items-center">
           <div class="col-lg-6 py-3">
-            <div class="subhead">{{$info -> Tanggal}}</div>
+            <div class="subhead">{{$infos -> Tanggal}}</div>
             <h2 class="title-section"><span class="fg-primary">{{$info -> Judul}}</span> </h2>
 
             <p>
@@ -31,7 +31,7 @@
           </div>
           <div class="col-lg-6 py-3">
             <div class="about-img" style="height:300px; width:800px">
-              <img src="{{url('images/informationimages/'. $info -> Gambar)}}" alt="">
+              <img src="{{url('images/informationimages/'. $infos->Gambar)}}" alt="">
             </div>
           </div>
         </div>
