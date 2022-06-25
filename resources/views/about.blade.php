@@ -26,7 +26,7 @@
             <h2 class="title-section"><span class="fg-primary">{{$info -> Judul}}</span> </h2>
 
             <p>
-            {{Str::limit($info -> Deskripsi, 220, $end='.......')}}
+            {{Str::limit($info -> Deskripsi, 280, $end='.......')}}
             </p>
           </div>
           <div class="col-lg-6 py-3">
