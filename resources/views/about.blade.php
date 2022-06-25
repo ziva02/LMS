@@ -31,7 +31,7 @@
           </div>
           <div class="col-lg-6 py-3">
             <div class="about-img" style="height:300px; width:800px">
-              <img src="{{url('images')}}/informationimages/{{$info -> Gambar}}" alt="">
+              <img src="{{url('images/informationimages/'. $info -> Gambar)}}" alt="">
             </div>
           </div>
         </div>
