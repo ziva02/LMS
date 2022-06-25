@@ -52,7 +52,24 @@
           </div>
         </div>
 
+
         <div class="input-group mb-3">
+                            <select class="form-control"  required="required" name="prodi" value="{{ old('prodi') }}" aria-label="Default select example" >
+                                <option class="option">Program Studi</option>
+                                <option class="option" >DIII-TI</option>
+                                <option class="option" >DIII-TK</option>
+                                <option class="option" >DIV-TRPL</option>
+                                <option class="option" >S1-Informatika</option>
+                                <option class="option" >S1-Sistem Informasi</option>
+                                <option class="option" >S1-Teknik elektro</option>
+                                <option class="option" >S1-Teknik Bioproses</option>
+                                <option class="option" >S1-Manajemen Rekayasa</option>
+                                
+                            </select>
+                            
+                        </div>
+
+        <!-- <div class="input-group mb-3">
           <input id="prodi" type="text" class="form-control @error('prodi') is-invalid @enderror" name="prodi" value="{{ old('prodi') }}" required autocomplete="nim" autofocus placeholder="Program studi">
           @error('prodi')
              <span class="invalid-feedback" role="alert">
@@ -64,7 +81,7 @@
               <span class="fas fa-user"></span>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="input-group mb-3">
           <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">

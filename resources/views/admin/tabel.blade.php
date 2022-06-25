@@ -44,23 +44,23 @@
                   </thead>
                   <?php $number=1;?>
                   <tbody>
-                    @foreach  ($datainformation as $datainformation )
+                    @foreach  ($datainformation as $data )
                   <tr>
                     <td><?php echo $number++; ?></td>
-                    <td>{{$datainformation -> Judul}}</td>
-                    <td>{{$datainformation -> Deskripsi}}</td>
-                    <td> {{$datainformation -> Tanggal}}</td>
+                    <td>{{$data -> Judul}}</td>
+                    <td>{{$data -> Deskripsi}}</td>
+                    <td> {{$data -> Tanggal}}</td>
                     <td> 
-                      <img src="{{url('images')}}/informationimages/{{$datainformation -> Gambar}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$datainformation->id}}"></td>
+                      <img src="{{url('images')}}/informationimages/{{$data -> Gambar}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$data->id}}"></td>
                     
                     <td>
 
-                    <a class="btn btn-info btn-sm" href="/edittabel/edit/{{$datainformation->id}}">
+                    <a class="btn btn-info btn-sm" href="/edittabel/edit/{{$data->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="tabel/delete/{{$datainformation->id}}">
+                          <a class="btn btn-danger btn-sm" href="tabel/delete/{{$data->id}}">
                               <i class="fas fa-trash">
                               </i>
                               Delete
