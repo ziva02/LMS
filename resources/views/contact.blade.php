@@ -7,10 +7,10 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                <li class="breadcrumb-item active" aria-current="page">Menu</li>
               </ol>
             </nav>
-            <h1 class="fg-white text-center">Contact</h1>
+            <h1 class="fg-white text-center">Menu</h1>
           </div>
         </div>
       </div>
