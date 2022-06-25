@@ -49,7 +49,7 @@ class informationcontroller extends Controller
         $info->Tanggal = $request->Tanggal;
         if ($request->hasFile('Gambar')){
             $file= $request->file('Gambar')->getClientOriginalName();
-            $request->file('Gambar')->move('images/Informationimages',$file);
+            $request->file('Gambar')->move('img/Informationimages',$file);
             $info->Gambar = $file;
         } 
         $info -> save();
@@ -99,7 +99,7 @@ class informationcontroller extends Controller
             $file = $update->Gambar;
             if ($request->hasFile('Gambar')){
                 $file= $request->file('Gambar')->getClientOriginalName();
-                $request->file('Gambar')->move('images/Informationimages',$file);
+                $request->file('Gambar')->move('img/Informationimages',$file);
                 $update->Gambar = $file;
             }   
             $update->Judul= $request->Judul;
