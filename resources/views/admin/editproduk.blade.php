@@ -40,8 +40,8 @@
     <input type="harga" name="harga" class="form-control" id="harga"  value="{{$update->harga}}">
   </div>
   
-  <button type="submit"  class="btn btn-primary">Edit</button>
-  <a href="{{url('tabeldenahsatulantaidua ')}}" class="btn btn-primary">Back</a>
+  <button type="submit"  class="btn btn-primary">Ubah</button>
+  <a href="{{url('tabeldenahsatulantaidua ')}}" class="btn btn-primary">Kembali</a>
 </form>
 </div>
 

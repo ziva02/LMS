@@ -57,7 +57,7 @@
   </div>
   
   <button type="submit"  class="btn btn-primary">Submit</button>
-  <a href="{{url('tabeltengah ')}}" class="btn btn-primary">Back</a>
+  <a href="{{url('tabeltengah ')}}" class="btn btn-primary">Kembali</a>
 </form>
 </div>
 

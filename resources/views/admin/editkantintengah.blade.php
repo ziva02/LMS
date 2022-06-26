@@ -50,8 +50,8 @@
     <label for="meja">Meja:</label>
     <input type="meja" name="meja" class="form-control" id="meja"  value="{{$update->meja}}">
   </div>
-  <button type="submit"  class="btn btn-primary">Edit</button>
-  <a href="{{url('tabel tengah ')}}" class="btn btn-primary">Back</a>
+  <button type="submit"  class="btn btn-primary">Ubah</button>
+  <a href="{{url('tabel tengah ')}}" class="btn btn-primary">Kembali</a>
 </form>
 </div>
 

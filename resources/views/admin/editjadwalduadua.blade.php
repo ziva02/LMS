@@ -39,8 +39,8 @@
     <label for="piketduadua">Piket:</label>
     <textarea type="piketduadua" name="piketduadua" class="form-control" id="piketduadua" height="400px" rows="7" >{{$update->piketduadua}}</textarea>
   </div>
-  <button type="submit"  class="btn btn-primary">Edit</button>
-  <a href="{{url('tabeljadwalkantinsatudua ')}}" class="btn btn-primary">Back</a>
+  <button type="submit"  class="btn btn-primary">Ubah</button>
+  <a href="{{url('tabeljadwalkantinsatudua ')}}" class="btn btn-primary">Kembali</a>
   </div>
 </form>
 

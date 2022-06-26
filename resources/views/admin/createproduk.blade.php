@@ -41,7 +41,7 @@
   </input>
   </div>
   <button type="submit"  class="btn btn-primary">Submit</button>
-  <a href="{{url('tabeldenahsatulantaidua ')}}" class="btn btn-primary">Back</a>
+  <a href="{{url('tabeldenahsatulantaidua ')}}" class="btn btn-primary">Kembali</a>
 </form>
 </div>
 
