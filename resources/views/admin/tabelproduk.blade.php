@@ -49,7 +49,7 @@
                     <td>Rp.{{$produk -> harga}}</td>
                     <td >
                     <a href="/editproduk/edit/{{$produk->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
-                    <a href="tabelproduk/delete/{{$produk->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="tabelproduk/delete/{{$produk->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                   </tr>@endforeach
                                   </tbody>

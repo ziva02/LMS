@@ -129,6 +129,8 @@ Route::post('tabeltengah/update/{id}', [tengahcon::class, 'update'])->name('teng
 
 Route::get('/tabelkomentar', [komentarcontroller::class, 'tabelkomentar']);
 
+Route::get('tabelkomentar/delete/{id}', [komentarcontroller::class, 'delete'])->name('alergi.delete');
+
 
 Route::get('/tabelproduk', [produkcontroller::class, 'tabelproduk']);
 Route::get('/createproduk', [produkcontroller::class, 'createproduk']);

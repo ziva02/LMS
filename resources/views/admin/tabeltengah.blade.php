@@ -55,7 +55,7 @@
                     <td>{{$datatengah -> meja}}</td>
                     <td>
                     <a href="/editkantintengah/edit/{{$datatengah->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
-                    <a href="tabeltengah/delete/{{$datatengah->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="tabeltengah/delete/{{$datatengah->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                   </tr>@endforeach
                                   </tbody>

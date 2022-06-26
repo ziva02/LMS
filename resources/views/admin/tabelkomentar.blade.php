@@ -47,7 +47,7 @@
                     <td>{{$komentar -> nama}}</td>
                     <td>{{$komentar -> komentar}}</td>
                     <td>
-                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="tabelizin/delete/{{$komentar->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                   </tr>@endforeach
                                   </tbody>

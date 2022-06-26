@@ -31,4 +31,10 @@ class komentarcontroller extends Controller
         $info -> save();
         return redirect('blog');
     }
+    public function delete($id)
+    {
+        $deleteinfo = komentar::find($id);
+         if($deleteinfo->delete()){}
+           return redirect()->back();
+    }
 }

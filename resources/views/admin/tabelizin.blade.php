@@ -53,7 +53,7 @@
                     <td>{{$izin -> subjek}}</td>
                     <td>{{$izin -> keterangan}}</td>
                     <td>
-                    <a href="tabelizin/delete/{{$izin->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="tabelizin/delete/{{$izin->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                   </tr>@endforeach
                                   </tbody>
