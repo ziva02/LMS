@@ -29,7 +29,7 @@
                     <div class="d-flex flex-row align-items-center">
                     </div>
                   
-                    <h6 class="text-center">{{$tampil -> meja}} </h6>
+                    <h7 class="text-center">{{$tampil -> meja}} </h7>
                 </div>
                 <div class="mt-2">
                   <div class="row">
