@@ -72,7 +72,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <a href="/index" class="navbar-brand">Kantin&nbsp;<span class="text-primary">IT DEL.</span></a>
+        <a href="/index" class="navbar-brand">Kantin&nbsp;<span class="text-primary">IT DEL</span></a>
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#n" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
