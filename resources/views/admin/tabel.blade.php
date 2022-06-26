@@ -51,7 +51,7 @@
                     <td>{{$data -> Deskripsi}}</td>
                     <td> {{$data -> Tanggal}}</td>
                     <td> 
-                      <img src="/img/informationimages/{{$data -> Gambar}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$data->id}}"></td>
+                      <img src="/img/Informationimages/{{$data -> Gambar}}" width="80px" height="80px"alt="" data-toggle="modal" data-target="#myModal{{$data->id}}"></td>
                     
                     <td>
 
