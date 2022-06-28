@@ -52,7 +52,7 @@
                     <a class="btn btn-info btn-sm" href="/editjadwalsatudua/edit/{{$jadwal->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
-                              Edit
+                              Ubah
                           </a>
                     </td>
                   </tr>@endforeach

@@ -58,12 +58,12 @@
                     <a class="btn btn-info btn-sm" href="/edittabel/edit/{{$data->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
-                              Edit
+                              Ubah
                           </a>
                           <a class="btn btn-danger btn-sm" href="tabel/delete/{{$data->id}}">
                               <i class="fas fa-trash">
                               </i>
-                              Delete
+                              Hapus
                           </a>
                     </td>
                   </tr>@endforeach

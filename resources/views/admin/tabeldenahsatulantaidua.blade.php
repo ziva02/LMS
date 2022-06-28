@@ -54,7 +54,7 @@
                     <td>{{$datadenahsatuldua -> prodidua}}</td>
                     <td>{{$datadenahsatuldua -> meja}}</td>
                     <td>
-                    <a href="/editkantinsatulantaidua/edit/{{$datadenahsatuldua->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
+                    <a href="/editkantinsatulantaidua/edit/{{$datadenahsatuldua->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Ubah</a>
                     <a href="tabeldenahsatulantaidua/delete/{{$datadenahsatuldua->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                   </tr>@endforeach

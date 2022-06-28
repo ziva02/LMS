@@ -54,7 +54,7 @@
                     <td>{{$datadenahdualsatu -> prodidua}}</td>
                     <td>{{$datadenahdualsatu -> meja}}</td>
                     <td>
-                    <a href="/editkantindualantaisatu/edit/{{$datadenahdualsatu->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
+                    <a href="/editkantindualantaisatu/edit/{{$datadenahdualsatu->id}}" class="btn btn-warning"><i class="fas fa-edit"></i>Ubah</a>
                     <a href="tabeldenahdualantaisatu/delete/{{$datadenahdualsatu->id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                   </tr>@endforeach
