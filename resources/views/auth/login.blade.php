@@ -40,8 +40,8 @@
 					</span>
 
 					<div class="wrap-input100 " >
-						<input class="input100"  id="nim" type="text" name="nim">
-						<span class="focus-input100" data-placeholder="{{ __('NIM') }}"></span>
+						<input class="input100"  id="nim" type="text" name="nim" placeholder="{{ __('NIM') }}">
+						<span class="focus-input100" ></span>
 						@error('nim')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -53,8 +53,8 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-						<input class="input100" id="password" type="password" name="password">
-						<span class="focus-input100" data-placeholder="Sandi"></span>
+						<input class="input100" id="password" type="password" name="password" placeholder="{{ __('Kata Sandi') }}">
+						<span class="focus-input100" ></span>
 
 						@error('password')
                                     <span class="invalid-feedback" role="alert">
