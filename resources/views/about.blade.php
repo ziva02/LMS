@@ -5,11 +5,11 @@
           <div class="col-lg-8">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">About</li>
+                <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+                <li class="breadcrumb-item active" aria-current="page">informasi</li>
               </ol>
             </nav>
-            <h1 class="text-center" style="color:white;">Information</h1>
+            <h1 class="text-center" style="color:white;">Informasi</h1>
           </div>
         </div>
       </div>
