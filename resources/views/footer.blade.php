@@ -25,20 +25,14 @@
           <p>Telepon: +62 852-0636-3437</p>
         </div>
         <div class="col-lg-3 py-3">
-          <h5>Company</h5>
+          <h5>Halaman</h5>
           <ul class="footer-menu">
             <li><a href="/about">Informasi</a></li>
             <li><a href="/portfolio">Izin</a></li>
             <li><a href="/blog">Alergi</a></li>
           </ul>
         </div>
-        <div class="col-lg-3 py-3">
-          <h5>Newsletter</h5>
-          <form action="#">
-            <input type="text" class="form-control" placeholder="Enter your email">
-            <button type="submit" class="btn btn-primary btn-sm mt-2">Submit</button>
-          </form>
-        </div>
+        
       </div>
 
       <hr>
