@@ -6,6 +6,8 @@ use App\Models\denah;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Imports\SiswasImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class denahcontroller extends Controller
 {
@@ -61,5 +63,11 @@ class denahcontroller extends Controller
         public function editkantinsatu()
     {
         return view ('admin.editkantinsatu');
+    }
+
+    public function import_excel(Request $request)
+    {
+        Excel::import(new SiswasImport, $request->file('file'));
+        return redirect()->back();
     }
 }

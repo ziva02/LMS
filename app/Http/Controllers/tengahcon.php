@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tengah;
+use App\Imports\tengahh;
+use Maatwebsite\Excel\Facades\Excel;
 
 class tengahcon extends Controller
 {
@@ -13,6 +15,12 @@ class tengahcon extends Controller
         return view('admin.tabeltengah')->with([
             'datatengah' => $datatengah
         ]);
+    }
+
+    public function import_excel(Request $request)
+    {
+        Excel::import(new tengahh, $request->file('file'));
+        return redirect()->back();
     }
 
     public function createkantintengah()

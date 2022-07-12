@@ -10,6 +10,7 @@ class denah extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $table = "denah";
     protected $primarykey = "id";
 }

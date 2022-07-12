@@ -160,3 +160,8 @@ Route::get('/tabeljadwalkantinduadua', [jadwalsatusatu::class, 'tabeljadwalkanti
 Route::get('/editjadwalduadua/edit/{id}', [jadwalsatusatu::class, 'editduadua']);
 Route::post('tabeljadwalkantiduadua/update/{id}', [jadwalsatusatu::class, 'updateduadua'])->name('jadwalduadua.update');
 
+Route::post('siswa/import', [denahcontroller::class, 'import_excel']);
+Route::post('siswa/satudua', [denahsatulantaiduacon::class, 'import_excel']);
+Route::post('siswa/duasatu', [dualantaisatucon::class, 'import_excel']);
+Route::post('siswa/duadua', [dualantaiduacon::class, 'import_excel']);
+Route::post('siswa/tengah', [tengahcon::class, 'import_excel']);

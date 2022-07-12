@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\dualantaidua;
+use App\Imports\duadua;
+use Maatwebsite\Excel\Facades\Excel;
 
 class dualantaiduacon extends Controller
 {
@@ -35,6 +37,12 @@ class dualantaiduacon extends Controller
         $info->meja = $request->meja;;
         $info -> save();
         return redirect('tabeldenahdualantaidua');
+    }
+
+    public function import_excel(Request $request)
+    {
+        Excel::import(new duadua, $request->file('file'));
+        return redirect()->back();
     }
 
     public function delete($id)

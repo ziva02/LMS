@@ -18,7 +18,8 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+    
+    
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -30,6 +31,22 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+              <a href="{{asset('template')}}/denah.xlsx" class="btn btn-primary mb-5" download>Unduh Template</a>
+              <div style="margin-top: 15px;">
+            <form role="form" method="post" action="{{ url('siswa/import') }}" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputFile">Masukkan file</label>
+                        <input type="file" name="file" id="exampleInputFile">
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-success btn-md">Import</button>
+                </div>
+            </form><br>
+        </div>
                 <a href="{{url('createkantinsatu')}}" class="btn btn-primary mb-5">+Tambah Mahasiswa</a>
                 <table id="example1" class="table table-bordered table-hover">
                   <thead>

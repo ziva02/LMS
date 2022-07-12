@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\dualantaisatu;
+use App\Imports\duasatu;
+use Maatwebsite\Excel\Facades\Excel;
 
 class dualantaisatucon extends Controller
 {
@@ -48,6 +50,11 @@ class dualantaisatucon extends Controller
     {
         $update = dualantaisatu::find($id);
         return view('admin.editkantindualantaisatu',compact('update'));
+    }
+    public function import_excel(Request $request)
+    {
+        Excel::import(new duasatu, $request->file('file'));
+        return redirect()->back();
     }
 
     public function update(request $request, $id){

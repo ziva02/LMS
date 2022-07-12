@@ -16,7 +16,7 @@
       </div>
     </div> <!-- .page-banner -->
   </header>
-  <center> <H1 >Makanan Kantin</H1></center>
+  <center> <H1 >Menu Cafe Kantin</H1></center>
  
        
   <div class="container mt-5 mb-3">

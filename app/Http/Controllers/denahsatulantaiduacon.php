@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\denahsatuldua;
 use Illuminate\Http\Request;
 use App\Models\denah;
+use App\Imports\satudua;
+use Maatwebsite\Excel\Facades\Excel;
 
 class denahsatulantaiduacon extends Controller
 {
@@ -62,6 +64,11 @@ class denahsatulantaiduacon extends Controller
     {
         $update = denahsatuldua::find($id);
         return view('admin.editkantinsatulantaidua',compact('update'));
+    } 
+    public function import_excel(Request $request)
+    {
+        Excel::import(new satudua, $request->file('file'));
+        return redirect()->back();
     }
 
     public function update(request $request, $id){
@@ -76,6 +83,8 @@ class denahsatulantaiduacon extends Controller
             return redirect('/tabeldenahsatulantaidua');         
     
         }
+
+        
 
 }
 
