@@ -102,7 +102,7 @@
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group">
-                                                <label for="judul_materi">Judul Materi:</label>
+                                                <label for="judul_materi">Judul Materii:</label>
                                                 <input type="text" name="judul_materi" class="form-control"
                                                     id="judul_materi" value="{{ $value->judul_materi }}" required>
                                             </div>
