@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\BerandaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\informationcontroller;
-use App\Http\Controllers\denahcontroller;
-use App\Http\Controllers\denahsatulantaiduacon;
-use App\Http\Controllers\dualantaisatucon;
-use App\Http\Controllers\dualantaiduacon;
-use App\Http\Controllers\komentarcontroller;
-use App\Http\Controllers\produkcontroller;
-use App\Http\Controllers\izincontroller;
-use App\Http\Controllers\tengahcon;
-use App\Http\Controllers\jadwalsatusatu;
-use App\Http\Controllers\jadwalsatudua;
+// use App\Http\Controllers\informationcontroller;
+use App\Http\Controllers\Auth\LoginController;
+// use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MentorController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PengumumannController;
+use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MenteeController;
+use App\Http\Middleware\RoleMiddleware;
+
 
 
 /*
@@ -28,19 +29,103 @@ use App\Http\Controllers\jadwalsatudua;
 // Route::get('/', function () {
 //     return view('index');
 // });
-Route::get('/blogg', function () {
-    return view('blogg');
+
+Route::middleware([RoleMiddleware::class . ':0'])->group(function () {
+    // Semua rute di dalam grup ini hanya bisa diakses oleh mentee
+    Route::get('/beranda', [BerandaController::class, 'beranda']);
+
+    Route::get('/datamentor', [MentorController::class, 'index'])->name('datamentor');
+    Route::get('WMI/Mentor/add', [MentorController::class, 'add']);
+    Route::post('WMI/Mentor/add', [MentorController::class, 'insert']);
+
+    Route::get('WMI/Mentor/edit/{id}', [MentorController::class, 'edit'])->name('edit.mentor');
+    Route::put('WMI/Mentor/edit/{id} ', [MentorController::class, 'update'])->name('update.mentor');
+    Route::delete('/WMI/Mentor/delete/{id}', [MentorController::class, 'delete'])->name('delete.mentor');
+
+    Route::get('/datamentee', [MenteeController::class, 'index'])->name('datamentee');
+    Route::get('WMI/Mentee/add', [MenteeController::class, 'add']);
+    Route::post('WMI/Mentee/add', [MenteeController::class, 'insert']);
+
+    Route::get('WMI/Mentee/edit/{id}', [MenteeController::class, 'edit'])->name('edit.mentee');
+    Route::put('WMI/Mentee/edit/{id} ', [MenteeController::class, 'update'])->name('update.mentee');
+    Route::delete('/WMI/Mentee/delete/{id}', [MenteeController::class, 'delete'])->name('delete.mentee');
+
+    Route::get('/course', [CourseController::class, 'index'])->name('course');
+    Route::post('WMI/Course/tambah', [CourseController::class, 'insert'])->name('addcourse');
+    Route::get('WMI/Course/add', [CourseController::class, 'add']);
+    Route::delete('/WMI/Course/delete/{id}', [CourseController::class, 'delete'])->name('delete.course');
+    Route::get('WMI/Course/{id}/edit', [CourseController::class, 'edit'])->name('edit.course');
+    Route::put('WMI/Course/{id}', [CourseController::class, 'update'])->name('update.course');
+
+
+    Route::get('/materi', [CourseController::class, 'coursedetail'])->name('coursedetail');
+    Route::get('/courses/{id}', [CourseController::class, 'show'])->name('course.detail');
+
+    Route::get('/courses/{id}/detail', [CourseController::class, 'coursedetail'])->name('courses.detail');
+    Route::get('/courses/{id}/link-pertemuan', [CourseController::class, 'linkPertemuanDetail'])->name('link_pertemuan.detail');
+
+
+    Route::post('/courses/{id}/materi/store', [CourseController::class, 'storedetail'])->name('materi.store');
+
+    Route::delete('/materi/{id}', [CourseController::class, 'deletedetail'])->name('materi.delete');
+    Route::put('/materi/{id}', [CourseController::class, 'updatedetaill'])->name('materi.update');
+
+    Route::get('/link_pertemuan/{id}/edit', [CourseController::class, 'editlink'])->name('link_pertemuan.edit');
+
+    // Route untuk menyimpan perubahan setelah proses edit link pertemuan
+    Route::put('/link_pertemuan/{id}', [CourseController::class, 'updatelink'])->name('link_pertemuan.update');
+    Route::delete('/link_pertemuan/{id}', [CourseController::class, 'deleteLink'])->name('link.delete');
+
+
+
+
+
+
+
+    Route::get('/pengumumann', [PengumumannController::class, 'index'])->name('pengumuman');
+    Route::post('/pengumumann', [PengumumannController::class, 'store'])->name('pengumuman.store');
+
+    Route::get('/pengumumann/{id}/edit', [PengumumannController::class, 'edit'])->name('pengumuman.edit');
+    Route::put('/pengumumann/{id}', [PengumumannController::class, 'update'])->name('pengumuman.update');
+    Route::delete('/pengumumann/{id}', [PengumumannController::class, 'delete'])->name('pengumuman.delete');
+
+
 });
 
-Route::get('/masuk', function () {
-    return view('masuk');
-});
+
+
+// Route::middleware([RoleMiddleware::class . ':1'])->group(function () {
+//     Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+//     Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
+// });
 
 
 
 
 
-Route::get('/', [informationcontroller::class, 'about']);
+// Route::middleware([RoleMiddleware::class . ':2'])->group(function () {
+//     Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+//     Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
+// });
+
+
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+
+// Route::get('/blogg', function () {
+//     return view('blogg');
+// });
+
+
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+Route::get('/', [CourseController::class, 'show'])->name('login');
+Route::post('/masuk', [CourseController::class, 'login'])->name('loginn');
 
 
 
@@ -48,120 +133,5 @@ Route::get('/', [informationcontroller::class, 'about']);
 
 
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/blog', [komentarcontroller::class, 'blog']);
-    Route::post('blog/store', [komentarcontroller::class, 'store'])->name('blog.store');
-    Route::get('/contact', [produkcontroller::class, 'contact']);
-    
-    
-    Route::get('/tabelizin', [izincontroller::class, 'tabelizin']);
-    Route::get('tabelizin/delete/{id}', [izincontroller::class, 'delete'])->name('izin.delete');
-
-    Route::get('/kantin', [denahcontroller::class, 'kantin']);
-    Route::get('/kantinsatudua', [denahsatulantaiduacon::class, 'kantinsatudua']);
-    Route::get('/kantinduasatu', [dualantaisatucon::class, 'kantinduasatu']);
-    Route::get('/kantinduadua', [dualantaiduacon::class, 'kantinduadua']);
-    Route::get('/kantintengah', [tengahcon::class, 'kantintengah']);
-
-    
-    Route::post('portfolio/store', [izincontroller::class, 'store'])->name('izin.store');
-    Route::get('/jadwalpiket', [jadwalsatusatu::class, 'jadwalpiket']);
-
-    Route::get('/portfolio', function () {
-        return view('portfolio');
-    });
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['middleware' => ['auth', 'admin']], function () {
-   
-   
-   
-
-});
-
-Route::get('/tabel', [informationcontroller::class, 'tabel']);
-Route::get('/createinformation', [informationcontroller::class, 'createinformation']);
-Route::get('/edittabel/edit/{id}', [informationcontroller::class, 'edit']);
-Route::post('createinformation/store', [informationcontroller::class, 'store'])->name('tambah.store');
-Route::post('tabel/update/{id}', [informationcontroller::class, 'update'])->name('tabel.update');
-Route::get('tabel/delete/{id}', [informationcontroller::class, 'delete'])->name('tabel.delete');
-Route::get('/tabeldenah', [denahcontroller::class, 'tabeldenah']);
-
-Route::get('/createkantinsatu', [denahcontroller::class, 'createkantinsatu']);
-Route::post('createkantinsatu/storee', [denahsatulantaiduacon::class, 'storee'])->name('kantinsatu.storee');
-Route::get('tabeldenah/delete/{id}', [denahcontroller::class, 'delete'])->name('kantinsatu.delete');
-Route::get('/editkantinsatu/edit/{id}', [denahcontroller::class, 'edit']);
-Route::post('tabeldenah/update/{id}', [denahcontroller::class, 'update'])->name('kantinsatu.update');
-
-Route::get('/tabeldenahsatulantaidua', [denahsatulantaiduacon::class, 'tabeldenahsatulantaidua']);
-Route::get('/createkantinsatulantaidua', [denahsatulantaiduacon::class, 'createkantinsatulantaidua']);
-Route::post('createkantinsatu/store', [denahsatulantaiduacon::class, 'store'])->name('kantinsatulantaidua.store');
-Route::get('tabeldenahsatulantaidua/delete/{id}', [denahsatulantaiduacon::class, 'delete'])->name('kantinsatulantaidua.delete');
-Route::get('/editkantinsatulantaidua/edit/{id}', [denahsatulantaiduacon::class, 'edit']);
-Route::post('tabeldenahsatulantaidua/update/{id}', [denahsatulantaiduacon::class, 'update'])->name('kantinsatulantaidua.update');
 
 
-Route::get('/tabeldenahdualantaisatu', [dualantaisatucon::class, 'tabeldenahdualantaisatu']);
-Route::get('/createkantindualantaisatu', [dualantaisatucon::class, 'createkantindualantaisatu']);
-Route::post('createkantindualantaisatu/store', [dualantaisatucon::class, 'store'])->name('kantindualantaisatu.store');
-Route::get('tabeldenahdualantaisatu/delete/{id}', [dualantaisatucon::class, 'delete'])->name('kantindualantaisatu.delete');
-Route::get('/editkantindualantaisatu/edit/{id}', [dualantaisatucon::class, 'edit']);
-Route::post('tabeldenahdualantaisatu/update/{id}', [dualantaisatucon::class, 'update'])->name('kantindualantaisatu.update');
-
-Route::get('/tabeldenahdualantaidua', [dualantaiduacon::class, 'tabeldenahdualantaidua']);
-Route::get('/createkantindualantaidua', [dualantaiduacon::class, 'createkantindualantaidua']);
-Route::post('createkantindualantaidua/store', [dualantaiduacon::class, 'store'])->name('kantindualantaidua.store');
-Route::get('tabeldenahdualantaidua/delete/{id}', [dualantaiduacon::class, 'delete'])->name('kantindualantaidua.delete');
-Route::get('/editkantindualantaidua/edit/{id}', [dualantaiduacon::class, 'edit']);
-Route::post('tabeldenahdualantaidua/update/{id}', [dualantaiduacon::class, 'update'])->name('kantindualantaidua.update');
-
-Route::get('/tabeltengah', [tengahcon::class, 'tabeltengah']);
-Route::get('/createkantintengah', [tengahcon::class, 'createkantintengah']);
-Route::post('createkantintengah/store', [tengahcon::class, 'store'])->name('kantintengah.store');
-Route::get('tabeltengah/delete/{id}', [tengahcon::class, 'delete'])->name('tengah.delete');
-Route::get('/editkantintengah/edit/{id}', [tengahcon::class, 'edit']);
-Route::post('tabeltengah/update/{id}', [tengahcon::class, 'update'])->name('tengah.update');
-
-
-Route::get('/tabelkomentar', [komentarcontroller::class, 'tabelkomentar']);
-
-Route::get('tabelkomentar/delete/{id}', [komentarcontroller::class, 'delete'])->name('alergi.delete');
-
-
-Route::get('/tabelproduk', [produkcontroller::class, 'tabelproduk']);
-Route::get('/createproduk', [produkcontroller::class, 'createproduk']);
-Route::post('createproduk/store', [produkcontroller::class, 'store'])->name('produk.store');
-Route::get('tabelproduk/delete/{id}', [produkcontroller::class, 'delete'])->name('produk.delete');
-Route::get('/editproduk/edit/{id}', [produkcontroller::class, 'edit']);
-Route::post('tabelproduk/update/{id}', [produkcontroller::class, 'update'])->name('produk.update');
-
-Route::get('/tabeljadwalkantinsatusatu', [jadwalsatusatu::class, 'tabeljadwalkantinsatusatu']);
-Route::get('/editjadwalsatusatu/edit/{id}', [jadwalsatusatu::class, 'edit']);
-Route::post('tabeljadwalkantinsatusatu/update/{id}', [jadwalsatusatu::class, 'update'])->name('jadwal.update');
-
-
-Route::get('/tabeljadwalkantinsatudua', [jadwalsatusatu::class, 'tabeljadwalkantinsatudua']);
-Route::get('/editjadwalsatudua/edit/{id}', [jadwalsatusatu::class, 'editsatudua']);
-Route::post('tabeljadwalkantinsatudua/update/{id}', [jadwalsatusatu::class, 'updatesatudua'])->name('jadwalsatudua.update');
-
-Route::get('/tabeljadwalkantintengah', [jadwalsatusatu::class, 'tabeljadwalkantintengah']);
-Route::get('/editjadwaltengah/edit/{id}', [jadwalsatusatu::class, 'edittengah']);
-Route::post('tabeljadwalkantitengah/update/{id}', [jadwalsatusatu::class, 'updatetengah'])->name('jadwaltengah.update');
-
-Route::get('/tabeljadwalkantinduasatu', [jadwalsatusatu::class, 'tabeljadwalkantinduasatu']);
-Route::get('/editjadwalduasatu/edit/{id}', [jadwalsatusatu::class, 'editduasatu']);
-Route::post('tabeljadwalkantiduasatu/update/{id}', [jadwalsatusatu::class, 'updateduasatu'])->name('jadwalduasatu.update');
-
-Route::get('/tabeljadwalkantinduadua', [jadwalsatusatu::class, 'tabeljadwalkantinduadua']);
-Route::get('/editjadwalduadua/edit/{id}', [jadwalsatusatu::class, 'editduadua']);
-Route::post('tabeljadwalkantiduadua/update/{id}', [jadwalsatusatu::class, 'updateduadua'])->name('jadwalduadua.update');
-
-Route::post('siswa/import', [denahcontroller::class, 'import_excel']);
-Route::post('siswa/satudua', [denahsatulantaiduacon::class, 'import_excel']);
-Route::post('siswa/duasatu', [dualantaisatucon::class, 'import_excel']);
-Route::post('siswa/duadua', [dualantaiduacon::class, 'import_excel']);
-Route::post('siswa/tengah', [tengahcon::class, 'import_excel']);
