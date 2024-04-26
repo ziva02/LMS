@@ -55,9 +55,9 @@ class LoginController extends Controller
             if(auth()->user()->is_admin == 0){
                 return redirect('/dashboard')->with('success', "Berhasil login!");
             }elseif(auth()->user()->is_admin == 1){
-                return redirect('/pengumuman')->with('success', "Berhasil login!");
+                return redirect('/coursementor')->with('success', "Berhasil login!");
             }elseif(auth()->user()->is_admin == 2){
-                return redirect('/admin')->with('success', "Berhasil login!");
+                return redirect('/coursementee')->with('success', "Berhasil login!");
             }
         }else{
             return redirect()->route('login')

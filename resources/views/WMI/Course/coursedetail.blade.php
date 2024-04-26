@@ -25,8 +25,6 @@
                 <a href="{{ route('link_pertemuan.detail', $valuee->course_id) }}" class="btn btn-info">Link
                     Pertemuan</a>
             </div>
-
-
         </div>
     </section>
 
@@ -34,19 +32,16 @@
         <div class="container-fluid">
             <div class="row">
                 @if ($header_title === 'Course')
-                    <div class="col-sm-6" style="left:89.5%">
+                @if (auth()->user()->is_admin == 0 )
+                    <div class="col-sm-6 ">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#tambahDataModal">
-                            <i class="fas fa-plus"></i> Tambah Materi
-                        </button>
-                    </div><br>
-                    <div class="col-sm-6" style="left:89.5%">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#tambahDataModal">
+                            data-target="#tambahMateriModal">
+                            
                             <i class="fas fa-plus"></i> Tambah Materi
                         </button>
                     </div>
-                    <br>
+                    @endif
+
 
                     @foreach ($dataMateri as $value)
                         <div class="col-md-12" style="margin-top: 20px;"> <!-- Penambahan margin-top -->
@@ -56,23 +51,30 @@
                                     <b>
                                         <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul_materi }}</h4>
                                     </b>
+                                    @php
+                                        $allowedRoles = [1, 2]; // Daftar peran yang diizinkan untuk mengakses tombol
+                                    @endphp
                                     <!-- Tombol Edit dan Hapus -->
-                                    <div>
-                                        <!-- Form untuk menghapus -->
-                                        <button type="button" class="btn btn-warning" data-toggle="modal"
-                                            data-target="#editDataModal{{ $value->id }}"
-                                            style="background-color: FFCD29; color: #000000; padding: 10px 20px; border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">
-                                            Ubah
-                                        </button>
-                                        <form action="{{ route('materi.delete', ['id' => $value->id]) }}" method="POST"
-                                            style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus materi ini?')"
-                                                style="background-color: hsl(0, 85%, 52%); color: #ffffff; padding: 10px 20px; border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">Hapus</button>
-                                        </form>
-                                    </div>
+                                    @if (auth()->user()->is_admin == 0 )
+                                        {{-- Memeriksa apakah peran pengguna adalah 2 --}}
+                                        <div>
+                                            <!-- Form untuk menghapus -->
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#editMateriModal{{ $value->id }}"
+                                                style="background-color: FFCD29; color: #000000; padding: 10px 20px; border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">
+                                                Ubah
+                                            </button>
+                                            <form action="{{ route('materi.delete', ['id' => $value->id]) }}"
+                                                method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus materi ini?')"
+                                                    style="background-color: hsl(0, 85%, 52%); color: #ffffff; padding: 10px 20px; 
+                                                border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">Hapus</button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div style="margin-bottom: 10px; color: #000000; overflow: auto; max-height: 100px;">
@@ -86,7 +88,7 @@
                             </div>
                         </div>
                         <!-- Modal Edit Materi -->
-                        <div class="modal fade" id="editDataModal{{ $value->id }}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="editMateriModal{{ $value->id }}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -121,8 +123,55 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal fade" id="tambahMateriModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        
+                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Materi Baru</h5>
+                                        
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('materi.store', ['id' => $valuee->course_id]) }}"
+                                            method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="judul_materi">Judul Materi:</label>
+                                                <input type="text" name="judul_materi" class="form-control"
+                                                    id="judul_materi" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deskripsi_materi">Deskripsi Materi:</label>
+                                                <textarea name="deskripsi_materi" class="form-control" id="deskripsi_materi" rows="3" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="file_materi">File Materi (PDF):</label>
+                                                <input type="file" name="file_materi" class="form-control"
+                                                    id="file_materi" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 @elseif ($header_title === 'Link Pertemuan')
+                @if (auth()->user()->is_admin == 0 )
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#tambahLinkModal">
+                            <i class="fas fa-plus"></i> Tambah Link Pertemuan
+                        </button>
+                    </div><br><br>
+                    @endif
+
+
                     @foreach ($dataLink as $value)
                         <div class="col-md-12">
                             <div
@@ -132,6 +181,7 @@
                                         <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul_link }}</h4>
                                     </b>
                                     <!-- Tombol Edit dan Hapus -->
+                                    @if (auth()->user()->is_admin == 0 )
                                     <div>
                                         <!-- Form untuk menghapus -->
                                         <button type="button" class="btn btn-warning" data-toggle="modal"
@@ -141,8 +191,8 @@
                                             text-align: center; display: inline-block; border: none;">
                                             Ubah
                                         </button>
-                                        <form action="{{ route('link.delete', ['id' => $value->id]) }}" method="POST"
-                                            style="display: inline-block;">
+                                        <form action="{{ route('link.delete', ['id' => $value->id]) }}"
+                                            method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
@@ -152,9 +202,10 @@
                                             text-align: center; display: inline-block; border: none;">Hapus</button>
                                         </form>
                                     </div>
+                                    @endif
                                 </div>
                                 <div style="margin-bottom: 10px; color: #000000; overflow: auto; max-height: 100px;">
-                                    {{ $value->deskripsi }}
+                                    <a href="{{ $value->deskripsi }}">{{ $value->deskripsi }}</a>
                                 </div>
                             </div>
                         </div>
@@ -198,34 +249,29 @@
     </section>
 </div>
 
-<div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="tambahLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Baru</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Link Pertemuan Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('materi.store', ['id' => $valuee->course_id]) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form action="{{ route('link_pertemuan.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label for="judul_materi">Judul Materi:</label>
-                        <input type="text" name="judul_materi" class="form-control" id="judul_materi" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi_materi">Deskripsi Materi:</label>
-                        <textarea name="deskripsi_materi" class="form-control" id="deskripsi_materi" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="file_materi">File Materi:</label>
-                        <input type="file" name="file_materi" class="form-control" id="file_materi" required>
-                    </div>
                     <input type="hidden" name="course_id" value="{{ $valuee->course_id }}">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <div class="form-group">
+                        <label for="judul_link">Judul Link:</label>
+                        <input type="text" name="judul_link" class="form-control" id="judul_link" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi:</label>
+                        <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
                 </form>
             </div>
         </div>

@@ -10,6 +10,8 @@ class Link extends Model
     use HasFactory;
     protected $table = 'link_pertemuan';
     protected $connection = 'mysql';
+    
+    protected $fillable = ['judul_link', 'deskripsi', 'course_id'];
 
     public function materi()
     {

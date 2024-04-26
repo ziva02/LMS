@@ -28,6 +28,48 @@ class CourseController extends Controller
         return view('WMI/Course/course', ['courses' => $courses, 'header_title' => $header_title]);
     }
 
+    public function indexmentor()
+    {
+        // Mendapatkan peran (role) pengguna saat ini
+        $currentUserRole = auth()->user()->role;
+
+        // Menyusun query untuk mengambil kursus berdasarkan peran pengguna
+        $coursesQuery = Course::join('users', function ($join) {
+            $join->on('course.user_role', '=', 'users.role')
+                ->where('users.id', auth()->user()->id);
+        })->select('course.*');
+
+        // Menyimpan hasil query dalam variabel $courses
+        $courses = $coursesQuery->paginate(5);
+
+        // Menyusun judul header berdasarkan peran pengguna
+        $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Course List";
+       
+        // Mengembalikan tampilan dengan data yang sesuai
+        return view('Mentor/Course/coursementor', compact('courses', 'header_title'));
+    }
+
+    public function indexmentee()
+    {
+        // Mendapatkan peran (role) pengguna saat ini
+        $currentUserRole = auth()->user()->role;
+
+        // Menyusun query untuk mengambil kursus berdasarkan peran pengguna
+        $coursesQuery = Course::join('users', function ($join) {
+            $join->on('course.user_role', '=', 'users.role')
+                ->where('users.id', auth()->user()->id);
+        })->select('course.*');
+
+        // Menyimpan hasil query dalam variabel $courses
+        $courses = $coursesQuery->paginate(5);
+
+        // Menyusun judul header berdasarkan peran pengguna
+        $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Course List";
+       
+        // Mengembalikan tampilan dengan data yang sesuai
+        return view('Mentee/Course/coursementee', compact('courses', 'header_title'));
+    }
+
     public function show()
     { // Mengambil semua data dari model Course
 
@@ -49,9 +91,9 @@ class CourseController extends Controller
             if (auth()->user()->is_admin == 0) {
                 return redirect('/beranda')->with('success', "Berhasil login!");
             } elseif (auth()->user()->is_admin == 1) {
-                return redirect('/pengumuman')->with('success', "Berhasil login!");
+                return redirect('/coursementor')->with('success', "Berhasil login!");
             } elseif (auth()->user()->is_admin == 2) {
-                return redirect('/admin')->with('success', "Berhasil login!");
+                return redirect('/coursementee')->with('success', "Berhasil login!");
             }
         } else {
             return redirect()->route('login')->withErrors(['password' => 'Email-Address atau Password salah ! ']);
@@ -149,9 +191,21 @@ class CourseController extends Controller
 
     public function delete($id)
     {
-        $course = Course::findOrFail($id);
-        $course->delete();
-        return redirect()->route('course')->with('success', 'Course berhasil dihapus');
+
+        // Mulai transaksi database
+        DB::beginTransaction();
+
+        // Hapus semua materi terkait
+        Materi::where('course_id', $id)->delete();
+
+        // Hapus kursus
+        Course::destroy($id);
+
+        // Commit transaksi
+        DB::commit();
+
+        return redirect()->back()->with('success', 'data berhasil dihapus.');
+
     }
 
 
@@ -199,7 +253,7 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'Link berhasil diperbarui.');
 
     }
-    
+
 
 
 
@@ -222,6 +276,33 @@ class CourseController extends Controller
 
 
         return view('WMI.Course.coursedetail', compact('header_title', 'dataMateri', 'dataLink'));
+    }
+
+    public function storelink(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'judul_link' => 'required',
+            'deskripsi' => 'required',
+            'course_id' => 'required|exists:link_pertemuan,course_id', // Pastikan course_id yang diberikan benar-benar ada di tabel courses
+        ]);
+
+
+
+        // Buat objek LinkPertemuan baru
+        $linkPertemuan = new Link();
+
+        // Isi properti dari objek dengan data dari request
+        $linkPertemuan->judul_link = $request->judul_link;
+        $linkPertemuan->deskripsi = $request->deskripsi;
+        $linkPertemuan->course_id = $request->course_id; // Set course_id dari request
+
+        // Simpan objek ke database
+        $linkPertemuan->save();
+
+        // Redirect ke halaman sebelumnya
+        return redirect()->back()->with('success', 'Link pertemuan berhasil ditambahkan.');
+
     }
 
 
@@ -274,11 +355,12 @@ class CourseController extends Controller
             'judul_materi' => $request->judul_materi,
             'deskripsi_materi' => $request->deskripsi_materi,
             'file_materi' => $fileMateriNama, // Simpan nama file materi ke dalam basis data
-            'course_id' => $request->course_id,
+            'course_id' => $id, // Menggunakan $id dari parameter rute
         ]);
 
-        return redirect()->route('courses.detail', ['id' => $request->course_id])->with('success', "Materi successfully added.");
+        return redirect()->route('courses.detail', ['id' => $id])->with('success', "Materi successfully added.");
     }
+
 
     public function deletedetail($id)
     {
@@ -299,7 +381,7 @@ class CourseController extends Controller
 
         $link = Link::findOrFail($id);
         // Hapus file materi dari folder
-       
+
         // Hapus materi dari basis data
         $link->delete();
         return redirect()->back()->with('success', "Link successfully deleted.");

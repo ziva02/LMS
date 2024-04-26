@@ -30,9 +30,9 @@ use App\Http\Middleware\RoleMiddleware;
 //     return view('index');
 // });
 
-Route::middleware([RoleMiddleware::class . ':0'])->group(function () {
+Route::get('/beranda', [BerandaController::class, 'beranda']);
+Route::middleware(['role:0'])->group(function () {
     // Semua rute di dalam grup ini hanya bisa diakses oleh mentee
-    Route::get('/beranda', [BerandaController::class, 'beranda']);
 
     Route::get('/datamentor', [MentorController::class, 'index'])->name('datamentor');
     Route::get('WMI/Mentor/add', [MentorController::class, 'add']);
@@ -49,14 +49,6 @@ Route::middleware([RoleMiddleware::class . ':0'])->group(function () {
     Route::get('WMI/Mentee/edit/{id}', [MenteeController::class, 'edit'])->name('edit.mentee');
     Route::put('WMI/Mentee/edit/{id} ', [MenteeController::class, 'update'])->name('update.mentee');
     Route::delete('/WMI/Mentee/delete/{id}', [MenteeController::class, 'delete'])->name('delete.mentee');
-
-    Route::get('/course', [CourseController::class, 'index'])->name('course');
-    Route::post('WMI/Course/tambah', [CourseController::class, 'insert'])->name('addcourse');
-    Route::get('WMI/Course/add', [CourseController::class, 'add']);
-    Route::delete('/WMI/Course/delete/{id}', [CourseController::class, 'delete'])->name('delete.course');
-    Route::get('WMI/Course/{id}/edit', [CourseController::class, 'edit'])->name('edit.course');
-    Route::put('WMI/Course/{id}', [CourseController::class, 'update'])->name('update.course');
-
 
     Route::get('/materi', [CourseController::class, 'coursedetail'])->name('coursedetail');
     Route::get('/courses/{id}', [CourseController::class, 'show'])->name('course.detail');
@@ -75,12 +67,7 @@ Route::middleware([RoleMiddleware::class . ':0'])->group(function () {
     // Route untuk menyimpan perubahan setelah proses edit link pertemuan
     Route::put('/link_pertemuan/{id}', [CourseController::class, 'updatelink'])->name('link_pertemuan.update');
     Route::delete('/link_pertemuan/{id}', [CourseController::class, 'deleteLink'])->name('link.delete');
-
-
-
-
-
-
+    Route::post('/link_pertemuan/store', [CourseController::class, 'storelink'])->name('link_pertemuan.store');
 
     Route::get('/pengumumann', [PengumumannController::class, 'index'])->name('pengumuman');
     Route::post('/pengumumann', [PengumumannController::class, 'store'])->name('pengumuman.store');
@@ -89,24 +76,34 @@ Route::middleware([RoleMiddleware::class . ':0'])->group(function () {
     Route::put('/pengumumann/{id}', [PengumumannController::class, 'update'])->name('pengumuman.update');
     Route::delete('/pengumumann/{id}', [PengumumannController::class, 'delete'])->name('pengumuman.delete');
 
+});
+Route::get('/course', [CourseController::class, 'index'])->name('course');
+    Route::post('WMI/Course/tambah', [CourseController::class, 'insert'])->name('addcourse');
+    Route::get('WMI/Course/add', [CourseController::class, 'add']);
+    Route::delete('/WMI/Course/delete/{id}', [CourseController::class, 'delete'])->name('delete.course');
+    Route::get('WMI/Course/{id}/edit', [CourseController::class, 'edit'])->name('edit.course');
+    Route::put('WMI/Course/{id}', [CourseController::class, 'update'])->name('update.course');
 
+
+
+Route::middleware(['role:2'])->group(function () {
+    Route::get('/coursementee', [CourseController::class, 'indexmentee'])->name('coursementee');
+});
+    Route::middleware(['role:1'])->group(function () {
+    Route::get('/coursementor', [CourseController::class, 'indexmentor'])->name('coursementor');
+    // Route::get('/course', [CourseController::class, 'index'])->name('course');
+    
+    
+    
 });
 
 
-
-// Route::middleware([RoleMiddleware::class . ':1'])->group(function () {
-//     Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
-//     Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
-// });
+Route::get('/courses/{id}/detail', [CourseController::class, 'coursedetail'])->name('courses.detail');
+Route::get('/courses/{id}/link-pertemuan', [CourseController::class, 'linkPertemuanDetail'])->name('link_pertemuan.detail');
 
 
 
 
-
-// Route::middleware([RoleMiddleware::class . ':2'])->group(function () {
-//     Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
-//     Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
-// });
 
 
 

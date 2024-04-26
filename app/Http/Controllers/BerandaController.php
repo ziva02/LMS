@@ -14,5 +14,12 @@ class BerandaController extends Controller
         $pengumumans = Pengumuman::latest()->take(3)->get();
         return view('WMI.beranda', compact('header_title','pengumumans'));
     }
-    
+
+//     public function beranda()
+//     {
+//         $header_title = "Beranda LMS";
+//         $pengumumans = Pengumuman::latest()->take(3)->get();
+//         return view('WMI.beranda', compact('header_title','pengumumans'));
+//     }
+// z
 }
