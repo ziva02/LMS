@@ -118,7 +118,7 @@ class MentorController extends Controller
     {
         $mentee = DB::table('users')
             ->join('course', 'users.role', '=', 'course.user_role')
-            ->where('users.is_  admin', 2)
+            ->where('users.is_admin', 2)
             ->paginate(5);
 
         return view('WMI.Mentor.datamentee', ['mentee' => $mentee]); // Mengembalikan tampilan dengan data mentee
