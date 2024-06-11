@@ -205,6 +205,13 @@
                                             <p>Daftar Kelas</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="/datament"
+                                            class="nav-link @if (Request::path() == 'course') active @endif">
+                                            <i class="fas fa-file-alt nav-icon"></i>
+                                            <p>Daftar Mentee</p>
+                                        </a>
+                                    </li>
                                 @endif
                                 @if (auth()->user()->is_admin == 2)
                                     <li class="nav-item">

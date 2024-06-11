@@ -9,10 +9,7 @@
                     <div class="col-sm-6">
                         <h1>Data Mentee</h1>
                     </div>
-                    <div class="col-sm-6" style="text-align:right;">
-                        <a href="{{ url('wmi/mentee/add') }}" class="btn btn-primary">
-                            Tambah Data Mentee</a>
-                    </div>
+                    
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -37,7 +34,6 @@
                                             <th>Role</th>
                                             <th>Email</th>
                                             <th>Email Supervisior</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <?php $number = 1; ?>
@@ -49,19 +45,8 @@
                                                 <td>{{ $mentees->name }}</td>
                                                 <td>{{ $mentees->role }}</td>
                                                 <td>{{ $mentees->email }}</td>
-                                                <td>{{ $mentees->email_supervisior }}</td>
-                                                <td>
-                                                    <a href="{{ url('wmi/mentee/edit/' . $mentees->id) }}"
-                                                        class="btn btn-warning">Ubah</a>
-                                                    <form id="deleteForm{{ $mentees->id }}"
-                                                        action="{{ route('delete.mentee', ['id' => $mentees->id]) }}"
-                                                        method="POST" style="display: inline;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data mentee ini?')">Hapus</button>
-                                                    </form>
-                                                </td>
+                                                <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $mentees->email_supervisior }}" target="_blank">{{ $mentees->email_supervisior }}</a></td>
+                                                
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -78,10 +63,3 @@
             </div>
         </section>
     </div>
-    <script>
-        function deleteMentor(id) {
-            if (confirm("Apakah Anda yakin ingin menghapus data mentor ini?")) {
-                document.getElementById('deleteForm' + id).submit();
-            }
-        }
-    </script>

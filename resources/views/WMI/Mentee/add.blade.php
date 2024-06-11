@@ -59,6 +59,15 @@
                                         {{ $errors->first('email') }}
                                     </div> --}}
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="text" class="form-control" value="{{ old('email_supervisior') }}"
+                                        name="email_supervisior" required placeholder="Enter email">
+                                    {{-- <div style="color: red">
+                                        {{ $errors->first('email') }}
+                                    </div> --}}
+                                </div>
                                 
 
                                 <div class="form-group">

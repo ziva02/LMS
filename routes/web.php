@@ -48,12 +48,15 @@ Route::post('/submit-tugas/{id}', [MenteeController::class, 'kumpul'])->name('su
 Route::get('/lihat-pengumpulan/{tugas_id}', [MentorController::class, 'lihatPengumpulan'])->name('lihatPengumpulan');
 Route::get('/tidak-mengumpul/{tugas_id}', [MentorController::class, 'tidakkumpul'])->name('tidakkumpul');
 Route::post('/isi-nilai/{id}', [MentorController::class, 'isiNilai'])->name('isiNilai');
+Route::get('/datament', [MentorController::class, 'datamentee']);
 
 
 Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda');
 Route::get('/landingmentor', [BerandaController::class, 'mentor'])->name('landingmentor');
 Route::get('/landingwmi', [BerandaController::class, 'wmi'])->name('landingwmi');
 Route::get('/landingmentee', [BerandaController::class, 'mentee'])->name('landingmentee');
+
+
 Route::middleware(['role:0'])->group(function () {
     // Semua rute di dalam grup ini hanya bisa diakses oleh mentee
 

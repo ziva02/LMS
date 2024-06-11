@@ -44,6 +44,12 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Email Supervisior</label>
+                                    <input type="text" class="form-control" value="{{ $mentee->email_supervisior}}"
+                                        name="email_supervisior" required placeholder="Enter email">
+                                </div>
+
+                                <div class="form-group">
                                     <label>Password</label>
                                     <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>

@@ -43,6 +43,7 @@ class MenteeController extends Controller
         $user->name = trim($request->name);
         $user->role = trim($request->role);
         $user->email = trim($request->email);
+        $user->email_supervisior = trim($request->email_supervisior);
         $user->password = Hash::make($request->password);
         $user->is_admin = 2;
 
@@ -65,6 +66,7 @@ class MenteeController extends Controller
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'email_supervisior' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8',
         ]);
 
@@ -73,6 +75,7 @@ class MenteeController extends Controller
         $mentee->name = $request->input('name');
         $mentee->role = $request->input('role');
         $mentee->email = $request->input('email');
+        $mentee->email_supervisior = $request->input('email_supervisior');
 
         // Check if password field is filled
         if ($request->has('password')) {

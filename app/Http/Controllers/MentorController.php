@@ -114,6 +114,18 @@ class MentorController extends Controller
         return redirect()->route('datamentor')->with('success', 'Data mentor berhasil dihapus'); // Redirect kembali ke halaman data mentor dengan pesan sukses
     }
 
+    public function datamentee()
+    {
+        $mentee = DB::table('users')
+            ->join('course', 'users.role', '=', 'course.user_role')
+            ->where('users.is_admin', 2)
+            ->paginate(5);
+
+        return view('WMI.Mentor.datamentee', ['mentee' => $mentee]); // Mengembalikan tampilan dengan data mentee
+    }
+
+
+
     public function lihatPengumpulan($tugas_id)
     {
         // Ambil data tugas_mentee yang memiliki tugas_id yang sesuai
@@ -127,7 +139,7 @@ class MentorController extends Controller
                     ->orWhere('nilai', '');
             })
             ->get();
-            // dd($ceknilai);
+        // dd($ceknilai);
         $data = DB::table('users')
             ->join('course', 'users.role', '=', 'course.user_role')
             ->where('users.is_admin', 2)
