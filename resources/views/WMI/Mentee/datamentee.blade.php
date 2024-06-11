@@ -10,7 +10,8 @@
                         <h1>Data Mentee</h1>
                     </div>
                     <div class="col-sm-6" style="text-align:right;">
-                        <a href="{{ url('WMI/Mentee/add') }}" class="btn btn-primary"> Tambah Data Mentee</a>
+                        <a href="{{ url('wmi/mentee/add') }}" class="btn btn-primary">
+                            Tambah Data Mentee</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -48,8 +49,8 @@
                                                 <td>{{ $mentees->role }}</td>
                                                 <td>{{ $mentees->email }}</td>
                                                 <td>
-                                                    <a href="{{ url('WMI/Mentee/edit/' . $mentees->id) }}"
-                                                        class="btn btn-primary">Ubah</a>
+                                                    <a href="{{ url('wmi/mentee/edit/' . $mentees->id) }}"
+                                                        class="btn btn-warning">Ubah</a>
                                                     <form id="deleteForm{{ $mentees->id }}"
                                                         action="{{ route('delete.mentee', ['id' => $mentees->id]) }}"
                                                         method="POST" style="display: inline;">

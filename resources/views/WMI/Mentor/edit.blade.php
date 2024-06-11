@@ -22,7 +22,7 @@
                                 <div class="form-group">
                                     <label>ID Mentor</label>
                                     <input type="text" class="form-control" value="{{ $mentor->id_mentor }}"
-                                        name="id_mentor" required >
+                                        name="id_mentor" required>
                                 </div>
 
                                 <div class="form-group">
@@ -32,28 +32,32 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Role Mentor</label>
-                                    <input type="text" class="form-control" value="{{ $mentor->role }}"
-                                        name="role" required placeholder="Enter Role Mentor">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" value="{{ $mentor->email }}"
+                                        name="email" required placeholder="Enter email Mentor">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Email address</label>
-                                    <input type="text" class="form-control" value="{{ $mentor->email }}"
-                                        name="email" required placeholder="Enter email">
+                                    <label for="role">Role Mentor</label>
+                                    <select class="form-control" id="role" name="role" required>
+                                        <option value="">Select Role Mentor</option>
+                                        <option value="UI/UX">UI/UX</option>
+                                        <option value="Mobile Development">Mobile Development</option>
+                                        <option value="IBM Academy">IBM Academy</option>
+                                        <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" name="password"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                <a href="{{ url('WMI/Mentor/datamentor') }}"
-                                    class="btn btn-danger">Batal</a>
+                                <button type="submit" class="btn btn-primary">Simpan
+                                    Perubahan</button>
+                                <a href="{{ url('/datamentor') }}" class="btn btn-danger">Batal</a>
                             </div>
                         </form>
                     </div>

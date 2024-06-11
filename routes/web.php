@@ -11,6 +11,7 @@ use App\Http\Controllers\PengumumannController;
 use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenteeController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\RoleMiddleware;
 
 
@@ -29,26 +30,49 @@ use App\Http\Middleware\RoleMiddleware;
 // Route::get('/', function () {
 //     return view('index');
 // });
+Route::get('/edit-profile', [UserController::class, 'editProfile'])->name('edit-profile');
+Route::put('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('update-profile');
 
-Route::get('/beranda', [BerandaController::class, 'beranda']);
+
+
+Route::get('rataNIlai', [MentorController::class, 'AverageNilai'])->name('expnilai');;
+
+
+
+Route::get('/tugas/{id}/detail', [CourseController::class, 'tugasdetail'])->name('tugas.detail');
+Route::put('/tugas/{id}/update', [CourseController::class, 'updatetugas'])->name('tugas.update');
+Route::post('/courses/{id}/tugas/store', [CourseController::class, 'storetugas'])->name('tugas.store');
+Route::delete('/tugas/{id}', [CourseController::class, 'deletetugas'])->name('tugas.delete');
+
+Route::post('/submit-tugas/{id}', [MenteeController::class, 'kumpul'])->name('submitTugas');
+Route::get('/lihat-pengumpulan/{tugas_id}', [MentorController::class, 'lihatPengumpulan'])->name('lihatPengumpulan');
+Route::get('/tidak-mengumpul/{tugas_id}', [MentorController::class, 'tidakkumpul'])->name('tidakkumpul');
+Route::post('/isi-nilai/{id}', [MentorController::class, 'isiNilai'])->name('isiNilai');
+
+
+Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda');
+Route::get('/landingmentor', [BerandaController::class, 'mentor'])->name('landingmentor');
+Route::get('/landingwmi', [BerandaController::class, 'wmi'])->name('landingwmi');
+Route::get('/landingmentee', [BerandaController::class, 'mentee'])->name('landingmentee');
 Route::middleware(['role:0'])->group(function () {
     // Semua rute di dalam grup ini hanya bisa diakses oleh mentee
 
     Route::get('/datamentor', [MentorController::class, 'index'])->name('datamentor');
-    Route::get('WMI/Mentor/add', [MentorController::class, 'add']);
-    Route::post('WMI/Mentor/add', [MentorController::class, 'insert']);
+    Route::get('wmi/mentor/add', [MentorController::class, 'add']);
+    Route::post('wmi/mentor/add', [MentorController::class, 'insert']);
 
-    Route::get('WMI/Mentor/edit/{id}', [MentorController::class, 'edit'])->name('edit.mentor');
-    Route::put('WMI/Mentor/edit/{id} ', [MentorController::class, 'update'])->name('update.mentor');
-    Route::delete('/WMI/Mentor/delete/{id}', [MentorController::class, 'delete'])->name('delete.mentor');
+    Route::get('wmi/mentor/edit/{id}', [MentorController::class, 'edit'])->name('edit.mentor');
+    Route::put('wmi/mentor/edit/{id} ', [MentorController::class, 'update'])->name('update.mentor');
+    Route::delete('/wmi/mentor/delete/{id}', [MentorController::class, 'delete'])->name('delete.mentor');
 
     Route::get('/datamentee', [MenteeController::class, 'index'])->name('datamentee');
-    Route::get('WMI/Mentee/add', [MenteeController::class, 'add']);
-    Route::post('WMI/Mentee/add', [MenteeController::class, 'insert']);
+    Route::get('wmi/mentee/add', [MenteeController::class, 'add']);
+    Route::post('wmi/mentee/add', [MenteeController::class, 'insert']);
 
-    Route::get('WMI/Mentee/edit/{id}', [MenteeController::class, 'edit'])->name('edit.mentee');
-    Route::put('WMI/Mentee/edit/{id} ', [MenteeController::class, 'update'])->name('update.mentee');
-    Route::delete('/WMI/Mentee/delete/{id}', [MenteeController::class, 'delete'])->name('delete.mentee');
+    Route::get('wmi/mentee/edit/{id}', [MenteeController::class, 'edit'])->name('edit.mentee');
+    Route::put('wmi/mentee/edit/{id} ', [MenteeController::class, 'update'])->name('update.mentee');
+    Route::delete('/wmi/mentee/delete/{id}', [MenteeController::class, 'delete'])->name('delete.mentee');
+    Route::get('/submit-tugas', [MenteeController::class, 'showSubmitTugasPage'])->name('submit_tugas');
 
     Route::get('/materi', [CourseController::class, 'coursedetail'])->name('coursedetail');
     Route::get('/courses/{id}', [CourseController::class, 'show'])->name('course.detail');
@@ -78,23 +102,22 @@ Route::middleware(['role:0'])->group(function () {
 
 });
 Route::get('/course', [CourseController::class, 'index'])->name('course');
-    Route::post('WMI/Course/tambah', [CourseController::class, 'insert'])->name('addcourse');
-    Route::get('WMI/Course/add', [CourseController::class, 'add']);
-    Route::delete('/WMI/Course/delete/{id}', [CourseController::class, 'delete'])->name('delete.course');
-    Route::get('WMI/Course/{id}/edit', [CourseController::class, 'edit'])->name('edit.course');
-    Route::put('WMI/Course/{id}', [CourseController::class, 'update'])->name('update.course');
+Route::post('wmi/course/tambah', [CourseController::class, 'insert'])->name('addcourse');
+Route::get('wmi/course/add', [CourseController::class, 'add']);
+Route::delete('/wmi/course/delete/{id}', [CourseController::class, 'delete'])->name('delete.course');
+Route::get('wmi/course/{id}/edit', [CourseController::class, 'edit'])->name('edit.course');
+Route::put('wmi/course/{id}', [CourseController::class, 'update'])->name('update.course');
 
 
 
 Route::middleware(['role:2'])->group(function () {
     Route::get('/coursementee', [CourseController::class, 'indexmentee'])->name('coursementee');
 });
-    Route::middleware(['role:1'])->group(function () {
+
+Route::middleware(['role:1'])->group(function () {
     Route::get('/coursementor', [CourseController::class, 'indexmentor'])->name('coursementor');
     // Route::get('/course', [CourseController::class, 'index'])->name('course');
-    
-    
-    
+
 });
 
 

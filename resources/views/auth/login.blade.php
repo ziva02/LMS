@@ -60,9 +60,9 @@
                     </div>
 
                     <div class="wrap-input100 ">
-                        <span class="btn-show-pass">
+                        {{-- <span class="btn-show-pass">
                             <i class="zmdi zmdi-eye"></i>
-                        </span>
+                        </span> --}}
                         <input class="input100" id="password" type="password" name="password"
                             placeholder="{{ __('Kata Sandi') }}">
                         <span class="focus-input100"></span>

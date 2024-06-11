@@ -20,14 +20,19 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     @foreach ($pengumumans as $value)
-                    <div class="col-md-12">
-                        <div style="background-color: #b0c9f1; border-radius: 5px; margin-bottom: 20px; padding: 20px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <b><h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul }}</h4></b>
+                        <div class="col-md-12">
+                            <div
+                                style="background-color: #b0c9f1; border-radius: 5px; margin-bottom: 20px; padding: 20px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <b>
+                                        <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul }}</h4>
+                                    </b>
+                                </div>
+                                <p
+                                    style="margin-bottom: 10px; color: #000000; overflow: hidden; word-wrap: break-word;">
+                                    {{ $value->deskripsi }}</p>
                             </div>
-                            <p style="margin-bottom: 10px; color: #000000; overflow: hidden; word-wrap: break-word;">{{ $value->deskripsi }}</p>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -52,7 +57,7 @@
 
 <!-- Script for FullCalendar initialization -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             // Set calendar options here

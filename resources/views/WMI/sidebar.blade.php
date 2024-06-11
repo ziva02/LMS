@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ !empty($header_title) ? $header_title : '' }}</title>
 
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -59,24 +60,77 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="javascript:;" class="brand-link" style="text-align:center;">
-                <span class="brand-text font-weight-light">Infinite Learning</span>
-            </a>
+        @if (auth()->user()->is_admin == 1 || auth()->user()->is_admin == 2)
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                                class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <span class="img-circle elevation-2">
-                            {{ substr(Auth::user()->name, 0, 1) }}
-                        </span>
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <img src="{{ asset('profil/' . Auth::user()->foto) }}" alt="Profile Picture" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover; margin-right: 5px;">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">Keluar</a>
+                            <a href="{{ route('edit-profile') }}" class="dropdown-item">Profil</a>
+                        </div>
+                    </li>
+                </ul>
+                
+            </nav>
+        @endif
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Keluar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                    <div class="modal-body">
+                        Apakah Anda Yakin Keluar dari Aplikasi LMS?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ route('logout') }}" class="btn btn-primary">Keluar</a>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="javascript:;" class="brand-link" style="text-align:center; display: flex; flex-direction: column; align-items: center;">
+                <img src="{{ asset('img/infinite.png') }}" alt="Infinite Learning Logo"
+                    
+                    style="width:230px;height:80px;">
+            </a>
+            
+
+
+
+            <!-- Sidebar -->
+
+            <div class="sidebar">
+                @if (auth()->user()->is_admin == 0)
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
+                        <div class="text-white">
+                            <h7>{{ Auth::user()->name }}</h7>
+                        </div>
+
+                        <div class="info">
+                            <a href="#" class="d-block"> </a>
+                        </div>
+                    </div>
+                @endif
 
 
 
@@ -87,16 +141,43 @@
                         <!-- Add icons to the links using the .nav-icon class
                            with font-awesome or any other icon font library -->
 
-
+                        @if (auth()->user()->is_admin == 0)
                         <li class="nav-item">
-                            <a href="{{ url('beranda') }}"
-                                class="nav-link @if (Request::path() == 'beranda') active @endif">
+                            <a href="{{ url('landingwmi') }}"
+                                class="nav-link @if (Request::path() == 'landingwmi') active @endif">
                                 <i class="nav-icon fa fa-home"></i>
                                 <p>
                                     Beranda
                                 </p>
                             </a>
                         </li>
+                        @endif
+
+                        @if (auth()->user()->is_admin == 1)
+                        <li class="nav-item">
+                            <a href="{{ url('landingmentor') }}"
+                                class="nav-link @if (Request::path() == 'landingmentor') active @endif">
+                                <i class="nav-icon fa fa-home"></i>
+                                <p>
+                                    Beranda
+                                </p>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if (auth()->user()->is_admin == 2)
+                        <li class="nav-item">
+                            <a href="{{ url('landingmentee') }}"
+                                class="nav-link @if (Request::path() == 'landingmentee') active @endif">
+                                <i class="nav-icon fa fa-home"></i>
+                                <p>
+                                    Beranda
+                                </p>
+                            </a>
+                        </li>
+                        @endif
+
+
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -107,58 +188,105 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                @if (auth()->user()->is_admin == 0 )
-                                <li class="nav-item">
-                                    <a href="{{ url('pengumumann') }}"
-                                        class="nav-link @if (Request::path() == 'pengumumann') active @endif">
-                                        <i class="fas fa-bullhorn nav-icon"></i>
-                                        <p>Pengumuman</p>
-                                    </a>
-                                </li>
+                                @if (auth()->user()->is_admin == 0)
+                                    <li class="nav-item">
+                                        <a href="{{ url('pengumumann') }}"
+                                            class="nav-link @if (Request::path() == 'pengumumann') active @endif">
+                                            <i class="fas fa-bullhorn nav-icon"></i>
+                                            <p>Pengumuman</p>
+                                        </a>
+                                    </li>
                                 @endif
-                                <li class="nav-item">
-                                    <a href="{{ url('course') }}"
-                                        class="nav-link @if (Request::path() == 'course') active @endif">
-                                        <i class="fas fa-file-alt nav-icon"></i>
-                                        <p>Course List</p>
-                                    </a>
-                                </li>
+                                @if (auth()->user()->is_admin == 1)
+                                    <li class="nav-item">
+                                        <a href="{{ url('coursementor') }}"
+                                            class="nav-link @if (Request::path() == 'course') active @endif">
+                                            <i class="fas fa-file-alt nav-icon"></i>
+                                            <p>Daftar Kelas</p>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if (auth()->user()->is_admin == 2)
+                                    <li class="nav-item">
+                                        <a href="{{ url('coursementee') }}"
+                                            class="nav-link @if (Request::path() == 'course') active @endif">
+                                            <i class="fas fa-file-alt nav-icon"></i>
+                                            <p>Daftar Kelas</p>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if (auth()->user()->is_admin == 0)
+                                    <li class="nav-item">
+                                        <a href="{{ url('course') }}"
+                                            class="nav-link @if (Request::path() == 'course') active @endif">
+                                            <i class="fas fa-file-alt nav-icon"></i>
+                                            <p>Daftar Kelas</p>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </li>
-                        @if (auth()->user()->is_admin == 0 )
-                        <li class="nav-item">
-                            <a href="{{ url('datamentor') }}"
-                                class="nav-link @if (Request::path() == 'datamentor') active @endif">
-                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                                <p>
-                                    Data Mentor
-                                </p>
-                            </a>
-                        </li>
+                        @if (auth()->user()->is_admin == 0)
+                            <li class="nav-item">
+                                <a href="{{ url('datamentor') }}"
+                                    class="nav-link @if (Request::path() == 'datamentor') active @endif">
+                                    <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                                    <p>
+                                        Data Mentor
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="{{ url('datamentee') }}"
-                                class="nav-link @if (Request::path() == 'datamentee') active @endif">
-                                <i class="nav-icon fas fa-user-friends"></i>
-                                <p>
-                                    Data Mentee
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{ url('datamentee') }}"
+                                    class="nav-link @if (Request::path() == 'datamentee') active @endif">
+                                    <i class="nav-icon fas fa-user-friends"></i>
+                                    <p>
+                                        Data Mentee
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth()->user()->is_admin == 0)
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                                    <p>
+                                        Keluar
+                                    </p>
+                                </a>
+                            </li>
                         @endif
 
-                        <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
+                        <!-- Logout Modal -->
+                        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="logoutModalLabel">Apakah Anda yakin ingin keluar?
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Batal</button>
+                                        <a href="{{ route('logout') }}" class="btn btn-primary">Ya, Keluar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </ul>
                 </nav>
 
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
+
         </aside>

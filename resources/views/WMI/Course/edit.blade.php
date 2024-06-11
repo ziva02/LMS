@@ -3,11 +3,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2"> 
+            <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Form Ubah Course</h1>
+                    <h1>Form Ubah Kelas</h1>
                 </div>
-            </div> 
+            </div>
         </div><!-- /.container-fluid -->
     </section>
 
@@ -19,7 +19,8 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <form method="post" action="{{ route('update.course', ['id' => $course->id]) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('update.course', ['id' => $course->id]) }}"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT') <!-- karena metode update menggunakan PUT -->
 
@@ -34,7 +35,8 @@
 
                                 <div class="form-group">
                                     <label>Nama Course</label>
-                                    <input type="text" class="form-control" value="{{ $course->name }}" name="name" required>
+                                    <input type="text" class="form-control" value="{{ $course->name }}"
+                                        name="name" required>
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @endif
@@ -42,7 +44,8 @@
 
                                 <div class="form-group">
                                     <label>Durasi</label>
-                                    <input type="text" class="form-control" value="{{ $course->durasi }}" name="durasi" required>
+                                    <input type="text" class="form-control" value="{{ $course->durasi }}"
+                                        name="durasi" required>
                                     @if ($errors->has('durasi'))
                                         <span class="text-danger">{{ $errors->first('durasi') }}</span>
                                     @endif
@@ -50,16 +53,18 @@
 
                                 <div class="form-group">
                                     <label>Deskripsi Course</label>
-                                    <input type="text" class="form-control" value="{{ $course->deskripsi }}" name="deskripsi" required>
+                                    <input type="text" class="form-control" value="{{ $course->deskripsi }}"
+                                        name="deskripsi" required>
                                     @if ($errors->has('deskripsi'))
                                         <span class="text-danger">{{ $errors->first('deskripsi') }}</span>
                                     @endif
-                                </div>                                
+                                </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Simpan
+                                    Perubahan</button>
                                 <a href="{{ route('course') }}" class="btn btn-danger">Batal</a>
                             </div>
                         </form>

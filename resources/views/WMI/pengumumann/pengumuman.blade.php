@@ -10,8 +10,9 @@
                     <h1>Pengumuman</h1>
                 </div>
                 <div class="col-sm-6" style="text-align:right;">
-                    <button class="btn btn-primary" style="vertical-align: middle;" data-toggle="modal"
-                        data-target="#tambahPengumumanModal">Tambah Pengumuman</button>
+                    <button class="btn btn-primary"
+                        style="vertical-align: middle;"
+                        data-toggle="modal" data-target="#tambahPengumumanModal">Tambah Pengumuman</button>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -21,44 +22,96 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                @foreach ($pengumumans as $value)
-                    <div class="col-md-12">
-                        <div style="background-color: #b0c9f1; border-radius: 5px; margin-bottom: 20px; padding: 20px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <b>
-                                    <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul }}</h4>
-                                </b>
-                                <div>
-                                    <form action="{{ route('pengumuman.edit', ['id' => $value->id]) }}" method="GET"
-                                        style="display: inline-block;">
-                                        <button type="submit"
-                                            style="background-color: hsl(231, 100%, 95%); color: #3B80F2; padding: 10px 20px; border-radius: 5px; margin-right: 10px; min-width: 60px; text-align: center; 
-                                            display: inline-block; border: 1px solid #3B80F2;">Edit</button>
-                                    </form>
-                                    <form action="{{ route('pengumuman.delete', ['id' => $value->id]) }}" method="POST"
-                                        style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus pengumuman ini?')"
-                                            style="background-color: hsl(0, 85%, 52%); color: #ffffff; padding: 10px 20px; border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">Hapus</button>
-                                    </form>
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30%;">Judul Pengumuman</th>
+                                    <th style="width: 50%;">Deskripsi Pengumuman</th>
+                                    <th style="width: 20%;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($pengumumans as $value)
+                                <tr>
+                                    <td>{{ $value->judul }}</td>
+                                    <td>{{ \Illuminate\Support\Str::words($value->deskripsi, 100, '...') }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                            data-target="#editModal{{ $value->id }}" data-judul="{{ $value->judul }}"
+                                            data-deskripsi="{{ $value->deskripsi }}">
+                                            Ubah
+                                        </button>
+    
+                                        <form action="{{ route('pengumuman.delete', ['id' => $value->id]) }}" method="POST"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus pengumuman ini?')"
+                                                class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+    
+                                <!-- Modal -->
+                                <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1"
+                                    aria-labelledby="editModalLabel{{ $value->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editModalLabel{{ $value->id }}">Form Ubah
+                                                    Pengumuman</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form id="editForm{{ $value->id }}" method="post"
+                                                action="{{ route('pengumuman.update', ['id' => $value->id]) }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="judul">Judul</label>
+                                                        <input type="text" class="form-control" id="judul{{ $value->id }}"
+                                                            value="{{ $value->judul }}" name="judul" required
+                                                            placeholder="Masukkan Judul">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="deskripsi">Deskripsi</label>
+                                                        <textarea class="form-control"
+                                                            id="deskripsi{{ $value->id }}" name="deskripsi" required
+                                                            rows="5"
+                                                            placeholder="Masukkan Deskripsi">{{ $value->deskripsi }}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <p style="margin-bottom: 10px; color: #000000; overflow: hidden; word-wrap: break-word;">
-                                {{ $value->deskripsi }}
-                            </p>
-
-                        </div>
+                                <!-- End Modal -->
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                @endforeach
+                </div>
             </div>
-
+    
             <div class="pagination justify-content-end">
                 {{ $pengumumans->links() }}
             </div>
         </div>
     </section>
+    
+    
+    
 
 
     <!-- Modal -->
@@ -83,9 +136,20 @@
                             <label for="deskripsi">Deskripsi:</label>
                             <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $('#editModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var judul = button.data('judul')
+            var deskripsi = button.data('deskripsi')
+            var modal = $(this)
+            modal.find('.modal-body #judul').val(judul)
+            modal.find('.modal-body #deskripsi').val(deskripsi)
+        })
+    </script>

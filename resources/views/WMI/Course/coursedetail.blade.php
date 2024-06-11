@@ -24,6 +24,8 @@
                 <a href="{{ route('courses.detail', $valuee->course_id) }}" class="btn btn-info">Materi</a>
                 <a href="{{ route('link_pertemuan.detail', $valuee->course_id) }}" class="btn btn-info">Link
                     Pertemuan</a>
+                <a href="{{ route('tugas.detail', $valuee->course_id) }}" class="btn btn-info">Tugas</a>
+                <!-- Tombol Tugas -->
             </div>
         </div>
     </section>
@@ -32,14 +34,12 @@
         <div class="container-fluid">
             <div class="row">
                 @if ($header_title === 'Course')
-                @if (auth()->user()->is_admin == 0 )
-                    <div class="col-sm-6 ">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#tambahMateriModal">
-                            
-                            <i class="fas fa-plus"></i> Tambah Materi
-                        </button>
-                    </div>
+                    @if (auth()->user()->is_admin == 0)
+                        <div class="col-sm-6 ">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#tambahMateriModal">Tambah Materi
+                            </button>
+                        </div>
                     @endif
 
 
@@ -55,7 +55,7 @@
                                         $allowedRoles = [1, 2]; // Daftar peran yang diizinkan untuk mengakses tombol
                                     @endphp
                                     <!-- Tombol Edit dan Hapus -->
-                                    @if (auth()->user()->is_admin == 0 )
+                                    @if (auth()->user()->is_admin == 0)
                                         {{-- Memeriksa apakah peran pengguna adalah 2 --}}
                                         <div>
                                             <!-- Form untuk menghapus -->
@@ -93,7 +93,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit Materi</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Ubah Materi</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -104,7 +104,7 @@
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group">
-                                                <label for="judul_materi">Judul Materii:</label>
+                                                <label for="judul_materi">Judul Materi:</label>
                                                 <input type="text" name="judul_materi" class="form-control"
                                                     id="judul_materi" value="{{ $value->judul_materi }}" required>
                                             </div>
@@ -129,9 +129,9 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        
+
                                         <h5 class="modal-title" id="exampleModalLabel">Tambah Materi Baru</h5>
-                                        
+
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -154,7 +154,10 @@
                                                 <input type="file" name="file_materi" class="form-control"
                                                     id="file_materi" required>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                            <button type="submit" class="btn btn-primary">
+                                                Tambah
+                                            </button>
+
                                         </form>
                                     </div>
                                 </div>
@@ -162,13 +165,13 @@
                         </div>
                     @endforeach
                 @elseif ($header_title === 'Link Pertemuan')
-                @if (auth()->user()->is_admin == 0 )
-                    <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#tambahLinkModal">
-                            <i class="fas fa-plus"></i> Tambah Link Pertemuan
-                        </button>
-                    </div><br><br>
+                    @if (auth()->user()->is_admin == 0)
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#tambahLinkModal">
+                                Tambah Link Pertemuan
+                            </button>
+                        </div><br><br>
                     @endif
 
 
@@ -181,27 +184,27 @@
                                         <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul_link }}</h4>
                                     </b>
                                     <!-- Tombol Edit dan Hapus -->
-                                    @if (auth()->user()->is_admin == 0 )
-                                    <div>
-                                        <!-- Form untuk menghapus -->
-                                        <button type="button" class="btn btn-warning" data-toggle="modal"
-                                            data-target="#editLinkModal{{ $value->id }}"
-                                            style="background-color: FFCD29; color: #000000; 
+                                    @if (auth()->user()->is_admin == 0)
+                                        <div>
+                                            <!-- Form untuk menghapus -->
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#editLinkModal{{ $value->id }}"
+                                                style="background-color: FFCD29; color: #000000; 
                                             padding: 10px 20px; border-radius: 5px; min-width: 60px; 
                                             text-align: center; display: inline-block; border: none;">
-                                            Ubah
-                                        </button>
-                                        <form action="{{ route('link.delete', ['id' => $value->id]) }}"
-                                            method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus materi ini?')"
-                                                style="background-color: hsl(0, 85%, 52%); color: #ffffff; 
+                                                Ubah
+                                            </button>
+                                            <form action="{{ route('link.delete', ['id' => $value->id]) }}"
+                                                method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus materi ini?')"
+                                                    style="background-color: hsl(0, 85%, 52%); color: #ffffff; 
                                             padding: 10px 20px; border-radius: 5px; min-width: 60px; 
                                             text-align: center; display: inline-block; border: none;">Hapus</button>
-                                        </form>
-                                    </div>
+                                            </form>
+                                        </div>
                                     @endif
                                 </div>
                                 <div style="margin-bottom: 10px; color: #000000; overflow: auto; max-height: 100px;">
@@ -216,7 +219,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit Link Pertemuan</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Ubah Link Pertemuan</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -236,6 +239,40 @@
                                                 <label for="deskripsi">Deskripsi:</label>
                                                 <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" required>{{ $value->deskripsi }}</textarea>
                                             </div>
+                                            <button type="submit" class="btn btn-primary">Simpan
+                                                Perubahan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal Edit Link Pertemuan -->
+                        <div class="modal fade" id="editLinkModal{{ $value->id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ubah Link Pertemuan</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('link_pertemuan.update', ['id' => $value->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="form-group">
+                                                <label for="judul_link">Judul Link:</label>
+                                                <input type="text" name="judul_link" class="form-control"
+                                                    id="judul_link" value="{{ $value->judul_link }}" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="deskripsi">Deskripsi:</label>
+                                                <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" required>{{ $value->deskripsi }}</textarea>
+                                            </div>
                                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                                         </form>
                                     </div>
@@ -243,6 +280,227 @@
                             </div>
                         </div>
                     @endforeach
+                @elseif ($header_title === 'Tugas')
+                    @if (auth()->user()->is_admin == 1)
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#tambahTugasModal">
+                                <i class="fas fa-plus"></i> Tambah Tugas
+                            </button>
+
+                            <a href="{{ route('expnilai') }}" class="btn btn-success ml-2">Export</a>
+
+
+                        </div><br><br>
+                    @endif
+
+
+
+                    @foreach ($datatugas as $value)
+                        <div class="col-md-12">
+
+                            <div
+                                style="background-color: #d5e3fb; border-radius: 5px; margin-bottom: 20px; padding: 20px;">
+
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <b>
+                                        <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul_tugas }}
+                                        </h4>
+                                    </b>
+                                    <!-- Tombol Edit dan Hapus -->
+                                    @if (auth()->user()->is_admin == 1)
+                                        <div>
+                                            <!-- Form untuk menghapus -->
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                data-target="#editTugasModal{{ $value->id }}"
+                                                style="background-color: FFCD29; color: #000000; padding: 10px 20px; border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">
+                                                Ubah
+                                            </button>
+                                            <form action="{{ route('tugas.delete', ['id' => $value->id]) }}"
+                                                method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus materi ini?')"
+                                                    style="background-color: hsl(0, 85%, 52%); color: #ffffff; 
+                                            padding: 10px 20px; border-radius: 5px; min-width: 60px; 
+                                            text-align: center; display: inline-block; border: none;">Hapus</button>
+                                            </form>
+                                            <a href="{{ route('lihatPengumpulan', ['tugas_id' => $value->id]) }}"
+                                                class="btn btn-primary"
+                                                style=" color: #ffffff; padding: 10px 20px; border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">
+                                                Lihat Pengumpulan
+                                            </a>
+
+                                        </div>
+                                    @endif
+                                    <!-- Button trigger modal -->
+
+                                    @if (auth()->user()->is_admin == 2)
+                                        <!-- Tombol "Submit Tugas" sekarang akan memicu modal -->
+                                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                                            data-target="#submitTugasModal{{ $value->id }}"
+                                            style="background: linear-gradient(135deg, #25B9C9, #8A3DFF); color: #ffffff; padding: 10px 20px;
+                                                border-radius: 5px; min-width: 60px; text-align: center; display: inline-block; border: none;">
+                                            Kumpul Tugas
+                                        </button>
+                                    @endif
+                                    <!-- Modal Structure -->
+                                    <div class="modal fade" id="feedbackModal" tabindex="-1"
+                                        aria-labelledby="feedbackModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="feedbackModalLabel">Pesan</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @if (session('error'))
+                                                        <div class="alert alert-danger">
+                                                            {{ session('error') }}
+                                                        </div>
+                                                    @endif
+
+                                                    @if (session('success'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('success') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="submitTugasModal{{ $value->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="submitTugasModalLabel{{ $value->id }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="submitTugasModalLabel">Form Kumpul
+                                                        Tugas
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form untuk mengunggah tugas -->
+                                                    <form action="{{ route('submitTugas', ['id' => $value->id]) }}"
+                                                        method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="tugas_file">Pilih File Tugas:</label>
+                                                            <input type="file" class="form-control-file"
+                                                                id="tugas_file" name="tugas_file" accept=".pdf">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div style="margin-bottom: 10px; color: #000000; overflow: auto; max-height: 100px;">
+                                    <a href="{{ asset('filetugas/' . $value->file_tugas) }}"
+                                        download>{{ $value->file_tugas }}</a>
+                                </div>
+                                <div style="margin-bottom: 10px; color: #000000; overflow: auto; max-height: 100px;">
+                                    <h6>{{ $value->deskripsi }}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="modal fade" id="editTugasModal{{ $value->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ubah Tugas</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('tugas.update', ['id' => $value->id]) }}"
+                                            method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="form-group">
+                                                <label for="judul_tugas">Judul Tugas:</label>
+                                                <input type="text" name="judul_tugas" class="form-control"
+                                                    id="judul_tugas" value="{{ $value->judul_tugas }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deskripsi">Deskripsi Tugas:</label>
+                                                <textarea name="deskripsi" class="form-control" id="deskripsi_materi" rows="3" required>{{ $value->deskripsi }}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="file_tugas">File Tugas:</label>
+                                                <input type="file" name="file_tugas" class="form-control"
+                                                    id="file_tugas">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="tambahTugasModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Tugas Baru</h5>
+
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('tugas.store', ['id' => $valuee->course_id]) }}"
+                                            method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="judul_tugas">Judul Tugas:</label>
+                                                <input type="text" name="judul_tugas" class="form-control"
+                                                    id="judul_tugas" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="deskripsi">Deskripsi Tugas:</label>
+                                                <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="file_tugas">File Tugas (PDF):</label>
+                                                <input type="file" name="file_tugas" class="form-control"
+                                                    id="file_tugas" required>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Tambah</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
                 @endif
             </div>
         </div>
@@ -279,3 +537,14 @@
 </div>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if (session('error') || session('success'))
+            var feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+            feedbackModal.show();
+        @endif
+    });
+</script>

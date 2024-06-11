@@ -7,11 +7,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Course List</h1>
+                    <h1>Daftar Kelas</h1>
                 </div>
+
                 <div class="col-sm-6" style="text-align:right;">
-                    <a href="{{ url('WMI/Course/add') }}" class="btn btn-primary">Tambah Course</a>
+                    <a href="{{ url('wmi/course/add') }}" class="btn btn-primary">Tambah
+                        Kelas</a>
                 </div>
+
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -31,7 +34,7 @@
                                         <!-- Tautan ke halaman detail -->
                                         <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
                                             <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}"
-                                                alt="Course Image" style="height:200px; width:300px;">
+                                                alt="Course Image" style="height:250px; width:410px;">
                                             <div class="card-body">
                                                 <div class="mt-3">
                                                     <b>
@@ -39,16 +42,21 @@
                                                         <h5 class="card-title">{{ $data->name }}</h5>
                                                     </b>
                                                     <br><br>
+                                                    <p class="card-text" style="color: black;">
+                                                        {{ Illuminate\Support\Str::limit($data->deskripsi, 300) }}
+                                                    </p>
+                                                </div>
+                                                <div class="mt-3" style="display: flex; justify-content: flex-end;">
                                                     <a href="{{ route('edit.course', ['id' => $data->id]) }}"
-                                                        class="btn btn-primary mr-2">Edit</a>
+                                                        class="btn btn-warning mr-2">Ubah</a>
                                                     <!-- Menggunakan modal untuk konfirmasi penghapusan -->
                                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                                         data-target="#deleteModal{{ $data->id }}">
-                                                        Delete
+                                                        Hapus
                                                     </button>
                                                 </div>
-                                                <p class="card-text">
-                                                    {{ Illuminate\Support\Str::limit($data->deskripsi, 300) }}</p>
+
+
                                             </div>
                                         </a> <!-- Akhir dari tautan ke halaman detail -->
                                     </div>

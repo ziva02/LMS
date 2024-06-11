@@ -41,10 +41,16 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Role Mentor</label>
-                                    <input type="text" class="form-control" value="{{ old('role') }}"
-                                        name="role" required placeholder="Enter Role Mentor">
+                                    <label for="role">Role Mentor</label>
+                                    <select class="form-control" id="role" name="role" required>
+                                        <option value="">Select Role Mentor</option>
+                                        <option value="UI/UX">UI/UX</option>
+                                        <option value="Mobile Development">Mobile Development</option>
+                                        <option value="IBM Academy">IBM Academy</option>
+                                        <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                                    </select>
                                 </div>
+                                
 
                                 <div class="form-group">
                                     <label>Email address</label>
@@ -65,10 +71,10 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Tambah</button> &nbsp; &nbsp;
-                                <a href="{{ url('WMI/Mentor/datamentor') }}"
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                &nbsp; &nbsp;
+                                <a href="{{ url('/datamentor') }}"
                                     style="display: inline-block; padding: 7px 20px; background-color: #ff0000; color: #fff; text-decoration: none; border-radius: 5px; position :absolute; bottom:2%;">Batal</a>
-
                             </div>
 
 

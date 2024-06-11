@@ -10,12 +10,14 @@
     <style>
         /* Tambahkan gaya CSS khusus di sini */
         .pagination .page-link {
-            font-size: 14px !important; /* Atur ukuran font */
+            font-size: 14px !important;
+            /* Atur ukuran font */
         }
 
         .pagination .page-link::before,
         .pagination .page-link::after {
-            font-size: 14px !important; /* Atur ukuran font */
+            font-size: 14px !important;
+            /* Atur ukuran font */
         }
 
         .text-right {
@@ -57,7 +59,8 @@
                         <h1>Data Mentor</h1>
                     </div>
                     <div class="col-sm-6 text-right"> <!-- Menggunakan kelas text-right -->
-                        <a href="{{ url('WMI/Mentor/add') }}" class="btn btn-primary">Tambah Data Mentor</a>
+                        <a href="{{ url('wmi/mentor/add') }}" class="btn btn-primary">Tambah
+                            Data Mentor</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -94,8 +97,8 @@
                                                 <td>{{ $item->role }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>
-                                                    <a href="{{ url('WMI/Mentor/edit/' . $item->id) }}"
-                                                        class="btn btn-primary">Ubah</a>
+                                                    <a href="{{ url('wmi/mentor/edit/' . $item->id) }}"
+                                                        class="btn btn-warning">Ubah</a>
                                                     <form id="deleteForm{{ $item->id }}"
                                                         action="{{ route('delete.mentor', ['id' => $item->id]) }}"
                                                         method="POST" style="display: inline;">
@@ -122,7 +125,7 @@
         </section>
         <!-- /.content -->
 
-       
+
     </div>
     <!-- /.content-wrapper -->
 

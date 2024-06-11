@@ -12,7 +12,7 @@ class PengumumannController extends Controller
     public function index()
     {
         $header_title = "Pengumuman";
-        $pengumumans = Pengumuman::latest('created_at')->paginate(2);
+        $pengumumans = Pengumuman::latest('created_at')->paginate(10);
 
         // Kemudian, bisa melakukan apapun yang diinginkan dengan data pengumuman tersebut,
         // misalnya melewatkan ke view untuk ditampilkan

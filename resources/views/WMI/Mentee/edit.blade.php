@@ -22,7 +22,7 @@
                                 <div class="form-group">
                                     <label>ID Mentee</label>
                                     <input type="text" class="form-control" value="{{ $mentee->id_mentee }}"
-                                        name="id_mentee" required >
+                                        name="id_mentee" required>
                                 </div>
 
                                 <div class="form-group">
@@ -45,15 +45,13 @@
 
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" name="password"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
 
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('datamentee') }}"
-                                    class="btn btn-danger">Batal</a>
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                <a href="{{ route('datamentee') }}" class="btn btn-danger">Batal</a>
                             </div>
                         </form>
                     </div>

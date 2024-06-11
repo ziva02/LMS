@@ -9,10 +9,7 @@
                 <div class="col-sm-6">
                     <h1>Course List</h1>
                 </div>
-                <div class="col-sm-6" style="text-align:right;">
-                    <a href="{{ url('WMI/Course/add') }}" class="btn btn-primary">Tambah Course</a>
-                </div>
-            </div>
+                
         </div><!-- /.container-fluid -->
     </section>
 
@@ -31,7 +28,7 @@
                                         <!-- Tautan ke halaman detail -->
                                         <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
                                             <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}"
-                                                alt="Course Image" style="height:200px; width:300px;">
+                                                alt="Course Image" style="height:250px; width:410px;">
                                             <div class="card-body">
                                                 <div class="mt-3">
                                                     <b>
@@ -39,13 +36,7 @@
                                                         <h5 class="card-title">{{ $data->name }}</h5>
                                                     </b>
                                                     <br><br>
-                                                    <a href="{{ route('edit.course', ['id' => $data->id]) }}"
-                                                        class="btn btn-primary mr-2">Edit</a>
-                                                    <!-- Menggunakan modal untuk konfirmasi penghapusan -->
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#deleteModal{{ $data->id }}">
-                                                        Delete
-                                                    </button>
+                                                    
                                                 </div>
                                                 <p class="card-text">
                                                     {{ Illuminate\Support\Str::limit($data->deskripsi, 300) }}</p>
@@ -68,7 +59,7 @@
         </div>
     </section>
 </div>
-
+{{-- 
 <!-- Modal Konfirmasi Penghapusan -->
 @foreach ($courses as $data)
     <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog"
@@ -97,5 +88,5 @@
             </div>
         </div>
     </div>
-@endforeach
+@endforeach --}}
 <!-- End Modal -->

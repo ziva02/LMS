@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Course List</h1>
+                    <h1>Kelas</h1>
                 </div>
                 
             </div>
@@ -29,7 +29,7 @@
                                         <!-- Tautan ke halaman detail -->
                                         <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
                                             <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}"
-                                                alt="Course Image" style="height:200px; width:300px;">
+                                                alt="Course Image" style="height:250px; width:410px;">
                                             <div class="card-body">
                                                 <div class="mt-3">
                                                     <b>
@@ -60,10 +60,10 @@
         </div>
     </section>
 </div>
-
+{{-- 
 <!-- Modal Konfirmasi Penghapusan -->
-@foreach ($courses as $data)
-    <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog"
+@foreach ($courses as $data) --}}
+    {{-- <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog"
         aria-labelledby="deleteModalLabel{{ $data->id }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -88,6 +88,6 @@
                 </div>
             </div>
         </div>
-    </div>
-@endforeach
+    </div> --}}
+{{-- @endforeach --}}
 <!-- End Modal -->

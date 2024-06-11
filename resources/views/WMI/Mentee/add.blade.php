@@ -41,19 +41,25 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Role Mentee</label>
-                                    <input type="text" class="form-control" value="{{ old('role') }}"
-                                        name="role" required placeholder="Enter Role Mentee">
+                                    <label for="role">Role Mentee</label>
+                                    <select class="form-control" id="role" name="role" required>
+                                        <option value="">Select Role Mentee</option>
+                                        <option value="UI/UX">UI/UX</option>
+                                        <option value="Mobile Development">Mobile Development</option>
+                                        <option value="IBM Academy">IBM Academy</option>
+                                        <!-- Tambahkan opsi lain sesuai kebutuhan -->
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Email address</label>
+                                    <label>Email Address</label>
                                     <input type="text" class="form-control" value="{{ old('email') }}"
                                         name="email" required placeholder="Enter email">
                                     {{-- <div style="color: red">
                                         {{ $errors->first('email') }}
                                     </div> --}}
                                 </div>
+                                
 
                                 <div class="form-group">
                                     <label>Password</label>
@@ -65,14 +71,11 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Tambah</button> &nbsp; &nbsp;
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                &nbsp; &nbsp;
                                 <a href="{{ route('datamentee') }}"
                                     style="display: inline-block; padding: 7px 20px; background-color: #ff0000; color: #fff; text-decoration: none; border-radius: 5px; position :absolute; bottom:2%;">Batal</a>
-
                             </div>
-
-
-
                         </form>
                     </div>
                 </div>

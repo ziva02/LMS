@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Link;
 use App\Models\Materi;
+use App\Models\Tugas;
+use App\Models\TugasMentee;
 use Illuminate\Support\Facades\DB;
 
 
@@ -22,7 +24,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::paginate(5); // Mengambil semua data dari model Course
-        $header_title = "Course List"; // Judul yang ingin ditampilkan
+        $header_title = "Daftar Kelas"; // Judul yang ingin ditampilkan
 
         // Mengembalikan view 'WMI/course/course' dengan data course dan header_title
         return view('WMI/Course/course', ['courses' => $courses, 'header_title' => $header_title]);
@@ -39,12 +41,14 @@ class CourseController extends Controller
                 ->where('users.id', auth()->user()->id);
         })->select('course.*');
 
+      
+
         // Menyimpan hasil query dalam variabel $courses
         $courses = $coursesQuery->paginate(5);
-
+        // dd($coursesQuery->toSql());
         // Menyusun judul header berdasarkan peran pengguna
         $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Course List";
-       
+
         // Mengembalikan tampilan dengan data yang sesuai
         return view('Mentor/Course/coursementor', compact('courses', 'header_title'));
     }
@@ -65,7 +69,7 @@ class CourseController extends Controller
 
         // Menyusun judul header berdasarkan peran pengguna
         $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Course List";
-       
+
         // Mengembalikan tampilan dengan data yang sesuai
         return view('Mentee/Course/coursementee', compact('courses', 'header_title'));
     }
@@ -89,11 +93,11 @@ class CourseController extends Controller
 
         if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
             if (auth()->user()->is_admin == 0) {
-                return redirect('/beranda')->with('success', "Berhasil login!");
+                return redirect('/landingwmi')->with('success', "Berhasil login!");
             } elseif (auth()->user()->is_admin == 1) {
-                return redirect('/coursementor')->with('success', "Berhasil login!");
+                return redirect('/landingmentor')->with('success', "Berhasil login!");
             } elseif (auth()->user()->is_admin == 2) {
-                return redirect('/coursementee')->with('success', "Berhasil login!");
+                return redirect('/landingmentee')->with('success', "Berhasil login!");
             }
         } else {
             return redirect()->route('login')->withErrors(['password' => 'Email-Address atau Password salah ! ']);
@@ -207,9 +211,55 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'data berhasil dihapus.');
 
     }
+    public function linkPertemuanDetail($id)
+    {
+        $header_title = "Link Pertemuan";
+
+        // Ambil data dari model Link berdasarkan course_id yang sama dengan Materi
+        $dataLink = Link::where('course_id', $id)->whereExists(function ($query) use ($id) {
+            $query->select('id')
+                ->from('materi')
+                ->whereColumn('course_id', 'link_pertemuan.course_id');
+        })->get();
+
+        // Ambil data dari model Materi
+        $dataMateri = Materi::join('course', 'course.id', '=', 'materi.course_id')
+            ->where('materi.course_id', $id)
+            ->select('materi.*', 'course.name as course_name')
+            ->get();
 
 
+        return view('WMI.Course.coursedetail', compact('header_title', 'dataMateri', 'dataLink'));
+    }
 
+    public function tugasdetail($id)
+    {
+        $header_title = "Tugas";
+        $userId = auth()->id();
+        // Ambil data dari model Materi
+        $datatugas = Tugas::join('course', 'course.id', '=', 'tugas.course_id')
+            ->where('tugas.course_id', $id)
+            ->select('tugas.*', 'course.name as course_name')
+            ->get();
+
+        // Ambil data dari model Link berdasarkan course_id yang sama dengan Materi
+        $dataLink = Link::whereHas('materi', function ($query) use ($id) {
+            $query->where('course_id', $id);
+        })->get();
+
+        $periksa = TugasMentee::where('tugas_file')->exists();
+
+
+        $dataMateri = Materi::join('course', 'course.id', '=', 'materi.course_id')
+            ->where('materi.course_id', $id)
+            ->select('materi.*', 'course.name as course_name')
+            ->get();
+
+        // dd($datatugas);
+
+        return view('WMI.Course.coursedetail', compact('header_title', 'dataMateri', 'datatugas', 'dataLink', 'periksa'));
+
+    }
 
     public function coursedetail($id)
     {
@@ -257,26 +307,7 @@ class CourseController extends Controller
 
 
 
-    public function linkPertemuanDetail($id)
-    {
-        $header_title = "Link Pertemuan";
 
-        // Ambil data dari model Link berdasarkan course_id yang sama dengan Materi
-        $dataLink = Link::where('course_id', $id)->whereExists(function ($query) use ($id) {
-            $query->select('id')
-                ->from('materi')
-                ->whereColumn('course_id', 'link_pertemuan.course_id');
-        })->get();
-
-        // Ambil data dari model Materi
-        $dataMateri = Materi::join('course', 'course.id', '=', 'materi.course_id')
-            ->where('materi.course_id', $id)
-            ->select('materi.*', 'course.name as course_name')
-            ->get();
-
-
-        return view('WMI.Course.coursedetail', compact('header_title', 'dataMateri', 'dataLink'));
-    }
 
     public function storelink(Request $request)
     {
@@ -335,6 +366,60 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'Materi berhasil diperbarui.');
     }
 
+    public function updatetugas(Request $request, $id)
+    {
+        // dd($request);    
+        // Validasi input jika diperlukan
+        $request->validate([
+            'judul_tugas' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'file_tugas' => 'nullable|mimes:pdf|max:2048',
+        ]);
+
+        // Cari materi berdasarkan ID
+        $tugas = Tugas::findOrFail($id);
+
+        // Perbarui data tugas
+        $tugas->judul_tugas = $request->judul_tugas;
+        $tugas->deskripsi = $request->deskripsi;
+
+        // Jika file tugas baru diunggah, simpan file yang baru
+        if ($request->hasFile('file_tugas')) {
+            $filetugasnama = $request->file('file_tugas')->getClientOriginalName();
+            $filetugasPath = $request->file('file_tugas')->move(public_path('filetugas'), $filetugasnama);
+            $tugas->file_tugas = $filetugasnama;
+        }
+
+        // Simpan perubahan
+        $tugas->save();
+
+        return redirect()->back()->with('success', 'Tugas berhasil diperbarui.');
+    }
+
+    public function storetugas(Request $request, $id)
+    {
+        // Validasi input jika diperlukan
+        $request->validate([
+            'file_tugas' => 'required|mimes:pdf|max:2048', // Contoh validasi untuk file PDF, sesuaikan dengan kebutuhan Anda
+            'judul_tugas' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+        ]);
+
+        // Simpan file materi ke dalam folder public/filemateri
+        $filtugasnama = $request->file('file_tugas')->getClientOriginalName();
+        $fileMateriPath = $request->file('file_tugas')->move(public_path('filetugas'), $filtugasnama);
+
+        // Simpan data materi ke dalam database
+        Tugas::create([
+            'judul_tugas' => $request->judul_tugas,
+            'deskripsi' => $request->deskripsi,
+            'file_tugas' => $filtugasnama, // Simpan nama file materi ke dalam basis data
+            'course_id' => $id, // Menggunakan $id dari parameter rute
+        ]);
+
+        return redirect()->route('courses.detail', ['id' => $id])->with('success', "Materi successfully added.");
+    }
+
 
 
     public function storedetail(Request $request, $id)
@@ -375,6 +460,21 @@ class CourseController extends Controller
         $materi->delete();
         return redirect()->back()->with('success', "Materi successfully deleted.");
     }
+
+    public function deletetugas($id)
+    {
+
+        $tugas = Tugas::findOrFail($id);
+        // Hapus file tugas dari folder
+        $file_path = public_path('filetugas/' . $tugas->file_tugas);
+        if (file_exists($file_path)) {
+            unlink($file_path);
+        }
+        // Hapus materi dari basis data
+        $tugas->delete();
+        return redirect()->back()->with('success', "Tugas successfully deleted.");
+    }
+
 
     public function deletelink($id)
     {
