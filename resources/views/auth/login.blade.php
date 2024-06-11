@@ -37,7 +37,7 @@
                 <form class="login100-form validate-form" method="POST" action="{{ route('loginn') }}">
 
                     @csrf
-                    <span class="login100-form-title p-b-26">{{ __('earning Management System') }}</span>
+                    <span class="login100-form-title p-b-26">{{ __('Learning Management System') }}</span>
                     <span class="login100-form-title p-b-48">
 
                     </span>
