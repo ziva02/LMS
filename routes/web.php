@@ -115,6 +115,11 @@ Route::put('wmi/course/{id}', [CourseController::class, 'update'])->name('update
 
 Route::middleware(['role:2'])->group(function () {
     Route::get('/coursementee', [CourseController::class, 'indexmentee'])->name('coursementee');
+    Route::get('/nilaiakhir', [MenteeController::class, 'nilaiakhir'])->name('nilaimentee');
+    Route::get('/sertifikat/{course_id}', [MenteeController::class, 'sertifikat'])->name('sertifikat');
+    Route::get('/sertifikat/{course_id}/download', [MenteeController::class, 'downloadSertifikat'])->name('sertifikat.download');
+
+
 });
 
 Route::middleware(['role:1'])->group(function () {

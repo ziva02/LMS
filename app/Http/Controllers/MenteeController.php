@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Mentee;
 use App\Models\TugasMentee;
 use App\Models\Tugas;
+use Illuminate\Support\Facades\DB;
 use Hash;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use PDF;
 
 
 
@@ -147,6 +151,69 @@ class MenteeController extends Controller
         return view('WMI.Course.coursedetail', ['hasSubmittedTask' => $hasSubmittedTask]);
     }
 
+    public function nilaiakhir()
+    {
+        $loggedInUserId = Auth::id();
+
+        $nilaiakhir = DB::table('users')
+            ->join('tugas_mentee', 'users.id', '=', 'tugas_mentee.user_id')
+            ->join('course', 'tugas_mentee.course_id', '=', 'course.id')
+            ->select('users.name', 'course.id as course_id', 'course.name as course_name', DB::raw('AVG(tugas_mentee.nilai) as average_score'))
+            ->where('users.id', $loggedInUserId)
+            ->where('users.is_admin', 2)
+            ->groupBy('users.name', 'course.id', 'course.name')
+            ->paginate(5);
+
+        return view('Mentee.Course.nilaiakhir', ['nilaiakhir' => $nilaiakhir]);
+    }
+
+    public function sertifikat($course_id)
+    {
+        $loggedInUserId = Auth::id();
+
+        $sertifikatData = DB::table('users')
+            ->join('tugas_mentee', 'users.id', '=', 'tugas_mentee.user_id')
+            ->join('course', 'tugas_mentee.course_id', '=', 'course.id')
+            ->select('users.name', 'course.name as course_name', DB::raw('AVG(tugas_mentee.nilai) as average_score'))
+            ->where('users.id', $loggedInUserId)
+            ->where('course.id', $course_id)
+            ->groupBy('users.name', 'course.name')
+            ->first();
+
+        return view('Mentee.Course.sertifikat', ['sertifikatData' => $sertifikatData]);
+    }
+
+    public function downloadSertifikat($course_id)
+    {
+        $loggedInUserId = Auth::id();
+
+        $sertifikatData = DB::table('users')
+            ->join('tugas_mentee', 'users.id', '=', 'tugas_mentee.user_id')
+            ->join('course', 'tugas_mentee.course_id', '=', 'course.id')
+            ->select('users.name', 'course.name as course_name', DB::raw('AVG(tugas_mentee.nilai) as average_score'))
+            ->where('users.id', $loggedInUserId)
+            ->where('course.id', $course_id)
+            ->groupBy('users.name', 'course.name')
+            ->first();
+
+        // Generate PDF
+        $options = new Options();
+        $options->set('defaultFont', 'Arial'); // Atur font default jika diperlukan
+
+        $dompdf = new Dompdf($options);
+        $html = view('Mentee.Course.sertifikat_pdf', ['sertifikatData' => $sertifikatData])->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait'); // Atur ukuran dan orientasi kertas
+
+        $dompdf->render();
+        $pdfContent = $dompdf->output();
+
+        // Download PDF
+        $fileName = 'sertifikat.pdf';
+        return response()->streamDownload(function () use ($pdfContent) {
+            echo $pdfContent;
+        }, $fileName);
+    }
 
 
 }
