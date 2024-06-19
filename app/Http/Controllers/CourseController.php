@@ -47,7 +47,7 @@ class CourseController extends Controller
         $courses = $coursesQuery->paginate(5);
         // dd($coursesQuery->toSql());
         // Menyusun judul header berdasarkan peran pengguna
-        $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Course List";
+        $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Daftar Kelas";
 
         // Mengembalikan tampilan dengan data yang sesuai
         return view('Mentor/Course/coursementor', compact('courses', 'header_title'));
@@ -68,7 +68,7 @@ class CourseController extends Controller
         $courses = $coursesQuery->paginate(5);
 
         // Menyusun judul header berdasarkan peran pengguna
-        $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Course List";
+        $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Daftar Kelas";
 
         // Mengembalikan tampilan dengan data yang sesuai
         return view('Mentee/Course/coursementee', compact('courses', 'header_title'));

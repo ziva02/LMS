@@ -39,8 +39,10 @@
                                                     </b>
                                                     <br><br>
                                                 </div>
-                                                <p class="card-text">
-                                                    {{ Illuminate\Support\Str::limit($data->deskripsi, 150) }}</p>
+                                                <p class="card-text" style="color: black;">
+                                                    {{ Illuminate\Support\Str::limit($data->deskripsi, 150) }}
+                                                </p>
+                                                
                                             </div>
                                         </a> <!-- Akhir dari tautan ke halaman detail -->
                                     </div>

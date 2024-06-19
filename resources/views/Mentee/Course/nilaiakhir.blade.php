@@ -42,10 +42,10 @@
                                                 <td>{{ $nilai->course_name }}</td>
                                                 <td>{{ number_format($nilai->average_score, 1) }}</td>
                                                 <td>
-                                                    <td>
+                                                    
                                                         <a href="{{ route('sertifikat', ['course_id' => $nilai->course_id]) }}" class="btn btn-warning">Lihat Sertifikat</a>
                                                         <a href="{{ route('sertifikat.download', ['course_id' => $nilai->course_id]) }}" class="btn btn-success">Unduh Sertifikat</a>
-                                                    </td>
+                                             
                                                     
                                                    
                                                 </td>
