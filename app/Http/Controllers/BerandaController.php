@@ -8,6 +8,7 @@ use App\Models\user;
 use App\Models\Materi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Course;
 
 class BerandaController extends Controller
 {
@@ -24,7 +25,7 @@ class BerandaController extends Controller
         $header_title = "Beranda";
         $pengumumans = Pengumuman::latest()->take(3)->get();
         $landing = User::where('is_admin', 2)->count();
-        return view('landing.landingmentor', compact('header_title', 'landing','pengumumans'));
+        return view('landing.landingmentor', compact('header_title', 'landing', 'pengumumans'));
     }
 
     public function wmi()
@@ -34,7 +35,7 @@ class BerandaController extends Controller
         $mentor = User::where('is_admin', 1)->count();
         $materi = Materi::all()->count();
         $pengumumans = Pengumuman::latest()->take(3)->get();
-        return view('landing.landingwmi', compact('header_title', 'landing', 'mentor', 'materi','pengumumans'));
+        return view('landing.landingwmi', compact('header_title', 'landing', 'mentor', 'materi', 'pengumumans'));
     }
 
     public function mentee()
@@ -70,10 +71,27 @@ class BerandaController extends Controller
             ->distinct() // Mengambil hanya tugas yang unik
             ->paginate(5); // Menambahkan titik koma yang hilang
 
-        // dd($tugasmentee);
+        $tugasBelumDikumpul = DB::table('tugas')
+            ->join('course', 'tugas.course_id', '=', 'course.id')
+            ->leftJoin('tugas_mentee', function ($join) use ($loggedInUser) {
+                $join->on('tugas.id', '=', 'tugas_mentee.tugas_id')
+                    ->where('tugas_mentee.user_id', '=', $loggedInUser->id);
+            })
+            ->where('course.user_role', $loggedInUser->role)
+            ->whereNull('tugas_mentee.tugas_file') // Filter untuk tugas yang belum dikumpulkan
+            ->select('tugas.id', 'tugas.judul_tugas', 'course.name')
+            ->distinct()
+            ->paginate(5);
 
-        return view('landing.landingmentee', compact('header_title', 'mentor', 'tugasmentee', 'totalMentor','pengumumans'));
+        // Fetch the course data
+        $coursesQuery = Course::join('users', function ($join) {
+            $join->on('course.user_role', '=', 'users.role')
+                ->where('users.id', auth()->user()->id);
+        })->select('course.*')->get(); // Use get() to fetch the data
+
+        return view('landing.landingmentee', compact('header_title', 'mentor', 'tugasmentee', 'totalMentor', 'pengumumans', 'tugasBelumDikumpul', 'coursesQuery'));
     }
+
 
 
 

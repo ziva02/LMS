@@ -27,6 +27,27 @@
                     </div>
                 </div>
                 <!-- /.col -->
+
+                <!-- Section for Unsubmitted Tasks -->
+                <div class="col-md-9">
+                    @if($tugasBelumDikumpul->isNotEmpty())
+                    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+                        <div>
+                            <h5><i class="icon fas fa-exclamation-triangle"></i> Tugas Belum Dikumpulkan!</h5>
+                            <ul>
+                                @foreach ($tugasBelumDikumpul as $tugas)
+                                    <li>{{ $tugas->judul_tugas }} (Course: {{ $tugas->name }})</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @foreach($coursesQuery as $course)
+                        <a href="{{ route('courses.detail', ['id' => $course->id]) }}">Pergi ke Halaman Tugas</a>
+                    @endforeach
+                    
+                    </div>
+                    @endif
+                </div>
+                <!-- /.section -->
             </div>
             <!-- /.row -->
 
@@ -116,10 +137,8 @@
                             <span class="badge bg-primary rounded-pill">Mentor</span>
                         </div>
                     @endforeach
-                    
                 </div>
             </div>
-            
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
