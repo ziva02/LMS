@@ -30,23 +30,26 @@
 
                 <!-- Section for Unsubmitted Tasks -->
                 <div class="col-md-9">
-                    @if($tugasBelumDikumpul->isNotEmpty())
-                    <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
-                        <div>
-                            <h5><i class="icon fas fa-exclamation-triangle"></i> Tugas Belum Dikumpulkan!</h5>
-                            <ul>
-                                @foreach ($tugasBelumDikumpul as $tugas)
-                                    <li>{{ $tugas->judul_tugas }} (Course: {{ $tugas->name }})</li>
-                                @endforeach
-                            </ul>
+                    @if ($tugasBelumDikumpul->isNotEmpty())
+                        <div class="alert alert-danger d-flex justify-content-between align-items-center" role="alert">
+                            <div>
+                                <h5><i class="icon fas fa-exclamation-triangle"></i> Tugas Belum Dikumpulkan!</h5>
+                                <ul>
+                                    @foreach ($tugasBelumDikumpul as $tugas)
+                                        <li>{{ $tugas->judul_tugas }} (Course: {{ $tugas->name }})</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div>
+                                @if ($coursesQuery->isNotEmpty())
+                                    <a href="{{ route('courses.detail', ['id' => $coursesQuery->first()->id]) }}">Pergi
+                                        ke Halaman Tugas</a>
+                                @endif
+                            </div>
                         </div>
-                        @foreach($coursesQuery as $course)
-                        <a href="{{ route('courses.detail', ['id' => $course->id]) }}">Pergi ke Halaman Tugas</a>
-                    @endforeach
-                    
-                    </div>
                     @endif
                 </div>
+                
                 <!-- /.section -->
             </div>
             <!-- /.row -->
@@ -92,17 +95,14 @@
             <div class="col-md-12" style="left:-7px;">
                 @foreach ($pengumumans as $value)
                     <div class="col-md-12">
-                        <div
-                            style="background-color: #b0c9f1; border-radius: 5px; margin-bottom: 20px; padding: 20px;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="background-color: #b0c9f1; border-radius: 5px; margin-bottom: 20px; padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <b>
                                     <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul }}
                                     </h4>
                                 </b>
                             </div>
-                            <p
-                                style="margin-bottom: 10px; color: #000000; overflow: hidden; word-wrap: break-word;">
+                            <p style="margin-bottom: 10px; color: #000000; overflow: hidden; word-wrap: break-word;">
                                 {{ $value->deskripsi }}</p>
                         </div>
                     </div>
@@ -132,7 +132,8 @@
             <div class="modal-body">
                 <div class="list-group">
                     @foreach ($mentor as $mentorName)
-                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div
+                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             <span><i class="fas fa-user"></i> {{ $mentorName }}</span>
                             <span class="badge bg-primary rounded-pill">Mentor</span>
                         </div>
@@ -165,8 +166,7 @@
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
-            events: [
-                {
+            events: [{
                     title: 'Meeting',
                     start: '2024-04-01T10:00:00',
                     end: '2024-04-01T12:00:00'
