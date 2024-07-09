@@ -9,8 +9,7 @@
                 <div class="col-sm-6">
                     <h1>Course List</h1>
                 </div>
-                
-        </div><!-- /.container-fluid -->
+            </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
@@ -28,18 +27,17 @@
                                         <!-- Tautan ke halaman detail -->
                                         <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
                                             <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}"
-                                                alt="Course Image" style="height:250px; width:410px;">
+                                                alt="Course Image" style="height:250px; width:100%; object-fit: cover;">
                                             <div class="card-body">
                                                 <div class="mt-3">
-                                                    <b>
-                                                        <!-- Tautan pada judul card -->
-                                                        <h5 class="card-title">{{ $data->name }}</h5>
-                                                    </b>
-                                                    <br><br>
-                                                    
+                                                    <h5 class="card-title">
+                                                        <b>{{ $data->name }}</b>
+                                                    </h5>
                                                 </div>
+                                                &nbsp;&nbsp; <h6 class="text-muted">{{ $data->durasi }}</h6>
                                                 <p class="card-text">
-                                                    {{ Illuminate\Support\Str::limit($data->deskripsi, 300) }}</p>
+                                                    {{ Illuminate\Support\Str::limit($data->deskripsi, 300) }}
+                                                </p>
                                             </div>
                                         </a> <!-- Akhir dari tautan ke halaman detail -->
                                     </div>
@@ -59,7 +57,7 @@
         </div>
     </section>
 </div>
-{{-- 
+
 <!-- Modal Konfirmasi Penghapusan -->
 @foreach ($courses as $data)
     <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog"
@@ -88,5 +86,5 @@
             </div>
         </div>
     </div>
-@endforeach --}}
+@endforeach
 <!-- End Modal -->

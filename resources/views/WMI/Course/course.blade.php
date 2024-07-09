@@ -9,12 +9,9 @@
                 <div class="col-sm-6">
                     <h1>Daftar Kelas</h1>
                 </div>
-
                 <div class="col-sm-6" style="text-align:right;">
-                    <a href="{{ url('wmi/course/add') }}" class="btn btn-primary">Tambah
-                        Kelas</a>
+                    <a href="{{ url('wmi/course/add') }}" class="btn btn-primary">Tambah Kelas</a>
                 </div>
-
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -25,28 +22,26 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-
                         <!-- /.card-header -->
                         <div class="row">
                             @foreach ($courses as $data)
-                            <div class="col-md-4 mb-4">
-                                <div class="card" style="width: 100%; background-color: #f0f0f0;">
-                                    <!-- Tautan ke halaman detail -->
-                                    <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
-                                        <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}" alt="Course Image" style="height:250px; width:410px;">
-                                        <div class="card-body">
-                                            <div class="mt-3">
-                                                <b>
-                                                    <!-- Tautan pada judul card -->
-                                                    <h5 class="card-title">{{ $data->name }}</h5>
-                                                </b>
-                                                <br><br>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <h6 class="text-muted">{{ $data->durasi }}</h6>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card" style="width: 100%; background-color: #f0f0f0;">
+                                        <!-- Tautan ke halaman detail -->
+                                        <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
+                                            <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}"
+                                                alt="Course Image" style="height:250px; width:100%; object-fit: cover;">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><b>{{ $data->name }}</b></h5><br>
+                                                <h6 class="text-muted">{{ $data->durasi }}</h6>
+                                                <div class="d-flex justify-content-between align-items-center mt-2">
                                                     <div>
-                                                        <a href="{{ route('edit.course', ['id' => $data->id]) }}" class="btn btn-warning mr-2">Ubah</a>
+                                                        <a href="{{ route('edit.course', ['id' => $data->id]) }}"
+                                                            class="btn btn-warning mr-2">Ubah</a>
                                                         <!-- Menggunakan modal untuk konfirmasi penghapusan -->
-                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $data->id }}">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-toggle="modal"
+                                                            data-target="#deleteModal{{ $data->id }}">
                                                             Hapus
                                                         </button>
                                                     </div>
@@ -55,12 +50,9 @@
                                                     {{ Illuminate\Support\Str::limit($data->deskripsi, 300) }}
                                                 </p>
                                             </div>
-                                        </div>
-                                    </a> <!-- Akhir dari tautan ke halaman detail -->
+                                        </a> <!-- Akhir dari tautan ke halaman detail -->
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            
                             @endforeach
                         </div>
 

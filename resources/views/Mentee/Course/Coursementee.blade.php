@@ -32,17 +32,13 @@
                                             <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}"
                                                 alt="Course Image" style="height:250px; width:100%; object-fit:cover;">
                                             <div class="card-body">
-                                                <div class="mt-3">
-                                                    <b>
-                                                        <!-- Tautan pada judul card -->
-                                                        <h5 class="card-title">{{ $data->name }}</h5>
-                                                    </b>
-                                                    <br><br>
-                                                </div>
+                                                <h5 class="card-title">
+                                                    <b>{{ $data->name }}</b>
+                                                </h5>
+                                                &nbsp;&nbsp;<h6 class="text-muted">{{ $data->durasi }}</h6>
                                                 <p class="card-text" style="color: black;">
                                                     {{ Illuminate\Support\Str::limit($data->deskripsi, 150) }}
                                                 </p>
-                                                
                                             </div>
                                         </a> <!-- Akhir dari tautan ke halaman detail -->
                                     </div>
