@@ -71,7 +71,7 @@ class CourseController extends Controller
         $header_title = ($currentUserRole === 'mentor') ? "Your Courses" : "Daftar Kelas";
 
         // Mengembalikan tampilan dengan data yang sesuai
-        return view('Mentee/Course/coursementee', compact('courses', 'header_title'));
+        return view('Mentee/Course/Coursementee', compact('courses', 'header_title'));
     }
 
     public function show()

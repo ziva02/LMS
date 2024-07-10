@@ -25,8 +25,8 @@ class MentorController extends Controller
         $header_title = "Data Mentor";
         $mentor = Mentor::where('is_admin', 1)->paginate(20);
 
-        // Mengembalikan view 'WMI/mentor/datamentor' dengan data dashboards
-        return view('WMI/mentor.datamentor', compact('header_title', 'mentor'));
+        // Mengembalikan view 'WMI/Mentor/datamentor' dengan data dashboards
+        return view('WMI/Mentor.datamentor', compact('header_title', 'mentor'));
     }
 
     /**

@@ -1,4 +1,5 @@
-@include ('WMI.sidebar')
+@include('WMI.sidebar')
+
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -9,7 +10,6 @@
                     <div class="col-sm-6">
                         <h1>Data Mentee</h1>
                     </div>
-                    
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -36,19 +36,21 @@
                                             <th>Email Supervisior</th>
                                         </tr>
                                     </thead>
-                                    <?php $number = 1; ?>
                                     <tbody>
-                                        @foreach ($mentee as $mentees)
+                                        @forelse ($mentee as $index => $mentees)
                                             <tr>
-                                                <td><?php echo $number++; ?></td>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $mentees->id_mentee }}</td>
                                                 <td>{{ $mentees->name }}</td>
                                                 <td>{{ $mentees->role }}</td>
                                                 <td>{{ $mentees->email }}</td>
                                                 <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $mentees->email_supervisior }}" target="_blank">{{ $mentees->email_supervisior }}</a></td>
-                                                
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">No mentees available</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table><br>
                                 <div class="pagination justify-content-end">
@@ -63,3 +65,4 @@
             </div>
         </section>
     </div>
+@endsection
