@@ -417,7 +417,7 @@ class CourseController extends Controller
             'course_id' => $id, // Menggunakan $id dari parameter rute
         ]);
 
-        return redirect()->route('courses.detail', ['id' => $id])->with('success', "Materi successfully added.");
+        return redirect()->route('tugas.detail', ['id' => $id])->with('success', "Materi successfully added.");
     }
 
 
