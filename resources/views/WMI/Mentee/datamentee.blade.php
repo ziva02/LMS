@@ -9,10 +9,12 @@
                     <div class="col-sm-6">
                         <h1>Data Mentee</h1>
                     </div>
+                   
                     <div class="col-sm-6" style="text-align:right;">
                         <a href="{{ url('wmi/mentee/add') }}" class="btn btn-primary">
                             Tambah Data Mentee</a>
                     </div>
+                    
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -25,16 +27,19 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Data Mentee</h3>
+                            </div><br>
+                            <div class="col-sm-6 text-right">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Cari Mentee">
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="format" class="table table-bordered table-hover">
+                                <table id="menteeTable" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>ID Mentee</th>
                                             <th>Nama Mentee</th>
-                                            <th>Role</th>
+                                            <th>Program</th>
                                             <th>Email</th>
                                             <th>Email Supervisior</th>
                                             <th>Action</th>
@@ -84,4 +89,15 @@
                 document.getElementById('deleteForm' + id).submit();
             }
         }
+    </script>
+     <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('#menteeTable tbody tr');
+
+            tableRows.forEach(row => {
+                const rowText = row.textContent.toLowerCase();
+                row.style.display = rowText.includes(searchValue) ? '' : 'none';
+            });
+        });
     </script>

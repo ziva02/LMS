@@ -59,8 +59,7 @@
                         <h1>Data Mentor</h1>
                     </div>
                     <div class="col-sm-6 text-right"> <!-- Menggunakan kelas text-right -->
-                        <a href="{{ url('wmi/mentor/add') }}" class="btn btn-primary">Tambah
-                            Data Mentor</a>
+                        <a href="{{ url('wmi/mentor/add') }}" class="btn btn-primary">Tambah Data Mentor</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -74,16 +73,19 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Data Mentor</h3>
+                                <div class="card-tools">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Cari Mentor">
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="format" class="table table-bordered table-hover">
+                                <table id="mentorTable" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>ID Mentor</th>
                                             <th>Nama Mentor</th>
-                                            <th>Role</th>
+                                            <th>Program</th>
                                             <th>Email</th>
                                             <th>Action</th>
                                         </tr>
@@ -125,7 +127,6 @@
         </section>
         <!-- /.content -->
 
-
     </div>
     <!-- /.content-wrapper -->
 
@@ -134,7 +135,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- Tambahkan script untuk search functionality -->
     <script>
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('#mentorTable tbody tr');
+
+            tableRows.forEach(row => {
+                const rowText = row.textContent.toLowerCase();
+                row.style.display = rowText.includes(searchValue) ? '' : 'none';
+            });
+        });
+
         function deleteMentor(id) {
             if (confirm("Apakah Anda yakin ingin menghapus data mentor ini?")) {
                 document.getElementById('deleteForm' + id).submit();

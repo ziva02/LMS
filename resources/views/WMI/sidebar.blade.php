@@ -51,6 +51,12 @@
     <script src="{{ asset('dist') }}/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="https://cdn.jsdelivr.net/npm/demo@1.0.0/demo.js"></script>
+    <style>
+        .nav-treeview .nav-item-child {
+            padding-left: 20px;
+            /* Adjust the value as needed */
+        }
+    </style>
 
 </head>
 
@@ -74,16 +80,19 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link" data-toggle="dropdown" href="#">
-                            <img src="{{ asset('profil/' . Auth::user()->foto) }}" alt="Profile Picture" class="rounded-circle" style="width: 30px; height: 30px; object-fit: cover; margin-right: 5px;">
+                            <img src="{{ asset('profil/' . Auth::user()->foto) }}" alt="Profile Picture"
+                                class="rounded-circle"
+                                style="width: 30px; height: 30px; object-fit: cover; margin-right: 5px;">
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">Keluar</a>
+                            <a href="#" class="dropdown-item" data-toggle="modal"
+                                data-target="#logoutModal">Keluar</a>
                             <a href="{{ route('edit-profile') }}" class="dropdown-item">Profil</a>
                         </div>
                     </li>
                 </ul>
-                
+
             </nav>
         @endif
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
@@ -108,12 +117,12 @@
         </div>
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="javascript:;" class="brand-link" style="text-align:center; display: flex; flex-direction: column; align-items: center;">
+            <a href="javascript:;" class="brand-link"
+                style="text-align:center; display: flex; flex-direction: column; align-items: center;">
                 <img src="{{ asset('img/infinite.png') }}" alt="Infinite Learning Logo"
-                    
                     style="width:230px;height:80px;">
             </a>
-            
+
 
 
 
@@ -142,39 +151,39 @@
                            with font-awesome or any other icon font library -->
 
                         @if (auth()->user()->is_admin == 0)
-                        <li class="nav-item">
-                            <a href="{{ url('landingwmi') }}"
-                                class="nav-link @if (Request::path() == 'landingwmi') active @endif">
-                                <i class="nav-icon fa fa-home"></i>
-                                <p>
-                                    Beranda
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{ url('landingwmi') }}"
+                                    class="nav-link @if (Request::path() == 'landingwmi') active @endif">
+                                    <i class="nav-icon fa fa-home"></i>
+                                    <p>
+                                        Beranda
+                                    </p>
+                                </a>
+                            </li>
                         @endif
 
                         @if (auth()->user()->is_admin == 1)
-                        <li class="nav-item">
-                            <a href="{{ url('landingmentor') }}"
-                                class="nav-link @if (Request::path() == 'landingmentor') active @endif">
-                                <i class="nav-icon fa fa-home"></i>
-                                <p>
-                                    Beranda
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{ url('landingmentor') }}"
+                                    class="nav-link @if (Request::path() == 'landingmentor') active @endif">
+                                    <i class="nav-icon fa fa-home"></i>
+                                    <p>
+                                        Beranda
+                                    </p>
+                                </a>
+                            </li>
                         @endif
 
                         @if (auth()->user()->is_admin == 2)
-                        <li class="nav-item">
-                            <a href="{{ url('landingmentee') }}"
-                                class="nav-link @if (Request::path() == 'landingmentee') active @endif">
-                                <i class="nav-icon fa fa-home"></i>
-                                <p>
-                                    Beranda
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{ url('landingmentee') }}"
+                                    class="nav-link @if (Request::path() == 'landingmentee') active @endif">
+                                    <i class="nav-icon fa fa-home"></i>
+                                    <p>
+                                        Beranda
+                                    </p>
+                                </a>
+                            </li>
                         @endif
 
 
@@ -189,7 +198,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 @if (auth()->user()->is_admin == 0)
-                                    <li class="nav-item">
+                                    <li class="nav-item nav-item-child">
                                         <a href="{{ url('pengumumann') }}"
                                             class="nav-link @if (Request::path() == 'pengumumann') active @endif">
                                             <i class="fas fa-bullhorn nav-icon"></i>
@@ -198,14 +207,14 @@
                                     </li>
                                 @endif
                                 @if (auth()->user()->is_admin == 1)
-                                    <li class="nav-item">
+                                    <li class="nav-item nav-item-child">
                                         <a href="{{ url('coursementor') }}"
                                             class="nav-link @if (Request::path() == 'course') active @endif">
                                             <i class="fas fa-file-alt nav-icon"></i>
                                             <p>Daftar Kelas</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item nav-item-child">
                                         <a href="/datament"
                                             class="nav-link @if (Request::path() == 'course') active @endif">
                                             <i class="fas fa-file-alt nav-icon"></i>
@@ -214,7 +223,7 @@
                                     </li>
                                 @endif
                                 @if (auth()->user()->is_admin == 2)
-                                    <li class="nav-item">
+                                    <li class="nav-item nav-item-child">
                                         <a href="{{ url('coursementee') }}"
                                             class="nav-link @if (Request::path() == 'course') active @endif">
                                             <i class="fas fa-file-alt nav-icon"></i>
@@ -222,9 +231,8 @@
                                         </a>
                                     </li>
                                 @endif
-
                                 @if (auth()->user()->is_admin == 0)
-                                    <li class="nav-item">
+                                    <li class="nav-item nav-item-child">
                                         <a href="{{ url('course') }}"
                                             class="nav-link @if (Request::path() == 'course') active @endif">
                                             <i class="fas fa-file-alt nav-icon"></i>
@@ -234,6 +242,7 @@
                                 @endif
                             </ul>
                         </li>
+                        
                         @if (auth()->user()->is_admin == 0)
                             <li class="nav-item">
                                 <a href="{{ url('datamentor') }}"

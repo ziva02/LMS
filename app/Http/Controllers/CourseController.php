@@ -41,7 +41,7 @@ class CourseController extends Controller
                 ->where('users.id', auth()->user()->id);
         })->select('course.*');
 
-      
+
 
         // Menyimpan hasil query dalam variabel $courses
         $courses = $coursesQuery->paginate(5);
@@ -121,13 +121,12 @@ class CourseController extends Controller
             'durasi' => 'required|string|max:255',
             'deskripsi' => 'required|string',
         ]);
-        $gambarNama = $request->file('gambar')->getClientOriginalName();
+
         // Simpan gambar ke folder public/img
+        $gambarNama = $request->file('gambar')->getClientOriginalName();
         $gambarPath = $request->file('gambar')->move(public_path('img'), $gambarNama);
 
-        // Ambil nama file gambar dengan ekstensinya
-        $gambarNama = $request->file('gambar')->getClientOriginalName();
-
+        // Buat objek Course baru dan simpan data
         $course = new Course;
         $course->name = trim($request->name);
         $course->durasi = trim($request->durasi);
@@ -136,10 +135,20 @@ class CourseController extends Controller
         $course->created_by = $user->id;
         $course->gambar = $gambarNama; // Simpan nama file gambar ke dalam basis data
 
-        $course->save();
+        $course->save(); // Simpan course terlebih dahulu untuk mendapatkan ID
+
+        // Buat dan simpan data Materi
+        $postToSave = [
+            'judul_materi' => trim($request->name),
+            'deskripsi_materi' => trim($request->deskripsi),
+            'course_id' => $course->id,
+        ];
+
+        Materi::create($postToSave);
 
         return redirect()->route('course')->with('success', "Course successfully created");
     }
+
 
     public function edit($id)
     {
