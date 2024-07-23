@@ -9,12 +9,12 @@
                     <div class="col-sm-6">
                         <h1>Data Mentee</h1>
                     </div>
-                   
+
                     <div class="col-sm-6" style="text-align:right;">
                         <a href="{{ url('wmi/mentee/add') }}" class="btn btn-primary">
                             Tambah Data Mentee</a>
                     </div>
-                    
+
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -42,6 +42,8 @@
                                             <th>Program</th>
                                             <th>Email</th>
                                             <th>Email Supervisior</th>
+                                            <th>Nama DPP</th>
+                                            <th>No DPP</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -55,6 +57,15 @@
                                                 <td>{{ $mentees->role }}</td>
                                                 <td>{{ $mentees->email }}</td>
                                                 <td>{{ $mentees->email_supervisior }}</td>
+                                                <td>{{ $mentees->nama_dpp }}</td>
+                                                <td>
+                                                    <a href="https://wa.me/{{ str_replace('08', '628', $mentees->no_dpp) }}"
+                                                        target="_blank">
+                                                        {{ $mentees->no_dpp }}
+                                                    </a>
+                                                </td>
+
+
                                                 <td>
                                                     <a href="{{ url('wmi/mentee/edit/' . $mentees->id) }}"
                                                         class="btn btn-warning">Ubah</a>
@@ -90,7 +101,7 @@
             }
         }
     </script>
-     <script>
+    <script>
         document.getElementById('searchInput').addEventListener('keyup', function() {
             const searchValue = this.value.toLowerCase();
             const tableRows = document.querySelectorAll('#menteeTable tbody tr');

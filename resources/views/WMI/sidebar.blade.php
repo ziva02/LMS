@@ -2,6 +2,17 @@
 <html lang="en">
 
 <head>
+    <style>
+        .main-sidebar {
+            width: 200px; /* Atur lebar sidebar sesuai kebutuhan */
+            min-width: 200px; /* Atur lebar minimum jika diperlukan */
+        }
+    
+        .brand-link img {
+            width: 180px; /* Sesuaikan dengan lebar sidebar baru */
+        }
+    </style>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ !empty($header_title) ? $header_title : '' }}</title>

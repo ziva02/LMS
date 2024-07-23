@@ -54,6 +54,19 @@
                                     <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
 
+                                <!-- New fields -->
+                                <div class="form-group">
+                                    <label>Nama DPP</label>
+                                    <input type="text" class="form-control" value="{{ $mentee->nama_dpp }}"
+                                        name="nama_dpp" placeholder="Enter Nama DPP">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>No DPP</label>
+                                    <input type="text" class="form-control" value="{{ $mentee->no_dpp }}"
+                                        name="no_dpp" placeholder="Enter No DPP">
+                                </div>
+
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>

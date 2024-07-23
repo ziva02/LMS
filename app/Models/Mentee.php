@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,8 +8,18 @@ class Mentee extends Model
 {
     use HasFactory;
 
-    protected $table = 'users';
-    protected $connection = 'mysql';
+    protected $table = 'users'; // Nama tabel yang digunakan
+    protected $connection = 'mysql'; // Koneksi database
 
-    // Properti $fillable untuk menentukan kolom yang dapat diisi secara massal
+    protected $fillable = [
+        'id_mentee',
+        'name',
+        'role',
+        'email',
+        'email_supervisior',
+        'nama_dpp',
+        'no_dpp',
+        'password',
+        'foto',
+    ];
 }

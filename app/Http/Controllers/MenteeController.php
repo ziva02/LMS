@@ -72,6 +72,8 @@ class MenteeController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'email_supervisior' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8',
+            'nama_dpp' => 'nullable|string|max:255',
+            'no_dpp' => 'nullable|string|max:255',
         ]);
 
         $mentee = Mentee::findOrFail($id);
@@ -80,6 +82,8 @@ class MenteeController extends Controller
         $mentee->role = $request->input('role');
         $mentee->email = $request->input('email');
         $mentee->email_supervisior = $request->input('email_supervisior');
+        $mentee->nama_dpp = $request->input('nama_dpp');
+        $mentee->no_dpp = $request->input('no_dpp');
 
         // Check if password field is filled
         if ($request->has('password')) {
@@ -90,6 +94,7 @@ class MenteeController extends Controller
 
         return redirect()->route('datamentee', ['id' => $id])->with('success', 'Data berhasil diperbarui!');
     }
+
 
     public function delete($id)
     {
