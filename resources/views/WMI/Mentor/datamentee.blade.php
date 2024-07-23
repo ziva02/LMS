@@ -85,6 +85,8 @@
                                             <th>Program</th>
                                             <th>Email</th>
                                             <th>Email Supervisior Kampus</th>
+                                            <th>Email DPP</th>
+                                            <th>No DPP</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -97,6 +99,13 @@
                                                 <td>{{ $mentees->email }}</td>
                                                 <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $mentees->email_supervisior }}"
                                                         target="_blank">{{ $mentees->email_supervisior }}</a></td>
+                                                <td>{{ $mentees->nama_dpp }}</td>
+                                                <td>
+                                                    <a href="https://wa.me/{{ str_replace('08', '628', $mentees->no_dpp) }}"
+                                                        target="_blank">
+                                                        {{ $mentees->no_dpp }}
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>
