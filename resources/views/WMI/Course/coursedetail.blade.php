@@ -606,9 +606,6 @@
     });
 </script>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

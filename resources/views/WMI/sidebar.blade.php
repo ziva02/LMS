@@ -5,14 +5,15 @@
     <style>
         .main-sidebar {
             width: 200px;
-            /* Atur lebar sidebar sesuai kebutuhan */
             min-width: 200px;
-            /* Atur lebar minimum jika diperlukan */
         }
 
         .brand-link img {
             width: 180px;
-            /* Sesuaikan dengan lebar sidebar baru */
+        }
+
+        .nav-treeview .nav-item-child {
+            padding-left: 20px;
         }
     </style>
 
@@ -21,77 +22,60 @@
     <title>{{ !empty($header_title) ? $header_title : '' }}</title>
 
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('plugins') }}/fontawesome-free/css/all.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!-- FullCalendar CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
 
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-buttons/css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS (gunakan satu versi saja) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <!-- FullCalendar CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
+    @yield('styles')
+
+
+
+    <!-- Navbar code here -->
+
+    <!-- jQuery (gunakan satu versi saja) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap Bundle with Popper (gunakan satu versi saja) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- FullCalendar JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
 
-    <!-- Content Wrapper. Contains page content -->
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist') }}/css/adminlte.min.css">
-    <script src="{{ asset('plugins') }}/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('plugins') }}/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables  & Plugins -->
-    <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="{{ asset('plugins') }}/jszip/jszip.min.js"></script>
-    <script src="{{ asset('plugins') }}/pdfmake/pdfmake.min.js"></script>
-    <script src="{{ asset('plugins') }}/pdfmake/vfs_fonts.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="{{ asset('plugins') }}/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    @yield('styles')
+    <!-- DataTables JS -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
     <!-- AdminLTE App -->
-    <script src="{{ asset('dist') }}/js/adminlte.min.js"></script>
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
     <!-- AdminLTE for demo purposes -->
     <script src="https://cdn.jsdelivr.net/npm/demo@1.0.0/demo.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <style>
-        .nav-treeview .nav-item-child {
-            padding-left: 20px;
-            /* Adjust the value as needed */
-        }
-    </style>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery (for compatibility) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 </head>
