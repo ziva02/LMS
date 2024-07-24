@@ -4,15 +4,18 @@
 <head>
     <style>
         .main-sidebar {
-            width: 200px; /* Atur lebar sidebar sesuai kebutuhan */
-            min-width: 200px; /* Atur lebar minimum jika diperlukan */
+            width: 200px;
+            /* Atur lebar sidebar sesuai kebutuhan */
+            min-width: 200px;
+            /* Atur lebar minimum jika diperlukan */
         }
-    
+
         .brand-link img {
-            width: 180px; /* Sesuaikan dengan lebar sidebar baru */
+            width: 180px;
+            /* Sesuaikan dengan lebar sidebar baru */
         }
     </style>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ !empty($header_title) ? $header_title : '' }}</title>
@@ -58,16 +61,33 @@
     <script src="{{ asset('plugins') }}/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="{{ asset('plugins') }}/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('plugins') }}/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    @yield('styles')
     <!-- AdminLTE App -->
     <script src="{{ asset('dist') }}/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="https://cdn.jsdelivr.net/npm/demo@1.0.0/demo.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <style>
         .nav-treeview .nav-item-child {
             padding-left: 20px;
             /* Adjust the value as needed */
         }
     </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -78,34 +98,65 @@
 
         <!-- Main Sidebar Container -->
         @if (auth()->user()->is_admin == 1 || auth()->user()->is_admin == 2)
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-                <!-- Left navbar links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                                class="fas fa-bars"></i></a>
-                    </li>
-                </ul>
-
-                <!-- Right navbar links -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                            <img src="{{ asset('profil/' . Auth::user()->foto) }}" alt="Profile Picture"
-                                class="rounded-circle"
-                                style="width: 30px; height: 30px; object-fit: cover; margin-right: 5px;">
-                            {{ Auth::user()->name }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item" data-toggle="modal"
-                                data-target="#logoutModal">Keluar</a>
-                            <a href="{{ route('edit-profile') }}" class="dropdown-item">Profil</a>
-                        </div>
-                    </li>
-                </ul>
-
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <!-- Add your left navbar links here -->
+                        </ul>
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                                    id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="{{ asset('profil/' . Auth::user()->foto) }}" alt="Profile Picture"
+                                        class="rounded-circle me-2"
+                                        style="width: 35px; height: 35px; object-fit: cover;">
+                                    <span>{{ Auth::user()->name }}</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{{ route('edit-profile') }}">Profil</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#logoutModal">Keluar</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </nav>
+
+            <!-- Bootstrap 5 Modal for Logout -->
+            <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Keluar</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin keluar?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <a href="{{ route('logout') }}" class="btn btn-primary">Keluar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endif
+
+
+
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -253,7 +304,7 @@
                                 @endif
                             </ul>
                         </li>
-                        
+
                         @if (auth()->user()->is_admin == 0)
                             <li class="nav-item">
                                 <a href="{{ url('datamentor') }}"

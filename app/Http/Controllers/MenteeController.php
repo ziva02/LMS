@@ -20,13 +20,16 @@ class MenteeController extends Controller
 {
     //
     public function index()
-    {
-        $header_title = "Data Mentee";
-        $mentee = Mentee::where('is_admin', 2)->paginate(20);
+{
+    $header_title = "Data Mentee";
+    $mentee = Mentee::where('is_admin', 2)
+                    ->orderBy('created_at', 'desc') // Urutkan berdasarkan kolom 'created_at' dari terbaru ke terlama
+                    ->paginate(20);
 
-        // Mengembalikan view 'WMI/mentor/datamentor' dengan data dashboards
-        return view('WMI/Mentee.datamentee', compact('header_title', 'mentee'));
-    }
+    // Mengembalikan view 'WMI/mentor/datamentor' dengan data dashboards
+    return view('WMI/Mentee.datamentee', compact('header_title', 'mentee'));
+}
+
 
     public function add()
     {
@@ -48,6 +51,8 @@ class MenteeController extends Controller
         $user->role = trim($request->role);
         $user->email = trim($request->email);
         $user->email_supervisior = trim($request->email_supervisior);
+        $user->nama_dpp = trim($request->email_supervisior);
+        $user->no_dpp = trim($request->no_dpp);
         $user->password = Hash::make($request->password);
         $user->is_admin = 2;
 

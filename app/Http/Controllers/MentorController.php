@@ -23,11 +23,14 @@ class MentorController extends Controller
     public function index()
     {
         $header_title = "Data Mentor";
-        $mentor = Mentor::where('is_admin', 1)->paginate(20);
+        $mentor = Mentor::where('is_admin', 1)
+            ->orderBy('created_at', 'desc') // Urutkan berdasarkan kolom 'created_at' dari terbaru ke terlama
+            ->paginate(20);
 
         // Mengembalikan view 'WMI/Mentor/datamentor' dengan data dashboards
         return view('WMI/Mentor.datamentor', compact('header_title', 'mentor'));
     }
+
 
     /**
      * Show the form for creating a new resource.

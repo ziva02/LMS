@@ -45,7 +45,7 @@
 
                                 <div class="form-group">
                                     <label>Email Supervisior</label>
-                                    <input type="text" class="form-control" value="{{ $mentee->email_supervisior}}"
+                                    <input type="text" class="form-control" value="{{ $mentee->email_supervisior }}"
                                         name="email_supervisior" required placeholder="Enter email">
                                 </div>
 
@@ -79,3 +79,30 @@
         </div>
     </section>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Berhasil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ session('success') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        @if (session('success'))
+            $('#successModal').modal('show');
+        @endif
+    });
+</script>

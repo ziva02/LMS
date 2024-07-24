@@ -61,9 +61,27 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Email Address</label>
+                                    <label>Email Supervisior</label>
                                     <input type="text" class="form-control" value="{{ old('email_supervisior') }}"
                                         name="email_supervisior" required placeholder="Enter email">
+                                    {{-- <div style="color: red">
+                                        {{ $errors->first('email') }}
+                                    </div> --}}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nama DPP</label>
+                                    <input type="text" class="form-control" value="{{ old('nama_dpp') }}"
+                                        name="nama_dpp" required placeholder="Enter Name">
+                                    {{-- <div style="color: red">
+                                        {{ $errors->first('email') }}
+                                    </div> --}}
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nomor DPP</label>
+                                    <input type="text" class="form-control" value="{{ old('no_dpp') }}"
+                                        name="no_dpp" required placeholder="Enter Number">
                                     {{-- <div style="color: red">
                                         {{ $errors->first('email') }}
                                     </div> --}}
