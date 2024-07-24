@@ -2,7 +2,7 @@
 <style>
     .search-container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         /* Menempatkan elemen di sebelah kanan */
         margin-bottom: 20px;
         /* Margin bawah agar tidak terlalu mepet */

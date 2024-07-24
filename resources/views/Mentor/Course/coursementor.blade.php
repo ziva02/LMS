@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Course List</h1>
+                    <h1>Daftar Kelas</h1>
                 </div>
             </div><!-- /.container-fluid -->
     </section>
@@ -24,11 +24,12 @@
                                 <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}" alt="Course Image" style="height:150px; width:100%; object-fit: cover;">
                                 <div class="card-body">
                                     <h5 class="card-title"><b>{{ $data->name }}</b></h5>
-                                    <h6 class="text-muted">{{ $data->durasi }}</h6>
+                                    
                                     <p class="card-text">{{ Illuminate\Support\Str::limit($data->deskripsi, 100) }}</p>
                                     <div class="d-flex justify-content-between align-items-center mt-2">
                                         <a href="{{ route('courses.detail', ['id' => $data->id]) }}" class="btn btn-info btn-sm">Lihat Detail</a>
                                     </div>
+                                    <h6 class="text-muted">{{ $data->durasi }}</h6>
                                 </div>
                             </a>
                         </div>
