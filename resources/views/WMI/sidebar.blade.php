@@ -284,8 +284,8 @@
                                     <li class="nav-item nav-item-child">
                                         <a href="/datament"
                                             class="nav-link @if (Request::path() == 'course') active @endif">
-                                            <i class="fas fa-file-alt nav-icon"></i>
-                                            <p>Daftar Mentee</p>
+                                            <i class="nav-icon fas fa-user-friends"></i>
+                                            <p>Daftar Menteee</p>
                                         </a>
                                     </li>
                                 @endif
