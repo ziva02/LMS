@@ -143,6 +143,7 @@
     </section>
 </div>
 <!-- Modal -->
+<!-- Modal HTML -->
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -156,16 +157,25 @@
             <div class="modal-body">
                 {{ session('success') }}
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-            </div>
+
         </div>
     </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         @if (session('success'))
+            // Menampilkan modal
             $('#successModal').modal('show');
+
+            // Menutup modal setelah 0.8 detik
+            setTimeout(function() {
+                $('#successModal').modal('hide');
+            }, 800);
         @endif
     });
 </script>
