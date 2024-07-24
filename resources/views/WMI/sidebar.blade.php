@@ -317,7 +317,7 @@
                         @endif
                         @if (auth()->user()->is_admin == 0)
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="modal" data-target="#logoutModal">
+                                <a href="/logout" class="nav-link" data-toggle="modal" data-target="#logoutModal">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>
                                         Keluar
