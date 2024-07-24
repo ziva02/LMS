@@ -10,7 +10,7 @@
                     <h1>Kelas</h1>
                 </div>
                 <div class="col-sm-6 d-flex justify-content-end align-items-center">
-                    <a href="/nilaiakhir" class="btn btn-primary">Cek Nilai</a>
+                    <a href="/nilaiakhir" class="btn btn-primary btn-sm">Cek Nilai</a>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -20,47 +20,33 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <!-- /.card-header -->
-                        <div class="row">
-                            @foreach ($courses as $data)
-                                <div class="col-md-4 mb-4">
-                                    <div class="card" style="width: 100%; background-color: #f0f0f0;">
-                                        <!-- Tautan ke halaman detail -->
-                                        <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
-                                            <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}"
-                                                alt="Course Image" style="height:250px; width:100%; object-fit:cover;">
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    <b>{{ $data->name }}</b>
-                                                </h5>
-                                                &nbsp;&nbsp;<h6 class="text-muted">{{ $data->durasi }}</h6>
-                                                <p class="card-text" style="color: black;">
-                                                    {{ Illuminate\Support\Str::limit($data->deskripsi, 150) }}
-                                                </p>
-                                            </div>
-                                        </a> <!-- Akhir dari tautan ke halaman detail -->
-                                    </div>
+                @foreach ($courses as $data)
+                    <div class="col-md-4 mb-4">
+                        <div class="card" style="width: 100%; max-width: 400px; background-color: #f0f0f0;">
+                            <!-- Tautan ke halaman detail -->
+                            <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
+                                <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}" alt="Course Image" style="height:150px; width:100%; object-fit: cover;">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>{{ $data->name }}</b></h5>
+                                    <h6 class="text-muted">{{ $data->durasi }}</h6>
+                                    <p class="card-text" style="color: black;">{{ Illuminate\Support\Str::limit($data->deskripsi, 100) }}</p>
                                 </div>
-                            @endforeach
+                            </a>
                         </div>
-
-                        <div class="pagination justify-content-end">
-                            {{ $courses->links() }}
-                        </div>
-
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
-                </div>
+                @endforeach
             </div>
+
+            <div class="pagination justify-content-end">
+                {{ $courses->links() }}
+            </div>
+
         </div>
     </section>
 </div>
+
 <!-- Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,11 +59,14 @@
                 {{ session('success') }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         @if (session('success'))
