@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dropdown Example</title>
+    <title>Beranda</title>
     <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <!-- Include Sidebar -->
@@ -53,7 +56,7 @@
                                 </div>
                                 <div>
                                     @if ($coursesQuery->isNotEmpty())
-                                        <a href="{{ route('courses.detail', ['id' => $coursesQuery->first()->id]) }}">Pergi ke Halaman Tugas</a>
+                                        <a href="{{ route('courses.detail', ['id' => $coursesQuery->first()->id]) }}" class="btn btn-primary">Pergi ke Halaman Tugas</a>
                                     @endif
                                 </div>
                             </div>
@@ -149,7 +152,9 @@
         </div>
     </div>
 
+    <!-- jQuery (for compatibility) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->
-   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -5,23 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Mentor</title>
-    <!-- Tambahkan link CSS Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Tambahkan gaya CSS khusus di sini */
-        .pagination .page-link {
-            font-size: 14px !important;
-            /* Atur ukuran font */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
         }
 
-        .pagination .page-link::before,
-        .pagination .page-link::after {
-            font-size: 14px !important;
-            /* Atur ukuran font */
+        .content-wrapper {
+            padding: 20px;
         }
 
-        .text-right {
-            text-align: right !important;
+        .content-header h1 {
+            font-weight: 700;
+            color: #343a40;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 500;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            padding: 15px;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: #fff;
         }
 
         .pagination {
@@ -29,57 +59,87 @@
             margin-top: 20px;
         }
 
-        .pagination>.page-item>.page-link {
+        .pagination .page-link {
             color: #007bff;
             background-color: #fff;
             border: 1px solid #dee2e6;
             margin: 0 2px;
-            /* Atur margin antara setiap halaman */
+            border-radius: 50px;
         }
 
-        .pagination>.page-item.active>.page-link {
-            z-index: 1;
+        .pagination .page-item.active .page-link {
             color: #fff;
             background-color: #007bff;
             border-color: #007bff;
+        }
+
+        .modal-header {
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .modal-footer {
+            border-top: 2px solid #dee2e6;
+        }
+
+        .modal-title {
+            font-weight: 700;
+            color: #343a40;
+        }
+
+        .btn-warning, .btn-danger {
+            border-radius: 30px;
+            font-size: 14px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .card-tools input {
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+
+        .table-responsive {
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
 
-    @include('WMI.sidebar')
+@include('WMI.sidebar')
 
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Data Mentor</h1>
-                    </div>
-                    <div class="col-sm-6 text-right"> <!-- Menggunakan kelas text-right -->
-                        <a href="{{ url('wmi/mentor/add') }}" class="btn btn-primary">Tambah Data Mentor</a>
-                    </div>
+<div class="content-wrapper">
+    <!-- Content Header -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Data Mentor</h1>
                 </div>
-            </div><!-- /.container-fluid -->
-        </section>
+                <div class="col-sm-6 text-right">
+                    <a href="{{ url('wmi/mentor/add') }}" class="btn btn-primary">Tambah Data Mentor</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Data Mentor</h3>
-                                <div class="card-tools">
-                                    <input type="text" id="searchInput" class="form-control"
-                                        placeholder="Cari Mentor">
-                                </div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Data Mentor</h3>
+                            <div class="card-tools">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Cari Mentor">
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
+                        </div>
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <div class="table-responsive">
                                 <table id="mentorTable" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -101,95 +161,81 @@
                                                 <td>{{ $item->email }}</td>
                                                 <td>
                                                     <a href="{{ url('wmi/mentor/edit/' . $item->id) }}"
-                                                        class="btn btn-warning">Ubah</a>
+                                                       class="btn btn-warning">Ubah</a>
                                                     <form id="deleteForm{{ $item->id }}"
-                                                        action="{{ route('delete.mentor', ['id' => $item->id]) }}"
-                                                        method="POST" style="display: inline;">
+                                                          action="{{ route('delete.mentor', ['id' => $item->id]) }}"
+                                                          method="POST" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data mentor ini?')">Hapus</button>
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data mentor ini?')">Hapus</button>
                                                     </form>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="pagination justify-content-end">
-                                    {{ $mentor->links() }}
-                                </div>
                             </div>
-                            <!-- /.card-body -->
+                            <div class="pagination justify-content-end">
+                                {{ $mentor->links() }}
+                            </div>
                         </div>
-                        <!-- /.card -->
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
                 </div>
             </div>
-        </section>
-        <!-- /.content -->
+        </div>
+    </section>
+    <!-- /.content -->
 
-    </div>
-    <!-- Modal HTML -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Berhasil</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {{ session('success') }}
-                </div>
+</div>
 
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Berhasil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ session('success') }}
             </div>
         </div>
     </div>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        @if (session('success'))
+            $('#successModal').modal('show');
+            setTimeout(function() {
+                $('#successModal').modal('hide');
+            }, 800);
+        @endif
+    });
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            @if (session('success'))
-                // Menampilkan modal
-                $('#successModal').modal('show');
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        const searchValue = this.value.toLowerCase();
+        const tableRows = document.querySelectorAll('#mentorTable tbody tr');
 
-                // Menutup modal setelah 0.8 detik
-                setTimeout(function() {
-                    $('#successModal').modal('hide');
-                }, 800);
-            @endif
+        tableRows.forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(searchValue) ? '' : 'none';
         });
-    </script>
-    <!-- /.content-wrapper -->
+    });
 
-    <!-- Tambahkan script Bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Tambahkan script untuk search functionality -->
-    <script>
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            const searchValue = this.value.toLowerCase();
-            const tableRows = document.querySelectorAll('#mentorTable tbody tr');
-
-            tableRows.forEach(row => {
-                const rowText = row.textContent.toLowerCase();
-                row.style.display = rowText.includes(searchValue) ? '' : 'none';
-            });
-        });
-
-        function deleteMentor(id) {
-            if (confirm("Apakah Anda yakin ingin menghapus data mentor ini?")) {
-                document.getElementById('deleteForm' + id).submit();
-            }
+    function deleteMentor(id) {
+        if (confirm("Apakah Anda yakin ingin menghapus data mentor ini?")) {
+            document.getElementById('deleteForm' + id).submit();
         }
-    </script>
+    }
+</script>
 </body>
-
 </html>

@@ -21,13 +21,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ !empty($header_title) ? $header_title : '' }}</title>
 
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
 
-    <!-- Bootstrap CSS (gunakan satu versi saja) -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 
     <!-- FullCalendar CSS -->
@@ -43,14 +44,10 @@
 
     @yield('styles')
 
-
-
-    <!-- Navbar code here -->
-
-    <!-- jQuery (gunakan satu versi saja) -->
+    <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- Bootstrap Bundle with Popper (gunakan satu versi saja) -->
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
     <!-- FullCalendar JS -->
@@ -73,11 +70,6 @@
 
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-
-    <!-- AdminLTE for demo purposes -->
-    <script src="https://cdn.jsdelivr.net/npm/demo@1.0.0/demo.js"></script>
-
-
 </head>
 
 <body class="hold-transition sidebar-mini">

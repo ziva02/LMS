@@ -1,4 +1,53 @@
 @include('WMI.sidebar')
+
+<!-- Custom CSS for styling -->
+<style>
+    .content-wrapper {
+        background: #f8f9fa;
+        padding: 20px;
+    }
+    .content-header {
+        padding: 15px 0;
+        border-bottom: 2px solid #dee2e6;
+    }
+    .content-header h1 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        color: #343a40;
+    }
+    .info-box {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .info-box-icon {
+        font-size: 40px;
+        color: #ffffff;
+    }
+    .info-box-content {
+        color: #ffffff;
+    }
+    .info-box.bg-info {
+        background-color: #007bff;
+    }
+    .announcement {
+        background-color: #b0c9f1;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .announcement h4 {
+        margin-bottom: 10px;
+        color: #000000;
+    }
+    .announcement p {
+        margin-bottom: 10px;
+        color: #000000;
+    }
+</style>
+
 <div class="content-wrapper">
     <!-- Content Header -->
     <div class="content-header">
@@ -29,14 +78,11 @@
             <div class="col-md-12" style="left:-15px;">
                 @foreach ($pengumumans as $value)
                     <div class="col-md-12">
-                        <div style="background-color: #b0c9f1; border-radius: 5px; margin-bottom: 20px; padding: 20px;">
+                        <div class="announcement">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <b>
-                                    <h4 style="margin-bottom: 10px; color: #000000;">{{ $value->judul }}</h4>
-                                </b>
+                                <h4>{{ $value->judul }}</h4>
                             </div>
-                            <p style="margin-bottom: 10px; color: #000000; overflow: hidden; word-wrap: break-word;">
-                                {{ $value->deskripsi }}</p>
+                            <p>{{ $value->deskripsi }}</p>
                         </div>
                     </div>
                 @endforeach
