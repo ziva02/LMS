@@ -26,14 +26,16 @@
         border-collapse: separate;
         border-spacing: 0 10px;
     }
-    .table th, .table td {
-        vertical-align: middle;
-        padding: 15px;
-    }
     .table th {
         background-color: #007bff;
         color: #fff;
         font-weight: 500;
+        text-align: center; /* Center-align text in headers */
+    }
+    .table td {
+        vertical-align: middle;
+        padding: 15px;
+        /* Remove text-align: center; from td */
     }
     .table tbody tr {
         background-color: #fff;
@@ -208,6 +210,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
