@@ -64,7 +64,7 @@ class UserController extends Controller
         $profil->save();
 
         // Redirect kembali ke halaman edit profil dengan pesan sukses
-        return redirect()->route('beranda')->with('success', 'Profil berhasil diperbarui!');
+        return redirect()->route('landingmentee')->with('success', 'Profil berhasil diperbarui!');
     }
 
 

@@ -26,8 +26,10 @@
             <div class="row">
                 @foreach ($courses as $data)
                     <div class="col-md-4 mb-4">
+                        <a href="{{ route('courses.detail', ['id' => $data->id]) }}">
                         <div class="card" style="width: 100%; max-width: 400px; background-color: #f0f0f0;">
-                            <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}" alt="Course Image" style="height:150px; width:100%; object-fit: cover;">
+                            <img class="card-img-top" src="{{ asset('img/' . $data->gambar) }}" alt="Course Image"
+                                style="height:150px; width:100%; object-fit: cover;">
                             <div class="card-body">
                                 <h5 class="card-title"><b>{{ $data->name }}</b></h5>
                                 <p class="card-text" style="color: black;">
@@ -35,16 +37,20 @@
                                 </p>
                                 <h6 class="text-muted">{{ $data->durasi }}</h6>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailsModal{{ $data->id }}">
+                                    <button type="button" class="btn btn-info" data-toggle="modal"
+                                        data-target="#detailsModal{{ $data->id }}">
                                         Lihat Detail
                                     </button>
                                     <div>
-                                        <a href="{{ route('edit.course', ['id' => $data->id]) }}" class="btn btn-warning">Ubah</a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal{{ $data->id }}">Hapus</button>
+                                        <a href="{{ route('edit.course', ['id' => $data->id]) }}"
+                                            class="btn btn-warning">Ubah</a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#deleteModal{{ $data->id }}">Hapus</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -59,7 +65,8 @@
 
 <!-- Modal Konfirmasi Penghapusan -->
 @foreach ($courses as $data)
-    <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ $data->id }}" aria-hidden="true">
+    <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="deleteModalLabel{{ $data->id }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,7 +80,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <form id="delete-form-{{ $data->id }}" action="{{ route('delete.course', ['id' => $data->id]) }}" method="POST">
+                    <form id="delete-form-{{ $data->id }}"
+                        action="{{ route('delete.course', ['id' => $data->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -86,7 +94,8 @@
 
 <!-- Modal Detail Deskripsi -->
 @foreach ($courses as $data)
-    <div class="modal fade" id="detailsModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel{{ $data->id }}" aria-hidden="true">
+    <div class="modal fade" id="detailsModal{{ $data->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="detailsModalLabel{{ $data->id }}" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -96,7 +105,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset('img/' . $data->gambar) }}" alt="Course Image" style="width: 100%; height: auto; object-fit: cover;">
+                    <img src="{{ asset('img/' . $data->gambar) }}" alt="Course Image"
+                        style="width: 100%; height: auto; object-fit: cover;">
                     <p class="mt-3">{{ $data->deskripsi }}</p>
                 </div>
                 <div class="modal-footer">
@@ -108,7 +118,8 @@
 @endforeach
 
 <!-- Modal Berhasil -->
-<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -128,7 +139,7 @@
     $(document).ready(function() {
         @if (session('success'))
             $('#successModal').modal('show');
-            
+
             // Menutup modal setelah 0.8 detik
             setTimeout(function() {
                 $('#successModal').modal('hide');

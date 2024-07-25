@@ -76,7 +76,7 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                <a href="" class="btn btn-danger">Batal</a>
+                                <a href="/landingmentee" class="btn btn-danger">Batal</a>
                             </div>
                         </form>
                     </div>
