@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengumuman;
+use Illuminate\Support\Facades\Auth;
+
 
 class PengumumannController extends Controller
 {
@@ -20,6 +22,7 @@ class PengumumannController extends Controller
     }
     public function store(Request $request)
     {
+        $user = Auth::user();
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -28,6 +31,7 @@ class PengumumannController extends Controller
         // Buat objek pengumuman baru
         $pengumuman = new Pengumuman();
         $pengumuman->judul = $request->judul;
+        $pengumuman->user_id = $user ->id;
         $pengumuman->deskripsi = $request->deskripsi;
 
         // Simpan data ke dalam tabel pengumuman
@@ -39,6 +43,7 @@ class PengumumannController extends Controller
     }
     public function edit($id)
     {
+        
         // Temukan pengumuman berdasarkan ID
         $pengumuman = Pengumuman::findOrFail($id);
 
@@ -48,6 +53,8 @@ class PengumumannController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
+
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -58,6 +65,7 @@ class PengumumannController extends Controller
 
         // Update data pengumuman
         $pengumuman->judul = $request->judul;
+        $pengumuman->user_id = $user ->id;
         $pengumuman->deskripsi = $request->deskripsi;
         $pengumuman->save();
 
